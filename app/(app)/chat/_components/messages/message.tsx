@@ -75,7 +75,7 @@ const Message: React.FC<Props> = ({ message, className, previousMessage, nextMes
                     "text-sm font-semibold md:hidden",
                     isUser ? "text-neutral-900 dark:text-neutral-100" : "text-brand-600 dark:text-brand-600"
                 )}>
-                    {message.role === 'user' ? 'You' : 'The Hive'}
+                    {message.role === 'user' ? 'You' : 'Synnax AI'}
                 </p>
             </div>
             <div className="pt-2 w-full max-w-full md:flex-1 md:w-0 overflow-hidden flex flex-col gap-2">

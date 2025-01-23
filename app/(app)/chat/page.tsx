@@ -6,8 +6,7 @@ export default function Home() {
   return (
     <div className="flex-1 h-0 overflow-y-hidden w-full">
       <Chat />
-      {/* TODO */}
-      {/* <NotLoggedInAlert /> */}
+      <NotLoggedInAlert />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { getCosmosClient } from "@/db/cosmos-client";
 
 let database: Database;
 
-const DATABASE_ID = "The Hive Database";
+const DATABASE_ID = "Synnax AI Database";
 
 export const getDatabase = async () => {
     if (!database) {

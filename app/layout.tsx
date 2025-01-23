@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${dmSans.variable} ${dmMono.variable} antialiased bg-white dark:bg-neutral-900`}
+        className={`antialiased bg-white dark:bg-neutral-900`}
       >
         <Providers>
           {children}

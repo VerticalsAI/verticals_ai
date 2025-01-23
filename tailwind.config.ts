@@ -8,7 +8,19 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+		fontFamily: {
+      "gilroy": ["Gilroy", "sans-serif"],
+    },
   	extend: {
+			borderWidth: {
+        DEFAULT: '1px',
+      },
+			borderColor: {
+        DEFAULT: 'rgba(255, 255, 255, 0.05)',
+      },
+			backgroundColor: {
+				'white-3': 'rgba(255, 255, 255, 0.03)',
+			},
   		colors: {
   			background: 'var(--background)',
   			foreground: 'var(--foreground)',
@@ -30,7 +42,7 @@ export default {
   				dark: '#ffffff'
   			},
   			sidebar: {
-  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				// DEFAULT: 'hsl(var(--sidebar-background))',
   				foreground: 'hsl(var(--sidebar-foreground))',
   				primary: 'hsl(var(--sidebar-primary))',
   				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',

@@ -1,29 +1,28 @@
-import React from 'react'
+import React from 'react';
 
 import Link from 'next/link';
 
 import { FaDiscord, FaXTwitter } from 'react-icons/fa6';
 
 import {
-    Sidebar as SidebarUI, 
-    SidebarHeader, 
-    SidebarContent, 
-    SidebarInset,
+    SidebarContent,
     SidebarFooter,
-    SidebarMenuItem,
+    SidebarHeader,
+    SidebarInset,
     SidebarMenuButton,
-    SidebarSeparator,
+    SidebarMenuItem,
     SidebarMenu as SidebarMenuUI,
-} from '@/components/ui'
+    SidebarSeparator,
+    Sidebar as SidebarUI,
+} from '@/components/ui';
 
 import AuthButton from './auth-button';
 import Logo from './logo';
 import SidebarMenu from './sidebar-menu';
 
-import OpenSidebarTrigger from './open-sidebar-trigger';
 import ClosedSidebarTrigger from './closed-sidebar-trigger';
-import ColorModeToggle from './color-mode-toggle';
 import MobileNavbar from './mobile-navbar';
+import OpenSidebarTrigger from './open-sidebar-trigger';
 
 interface Props {
     children: React.ReactNode;

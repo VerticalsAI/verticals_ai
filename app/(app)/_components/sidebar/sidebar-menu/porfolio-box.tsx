@@ -1,9 +1,8 @@
 import { useSidebar } from "@/components/ui";
 import Image from "next/image";
-import Link from "next/link";
 
 export const PortfolioBox = () => {
-  const { isMobile, setOpenMobile, toggleSidebar, open } = useSidebar();
+  const {  open } = useSidebar();
 
   return (
     <div className="w-full p-2 flex flex-col gap-4">

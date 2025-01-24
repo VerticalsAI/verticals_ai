@@ -1,32 +1,32 @@
 'use client'
 
-import React from 'react'
+import React from 'react';
 
 import Link from 'next/link';
 
 import { usePrivy } from '@privy-io/react-auth';
 
-import { 
-    SidebarMenuItem, 
-    SidebarMenuButton,
-    Skeleton,
-    Icon,
+import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
+    Icon,
+    SidebarMenuButton,
+    SidebarMenuItem,
     SidebarMenuSub,
-    SidebarMenuSubItem,
     SidebarMenuSubButton,
+    SidebarMenuSubItem,
+    Skeleton,
     useSidebar,
 } from '@/components/ui';
 
 import { useUserChats } from '@/hooks';
 
-import { useChat } from '../../../chat/_contexts/chat';
-import { ChevronDown, MessageSquare } from 'lucide-react';
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { useChat } from '../../../chat/_contexts/chat';
 
 const ChatsGroup: React.FC = () => {
 

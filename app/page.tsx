@@ -1,11 +1,9 @@
 "use client"
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
-import { BorderBeam } from "@/components/ui";
 
-import GraphComponent from "./_components";
-import LoginButton from "./_components/login-button";
 import { useRouter } from "next/navigation";
+import LoginButton from "./_components/login-button";
 
 const Graph = () => {
   const router = useRouter();

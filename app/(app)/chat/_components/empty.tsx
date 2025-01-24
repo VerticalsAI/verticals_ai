@@ -6,7 +6,6 @@ import ChatInput from "./input";
 import StarterButtons from "./starter-buttons";
 
 import { cn } from "@/lib/utils";
-import Logo from "@/components/ui/logo";
 import Image from "next/image";
 
 const EmptyChat: React.FC = () => {

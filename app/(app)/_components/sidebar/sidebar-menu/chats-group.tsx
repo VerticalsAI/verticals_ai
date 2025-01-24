@@ -26,6 +26,7 @@ import { useChat } from '../../../chat/_contexts/chat';
 import { ChevronDown, MessageSquare } from 'lucide-react';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const ChatsGroup: React.FC = () => {
 
@@ -53,8 +54,8 @@ const ChatsGroup: React.FC = () => {
                     >
                         <div className="flex items-center justify-between w-full">
                             <div className="flex items-center gap-2">
-                                <MessageSquare className="h-4 w-4" />
-                                <h1 className="text-sm font-semibold">Chats</h1>
+                                <Image src="/icons/chat.svg" alt="Logo" width={24} height={24} />
+                                <h1 className="text-sm font-semibold uppercase">Chat History</h1>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Link href='/chat'>

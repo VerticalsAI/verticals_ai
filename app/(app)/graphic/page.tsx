@@ -64,7 +64,7 @@ const GraphicPage = () => {
                 Trading
             </p>
           </Circle>
-          <Circle ref={div4Ref} className="size-28 border-brand-600 dark:border-brand-600">
+          <Circle ref={div4Ref} className="size-28 border-white/5 dark:border-white/5">
             <Logo 
                 className="size-20"
             />

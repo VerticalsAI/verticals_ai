@@ -37,9 +37,9 @@ const ChatInput: React.FC = () => {
                 // Base styles
                 "w-full rounded-md flex flex-col overflow-hidden transition-colors duration-200 ease-in-out border border-transparent shadow-none",
                 // Light mode styles
-                "bg-neutral-100 focus-within:border-brand-600",
+                "bg-neutral-100 focus-within:border-white/5",
                 // Dark mode styles
-                "dark:bg-neutral-800/50 dark:focus-within:border-brand-600",
+                "dark:bg-neutral-800/50 dark:focus-within:border-white/5",
                 isLoading && "opacity-50 cursor-not-allowed"
             )}
         >

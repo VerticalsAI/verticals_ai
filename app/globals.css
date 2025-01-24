@@ -10,10 +10,6 @@ p, a, input, textarea, button, body {
   font-family: var(--font-dm-mono), monospace;
 } */
 
-* {
-  font-family: "DM Mono";
-  color: white;
-}
 
 @layer base {
   :root {
@@ -30,39 +26,44 @@ p, a, input, textarea, button, body {
   }
 
   @font-face {
-    font-family: "Gilroy";
+    font-family: "DM Mono";
     font-weight: 200;
-    src: url("/fonts/gilroy/Gilroy-Thin.ttf");
+    src: url("/fonts/fs-pro/SF-Pro-Display-Thin.otf");
   }
   @font-face {
-    font-family: "Gilroy";
+    font-family: "DM Mono";
     font-weight: 300;
-    src: url("/fonts/gilroy/Gilroy-Light.ttf");
+    src: url("/fonts/fs-pro/SF-Pro-Display-Light.otf");
   }
   @font-face {
-    font-family: "Gilroy";
+    font-family: "DM Mono";
     font-weight: 400;
-    src: url("/fonts/gilroy/Gilroy-Regular.ttf");
+    src: url("/fonts/fs-pro/SF-Pro-Display-Regular.otf");
   }
   @font-face {
-    font-family: "Gilroy";
+    font-family: "DM Mono";
     font-weight: 500;
-    src: url("/fonts/gilroy/Gilroy-Medium.ttf");
+    src: url("/fonts/fs-pro/SF-Pro-Display-Medium.otf");
   }
   @font-face {
-    font-family: "Gilroy";
+    font-family: "DM Mono";
     font-weight: 600;
-    src: url("/fonts/gilroy/Gilroy-Semibold.ttf");
+    src: url("/fonts/fs-pro/SF-Pro-Display-Semibold.otf");
   }
   @font-face {
-    font-family: "Gilroy";
+    font-family: "DM Mono";
     font-weight: 700;
-    src: url("/fonts/gilroy/Gilroy-Bold.ttf");
+    src: url("/fonts/fs-pro/SF-Pro-Display-Bold.otf");
   }
   @font-face {
-    font-family: "Gilroy";
+    font-family: "DM Mono";
     font-weight: 800;
-    src: url("/fonts/gilroy/Gilroy-Black.ttf");
+    src: url("/fonts/fs-pro/SF-Pro-Display-Black.otf");
+  }
+
+  * {
+    font-family: "DM Mono";
+    color: white;
   }
 
   body {

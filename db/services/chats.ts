@@ -4,6 +4,28 @@ import { Message } from "ai";
 import { getPgClient } from "../pg-client";
 import { Chat } from "../types";
 
+export const convertRowToChat = (data: any): Chat => {
+  return {
+    id: data.id,
+    tagline: data.tagline,
+    userId: data.user_id,
+    messages: [],
+  };
+};
+
+export const convertRowToChatMessage = (data: any): Message => {
+  return {
+    id: data.id,
+    createdAt: data.created_at,
+    content: data.content,
+    experimental_attachments: JSON.parse(data.experimental_attachments),
+    role: data.role,
+    data: JSON.parse(data.data),
+    annotations: JSON.parse(data.annotations),
+    toolInvocations: JSON.parse(data.tool_invocations),
+  };
+};
+
 // CREATE
 
 /**
@@ -20,12 +42,15 @@ export const addChat = async (chat: Chat): Promise<Chat | null> => {
     "INSERT INTO chat(id, tagline, user_id) VALUES($1, $2, $3) RETURNING *";
   const values = [chat.id, chat.tagline, chat.userId];
   const res = await client.query(text, values);
+  if (res.rowCount === 0) {
+    return null;
+  }
   if (chat.messages) {
     for (const message of chat.messages) {
       await addMessageToChat(chat.id, chat.userId, message);
     }
   }
-  return res.rows[0];
+  return convertRowToChat(res.rows[0]);
 };
 
 // READ
@@ -47,16 +72,10 @@ export const getChat = async (
   const text = "SELECT * FROM chat WHERE id=$1 AND user_id=$2";
   const values = [id, userId];
   const res = await client.query(text, values);
-  if (res.rows.length == 0) {
+  if (res.rowCount == 0) {
     return null;
   }
-  const chat: Chat = {
-    id: res.rows[0].id,
-    tagline: res.rows[0].tagline,
-    userId: res.rows[0].user_id,
-    messages: [],
-  };
-
+  const chat = convertRowToChat(res.rows[0]);
   chat.messages = await getChatMessage(id, userId);
 
   return chat;
@@ -73,16 +92,7 @@ export const getChatMessage = async (
 
   const messages: Message[] = [];
   for (const r of res.rows) {
-    messages.push({
-      id: r.id,
-      createdAt: r.created_at,
-      content: r.content,
-      experimental_attachments: JSON.parse(r.experimental_attachments),
-      role: r.role,
-      data: JSON.parse(r.data),
-      annotations: JSON.parse(r.annotations),
-      toolInvocations: JSON.parse(r.tool_invocations),
-    });
+    messages.push(convertRowToChatMessage(r));
   }
 
   return messages;
@@ -103,7 +113,10 @@ export const findChatsByUser = async (
   const text = "SELECT * FROM chat WHERE user_id=$1";
   const values = [userId];
   const res = await client.query(text, values);
-  return res.rows;
+  if (res.rowCount == 0) {
+    return [];
+  }
+  return res.rows.map((r) => convertRowToChat(r));
 };
 
 // UPDATE
@@ -122,12 +135,15 @@ export const updateChatTagline = async (
   id: Chat["id"],
   userId: Chat["userId"],
   tagline: string
-): Promise<boolean> => {
+): Promise<Chat | null> => {
   const client = await getPgClient();
   const text = "UPDATE chat SET tagline=$1 WHERE id=$2 AND user_id=$3";
   const values = [tagline, id, userId];
   const res = await client.query(text, values);
-  return res.rows[0];
+  if (res.rowCount == 0) {
+    return null;
+  }
+  return convertRowToChat(res.rows[0]);
 };
 
 /**
@@ -144,7 +160,7 @@ export const addMessageToChat = async (
   id: Chat["id"],
   userId: Chat["userId"],
   message: Message
-): Promise<boolean> => {
+): Promise<Message | null> => {
   const client = await getPgClient();
   const text =
     "INSERT INTO chat_message(chat_id, user_id, id, created_at, content, experimental_attachments, role, data, annotations, tool_invocations) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *";
@@ -161,7 +177,10 @@ export const addMessageToChat = async (
     JSON.stringify(message.toolInvocations),
   ];
   const res = await client.query(text, values);
-  return res.rows[0];
+  if (res.rowCount == 0) {
+    return null;
+  }
+  return convertRowToChatMessage(res.rows[0]);
 };
 
 /**
@@ -184,7 +203,7 @@ export const updateChatMessages = async (
   const deleteQuery =
     "DELETE FROM chat_message WHERE chat_id=$1 AND user_id=$2";
   const deleteValues = [id, userId];
-  await client.query<Message>(deleteQuery, deleteValues);
+  await client.query(deleteQuery, deleteValues);
   for (const message of messages) {
     const text =
       "INSERT INTO chat_message(chat_id, user_id, id, created_at, content, experimental_attachments, role, data, annotations, tool_invocations) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *";
@@ -200,8 +219,8 @@ export const updateChatMessages = async (
       JSON.stringify(message.annotations),
       JSON.stringify(message.toolInvocations),
     ];
-    const res = await client.query<Message>(text, values);
-    result.push(res.rows[0]);
+    const res = await client.query(text, values);
+    result.push(convertRowToChatMessage(res.rows[0]));
   }
 
   return result;
@@ -226,6 +245,6 @@ export const deleteChat = async (
   const deleteQuery =
     "DELETE FROM chat_message WHERE chat_id=$1 AND user_id=$2";
   const deleteValues = [id, userId];
-  await client.query<Message>(deleteQuery, deleteValues);
+  await client.query(deleteQuery, deleteValues);
   return true;
 };

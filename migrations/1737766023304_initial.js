@@ -83,15 +83,16 @@ exports.up = (pgm) => {
   });
   pgm.createTable("knowledge", {
     id: {
-      type: "string",
+      type: "uuid",
+      default: pgm.func("gen_random_uuid()"),
       primaryKey: true,
     },
-    baseUrl: { type: "varchar(500)" },
+    base_url: { type: "varchar(500)" },
     name: { type: "varchar(500)" },
     summary: { type: "text" },
-    summary_embedding: { type: "vector(1538)" },
+    summary_embedding: { type: "vector(1536)" },
     markdown: { type: "text" },
-    mardown_embedding: { type: "vector(1538)" },
+    mardown_embedding: { type: "vector(1536)" },
     url: { type: "varchar(500)" },
     title: { type: "varchar(500)" },
     description: { type: "varchar(500)" },

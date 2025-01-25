@@ -19,7 +19,7 @@ export const GET = async (req: NextRequest) => {
                 { status: 401 }
             );
         }
-
+        console.log('get chats 2', authHeader)
         // Extract the token
         const token = authHeader.split(" ")[1];
         
@@ -31,10 +31,8 @@ export const GET = async (req: NextRequest) => {
                 { status: 401 }
             );
         }
-
         // Get the user's chats
         const chats = await findChatsByUser(userId);
-        
         return NextResponse.json(chats);
     } catch (error) {
         console.error("Error in /api/chats:", error);

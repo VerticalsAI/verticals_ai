@@ -1,8 +1,12 @@
 import "server-only";
 
+import { add, del, find, get, update } from "./base";
+
+import { getKnowledgeContainer } from "../containers";
+
 import { Knowledge, KnowledgeInput } from "../types";
-import pgvector from 'pgvector/pg';
-import { getPgClient } from "../pg-client";
+
+import { PatchOperationType } from "@azure/cosmos";
 
 // CREATE
 
@@ -15,19 +19,7 @@ import { getPgClient } from "../pg-client";
  * @returns {Promise<Knowledge | null>} The newly created knowledge entry or null if creation failed.
  */
 export const addKnowledge = async (knowledge: KnowledgeInput): Promise<Knowledge | null> => {
-    const client = await getPgClient()
-    const text = 'INSERT INTO token(base_url, name, summary, summary_embedding, markdown, url, title, description, favicon) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *'
-    const values = [knowledge.baseUrl,
-                        knowledge.name,
-                        knowledge.summary,
-                        pgvector.toSql(knowledge.summaryEmbedding),
-                        knowledge.markdown,
-                        knowledge.url,
-                        knowledge.title,
-                        knowledge.description,
-                        knowledge.favicon]
-    const res = await client.query<Knowledge>(text, values)
-    return res.rows[0]
+    return add<KnowledgeInput, Knowledge>(await getKnowledgeContainer(), knowledge);
 };
 
 // READ
@@ -42,11 +34,7 @@ export const addKnowledge = async (knowledge: KnowledgeInput): Promise<Knowledge
  * @returns {Promise<Knowledge | null>} The retrieved knowledge entry or null if not found.
  */
 export const getKnowledge = async (id: Knowledge["id"], baseUrl: Knowledge["baseUrl"]): Promise<Knowledge | null> => {
-    const client = await getPgClient()
-    const text = 'SELECT * FROM knowledge WHERE id=$1 AND base_url=$2'
-    const values = [id, baseUrl]
-    const res = await client.query<Knowledge>(text, values)
-    return res.rows[0]
+    return get(await getKnowledgeContainer(), id, baseUrl);
 };
 
 /**
@@ -58,11 +46,11 @@ export const getKnowledge = async (id: Knowledge["id"], baseUrl: Knowledge["base
  * @returns {Promise<Knowledge[]>} An array of knowledge entries matching the criteria.
  */
 export const findKnowledgeByBaseUrl = async (baseUrl: Knowledge["baseUrl"]): Promise<Knowledge[]> => {
-    const client = await getPgClient()
-    const text = 'SELECT * FROM knowledge WHERE base_url=$1'
-    const values = [baseUrl]
-    const res = await client.query<Knowledge>(text, values)
-    return res.rows
+    return find(
+        await getKnowledgeContainer(),
+        `SELECT * FROM c WHERE c.baseUrl = @baseUrl`,
+        [{ name: "@baseUrl", value: baseUrl }]
+    );
 };
 
 /**
@@ -75,11 +63,14 @@ export const findKnowledgeByBaseUrl = async (baseUrl: Knowledge["baseUrl"]): Pro
  * @returns {Promise<(Knowledge & { distance: number })[]>} An array of knowledge entries with their distances to the query vector.
  */
 export const findRelevantKnowledge = async (query: number[]): Promise<(Knowledge & { distance: number })[]> => {
-    const client = await getPgClient()
-    const text = 'SELECT *, summary_embedding <-> $1 AS distance FROM knowledge ORDER BY summary_embedding <-> $2 LIMIT 10'
-    const values = [pgvector.toSql(query)]
-    const res = await client.query<Knowledge & { distance: number }>(text, values)
-    return res.rows
+    return find(
+        await getKnowledgeContainer(),
+        `SELECT TOP 10 c.id, c.summary, c.markdown, c.name, c.baseUrl, c.title, c.description, c.favicon, c.url, VectorDistance(c.summaryEmbedding, @query) AS distance
+        FROM c 
+        WHERE VectorDistance(c.summaryEmbedding, @query) > 0.65
+        ORDER BY VectorDistance(c.summaryEmbedding, @query)`,
+        [{ name: "@query", value: query }]
+    );
 };
 
 /**
@@ -91,11 +82,11 @@ export const findRelevantKnowledge = async (query: number[]): Promise<(Knowledge
  * @returns {Promise<Knowledge[]>} An array of knowledge entries matching the criteria.
  */
 export const findKnowledgeByUrl = async (url: string): Promise<Knowledge[]> => {
-    const client = await getPgClient()
-    const text = 'SELECT * FROM knowledge WHERE url=$1'
-    const values = [url]
-    const res = await client.query<Knowledge>(text, values)
-    return res.rows
+    return find(
+        await getKnowledgeContainer(),
+        `SELECT * FROM c WHERE c.url = @url`,
+        [{ name: "@url", value: url }]
+    );
 };
 
 // UPDATE
@@ -117,11 +108,15 @@ export const updateKnowledgeContent = async (
     markdown: string,
     markdownEmbedding: number[]
 ): Promise<boolean> => {
-    const client = await getPgClient()
-    const text = 'UPDATE knowledge SET markdown=$1, markdown-embedding=$2 WHERE id=$3 AND baseUrl=$4'
-    const values = [markdown, pgvector.toSql(markdownEmbedding), id, baseUrl]
-    await client.query<Knowledge>(text, values)
-    return true
+    return update(
+        await getKnowledgeContainer(),
+        id,
+        baseUrl,
+        [
+            { op: PatchOperationType.set, path: "/markdown", value: markdown },
+            { op: PatchOperationType.set, path: "/markdownEmbedding", value: markdownEmbedding }
+        ]
+    );
 };
 
 // DELETE
@@ -136,9 +131,5 @@ export const updateKnowledgeContent = async (
  * @returns {Promise<boolean>} True if the deletion was successful, false otherwise.
  */
 export const deleteKnowledge = async (id: Knowledge["id"], baseUrl: Knowledge["baseUrl"]): Promise<boolean> => {
-    const client = await getPgClient()
-    const deleteQuery = 'DELETE FROM knowledge WHERE id=$1 AND base_url=$2'
-    const deleteValues = [id, baseUrl]
-    await client.query<Knowledge>(deleteQuery, deleteValues)
-    return true
+    return del(await getKnowledgeContainer(), id, baseUrl);
 };

@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "DATABASE_URL=postgres://thehive:secret@192.168.5.100:5432/thehive node-pg-migrate up",
+    "migrate-down": "DATABASE_URL=postgres://thehive:secret@192.168.5.100:5432/thehive node-pg-migrate down"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^1.0.6",
@@ -63,6 +65,9 @@
     "lucide-react": "^0.469.0",
     "motion": "^11.15.0",
     "next": "15.1.2",
+    "node-pg-migrate": "^7.9.0",
+    "pg": "^8.13.1",
+    "pgvector": "^0.2.0",
     "pnpm": "^9.15.1",
     "posthog-js": "^1.205.0",
     "react": "^19.0.0",

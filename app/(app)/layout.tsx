@@ -1,27 +1,24 @@
-import React from 'react'
+import React from "react";
 
-import { SidebarProvider } from '@/components/ui';
+import { SidebarProvider } from "@/components/ui";
 
-import Sidebar from './_components/sidebar';
-import ExperimentalAlertDialog from './_components/experimental-alert-dialog';
+import Sidebar from "./_components/sidebar";
 
-import { ChatProvider } from './chat/_contexts/chat';
+import { ChatProvider } from "./chat/_contexts/chat";
 
 interface Props {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const Layout: React.FC<Props> = ({ children }) => {
-    return (
-        <SidebarProvider>
-            <ExperimentalAlertDialog />
-            <ChatProvider>
-                <Sidebar>
-                    {children}
-                </Sidebar>
-            </ChatProvider>
-        </SidebarProvider>
-    )
-}
+  return (
+    <SidebarProvider>
+      {/* <ExperimentalAlertDialog /> */}
+      <ChatProvider>
+        <Sidebar>{children}</Sidebar>
+      </ChatProvider>
+    </SidebarProvider>
+  );
+};
 
 export default Layout;

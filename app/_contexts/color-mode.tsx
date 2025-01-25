@@ -23,10 +23,10 @@ export const ColorModeProvider: React.FC<{ children: ReactNode }> = ({ children 
 
     const [mode, setMode] = useState<ColorMode>(ColorMode.DARK);
 
-    useEffect(() => {
-		const theme = getCookie('theme');
-        setMode(theme === 'dark' ? ColorMode.DARK : ColorMode.LIGHT);
-	}, []);
+    // useEffect(() => {
+	// 	const theme = getCookie('theme');
+    //     setMode(theme === 'dark' ? ColorMode.DARK : ColorMode.LIGHT);
+	// }, []);
 
     useEffect(() => {
 		if (mode === ColorMode.DARK) {

@@ -2,7 +2,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
       args:
         - NEXT_PUBLIC_SOLANA_RPC_URL=${NEXT_PUBLIC_SOLANA_RPC_URL:-https://mainnet.helius-rpc.com/?api-key=6879f2d4-0890-419d-b532-1a0e02f32521}
         - PG_HOST=${PG_HOST:-localhost}
@@ -29,5 +29,5 @@ services:
         - STAKING_REWARDS_API_KEY=${STAKING_REWARDS_API_KEY:-51c4df1f-7e55-4045-a8af-69b510335e32}
     env_file: .env
     ports:
-      - "5678:80"
+      - "5678:3000"
     restart: always

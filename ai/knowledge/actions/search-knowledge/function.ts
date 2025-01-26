@@ -12,11 +12,13 @@ export const searchKnowledgeFunction = async (
 ): Promise<SearchKnowledgeResultType> => {
   const knowledge = await Promise.all(
     args.queryPhrases.map(async (phrase) => {
+      console.log("query knowledge", phrase);
       const { embedding } = await embed({
         model: openai.embedding("text-embedding-3-small"),
         value: phrase,
       });
       const knowledge = await findRelevantKnowledge(embedding);
+      console.log("query knowledge end", phrase, knowledge);
       return knowledge;
     })
   );

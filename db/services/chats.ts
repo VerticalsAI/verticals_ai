@@ -89,7 +89,9 @@ export const getChatMessage = async (
   const text = "SELECT * FROM chat_message WHERE chat_id=$1 AND user_id=$2";
   const values = [id, userId];
   const res = await client.query(text, values);
-
+  if (res.rowCount == 0) {
+    return [];
+  }
   const messages: Message[] = [];
   for (const r of res.rows) {
     messages.push(convertRowToChatMessage(r));
@@ -220,6 +222,9 @@ export const updateChatMessages = async (
       JSON.stringify(message.toolInvocations),
     ];
     const res = await client.query(text, values);
+    if (res.rowCount == 0) {
+      continue;
+    }
     result.push(convertRowToChatMessage(res.rows[0]));
   }
 

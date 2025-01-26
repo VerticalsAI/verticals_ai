@@ -47,6 +47,9 @@ export const addKnowledge = async (
     knowledge.favicon,
   ];
   const res = await client.query(text, values);
+  if (res.rowCount == 0) {
+    return null;
+  }
   return convertRowToKnowledge(res.rows[0]);
 };
 
@@ -69,6 +72,9 @@ export const getKnowledge = async (
   const text = "SELECT * FROM knowledge WHERE id=$1 AND base_url=$2";
   const values = [id, baseUrl];
   const res = await client.query(text, values);
+  if (res.rowCount == 0) {
+    return null;
+  }
   return convertRowToKnowledge(res.rows[0]);
 };
 
@@ -87,6 +93,9 @@ export const findKnowledgeByBaseUrl = async (
   const text = "SELECT * FROM knowledge WHERE base_url=$1";
   const values = [baseUrl];
   const res = await client.query(text, values);
+  if (res.rowCount == 0) {
+    return [];
+  }
   return res.rows.map((r) => convertRowToKnowledge(r));
 };
 
@@ -106,8 +115,10 @@ export const findRelevantKnowledge = async (
   const text =
     "SELECT *, summary_embedding <-> $1 AS distance FROM knowledge ORDER BY summary_embedding <-> $2 LIMIT 10";
   const values = [pgvector.toSql(query), pgvector.toSql(query)];
-  console.log("findRelevantKnowledge", text, values);
   const res = await client.query(text, values);
+  if (res.rowCount == 0) {
+    return [];
+  }
   console.log("findRelevantKnowledge", res);
   return res.rows.map((r) => ({
     ...convertRowToKnowledge(r),
@@ -128,6 +139,9 @@ export const findKnowledgeByUrl = async (url: string): Promise<Knowledge[]> => {
   const text = "SELECT * FROM knowledge WHERE url=$1";
   const values = [url];
   const res = await client.query(text, values);
+  if (res.rowCount == 0) {
+    return [];
+  }
   return res.rows.map((r) => convertRowToKnowledge(r));
 };
 

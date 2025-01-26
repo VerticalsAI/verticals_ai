@@ -45,6 +45,9 @@ export const addToken = async (token: Token): Promise<Token | null> => {
     JSON.stringify(token.extensions),
   ];
   const res = await client.query(text, values);
+  if (res.rowCount == 0) {
+    return null;
+  }
   return res.rows[0];
 };
 
@@ -63,6 +66,9 @@ export const getToken = async (id: Token["id"]): Promise<Token | null> => {
   const text = "SELECT * FROM token WHERE id=$1";
   const values = [id];
   const res = await client.query(text, values);
+  if (res.rowCount == 0) {
+    return null;
+  }
   return res.rows[0];
 };
 
@@ -77,6 +83,9 @@ export const findTokens = async (): Promise<Token[]> => {
   const client = await getPgClient();
   const text = "SELECT * FROM token ORDER BY id";
   const res = await client.query(text);
+  if (res.rowCount == 0) {
+    return [];
+  }
   return res.rows;
 };
 
@@ -93,6 +102,9 @@ export const findTokensBySymbol = async (symbol: string): Promise<Token[]> => {
   const text = "SELECT * FROM token WHERE symbol=$1";
   const values = [symbol.toLowerCase()];
   const res = await client.query(text, values);
+  if (res.rowCount == 0) {
+    return [];
+  }
   return res.rows;
 };
 

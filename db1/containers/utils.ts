@@ -1,4 +1,4 @@
-import { getDatabase } from "@/db/database";
+import { getDatabase } from "@/db1/database";
 
 import { 
     ComputedProperty, 

@@ -1,4 +1,4 @@
-import { getContainer } from "@/db/containers/utils";
+import { getContainer } from "@/db1/containers/utils";
 
 import { Container } from "@azure/cosmos";
 

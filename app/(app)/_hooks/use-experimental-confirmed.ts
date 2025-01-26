@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-const EXPERIMENTAL_CONFIRMED_EVENT = "experimentalConfirmedChange";
-
 export const useExperimentalConfirmed = () => {
   const [confirmed, setConfirmed] = useState(true);
   // const [confirmed, setConfirmed] = useState(() => {

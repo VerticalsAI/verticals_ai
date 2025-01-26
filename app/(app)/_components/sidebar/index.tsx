@@ -23,6 +23,7 @@ import SidebarMenu from './sidebar-menu';
 import ClosedSidebarTrigger from './closed-sidebar-trigger';
 import MobileNavbar from './mobile-navbar';
 import OpenSidebarTrigger from './open-sidebar-trigger';
+import AccountButton from './sidebar-menu/account-button';
 
 interface Props {
     children: React.ReactNode;
@@ -50,12 +51,13 @@ const Sidebar: React.FC<Props> = ({ children }) => {
                 <SidebarFooter>
                     <SidebarMenuUI>
                         <AuthButton />
+                        <AccountButton />
                         <SidebarMenuItem>
                             <SidebarMenuButton 
                                 asChild 
                             >
                                 <Link 
-                                    href={"https://x.com/askthehive_ai"} 
+                                    href={""} 
                                     target={'_blank'}
                                 >
                                     <FaXTwitter />
@@ -68,7 +70,7 @@ const Sidebar: React.FC<Props> = ({ children }) => {
                                 asChild 
                             >
                                 <Link 
-                                    href={"https://discord.gg/8TVcFvySWG"} 
+                                    href={""} 
                                     target={'_blank'}
                                 >
                                     <FaDiscord />

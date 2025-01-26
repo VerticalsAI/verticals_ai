@@ -50,7 +50,7 @@ const Message: React.FC<Props> = ({ message, className, previousMessage, nextMes
             )}>
                 <div className={cn(
                     "hidden md:flex items-center justify-center w-6 h-6 md:w-10 md:h-10 rounded-full",
-                    isUser && "bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700",
+                    isUser && "bg-neutral-100 dark:bg-white/5 backdrop-blur-md border border-neutral-200 dark:border-neutral-700",
                     previousMessageSameRole && "opacity-0"
                 )}>
                     {

@@ -1,6 +1,6 @@
 import { Database } from "@azure/cosmos";
 
-import { getCosmosClient } from "@/db/cosmos-client";
+import { getCosmosClient } from "@/db1/cosmos-client";
 
 let database: Database;
 

@@ -11,19 +11,19 @@ export const platformGroup: SidebarGroup = {
         {
             icon: 'Book',
             label: 'Docs',
-            href: 'https://docs.askthehive.ai',
+            href: '',
             external: true
         },
         {
             icon: 'Twitter',
             label: 'Follow Us',
-            href: 'https://x.com/askthehive_ai',
+            href: '',
             external: true
         },
         {
             icon: 'Github',
             label: 'Source Code',
-            href: 'https://github.com/jasonhedman/the-hive',
+            href: '',
             external: true
         }
     ]

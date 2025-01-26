@@ -1,23 +1,30 @@
 import { useSidebar } from "@/components/ui";
+import { usePrivy } from "@privy-io/react-auth";
 import Image from "next/image";
+import Link from "next/link";
 
 export const PortfolioBox = () => {
-  const {  open } = useSidebar();
+  const { open } = useSidebar();
+  const { user } = usePrivy();
+
+  if (!user?.wallet?.address) return null;
 
   return (
-    <div className="w-full p-2 flex flex-col gap-4">
-      <div className="flex items-center justify-between ">
-        <div className="flex items-center gap-2">
-          <Image
-            src="/icons/Cardholder.svg"
-            alt="Logo"
-            width={open ? 24 : 20}
-            height={open ? 24 : 20}
-          />
-          {open && (
-            <h1 className="text-sm font-semibold uppercase">PORTFOLIO</h1>
-          )}
-        </div>
+    <div className="w-full flex flex-col gap-2">
+      <div className="flex items-center justify-between w-full">
+        <Link href={`/portfolio/${user.wallet.address}`} className="w-full">
+          <div className="flex items-center gap-2 hover:bg-white/10 p-2 w-full rounded-xl">
+            <Image
+              src="/icons/Cardholder.svg"
+              alt="Logo"
+              width={open ? 24 : 20}
+              height={open ? 24 : 20}
+            />
+            {open && (
+              <h1 className="text-sm font-semibold uppercase">PORTFOLIO</h1>
+            )}
+          </div>
+        </Link>
       </div>
       {open && (
         <div className="flex flex-col gap-[-1px] self-stretch rounded-xl border bg-white/5">

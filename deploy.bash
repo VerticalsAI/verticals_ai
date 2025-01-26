@@ -4,4 +4,4 @@ git stash
 git pull
 git stash pop
 
-docker compose -f compose.yaml -f compose.deps.yaml up -d --build app
+docker compose -f compose.prod.yaml -f compose.deps.yaml up -d --build app

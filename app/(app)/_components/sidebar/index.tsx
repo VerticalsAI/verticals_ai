@@ -23,7 +23,6 @@ import SidebarMenu from './sidebar-menu';
 import ClosedSidebarTrigger from './closed-sidebar-trigger';
 import MobileNavbar from './mobile-navbar';
 import OpenSidebarTrigger from './open-sidebar-trigger';
-import AccountButton from './sidebar-menu/account-button';
 
 interface Props {
     children: React.ReactNode;
@@ -51,7 +50,7 @@ const Sidebar: React.FC<Props> = ({ children }) => {
                 <SidebarFooter>
                     <SidebarMenuUI>
                         <AuthButton />
-                        <AccountButton />
+                        {/* <AccountButton /> */}
                         <SidebarMenuItem>
                             <SidebarMenuButton 
                                 asChild 

@@ -8,8 +8,8 @@ import { Skeleton } from '@/components/ui';
 
 import NotLoggedIn from './not-logged-in';
 
-import AccountHeading from './heading';
-import ConnectedAccounts from './connected-accounts';
+// import AccountHeading from './heading';
+// import ConnectedAccounts from './connected-accounts';
 
 const Account: React.FC = () => {
 
@@ -21,8 +21,8 @@ const Account: React.FC = () => {
 
     return (
         <div className="flex flex-col max-w-2xl mx-auto gap-4">
-            <AccountHeading user={user} />
-            <ConnectedAccounts user={user} />
+            {/* <AccountHeading user={user} /> */}
+            {/* <ConnectedAccounts user={user} /> */}
         </div>
     )
 }

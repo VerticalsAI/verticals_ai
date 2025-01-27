@@ -1,0 +1,33 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+      args:
+        - NEXT_PUBLIC_SOLANA_RPC_URL=${NEXT_PUBLIC_SOLANA_RPC_URL:-https://mainnet.helius-rpc.com/?api-key=6879f2d4-0890-419d-b532-1a0e02f32521}
+        - PG_HOST=${PG_HOST:-localhost}
+        - PG_PORT=${PG_PORT:-5432}
+        - PG_USER=${PG_USER:-thehive}
+        - PG_PASSWORD=${PG_PASSWORD:-secret}
+        - PG_DATABASE=${PG_DATABASE:-thehive}
+        - OPENAI_API_KEY=${OPENAI_API_KEY:-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}
+        - TWITTER_BEARER_TOKEN=${TWITTER_BEARER_TOKEN}
+        - NETWORK_ID=${NETWORK_ID:-mainnet}
+        - CDP_API_KEY_NAME=${CDP_API_KEY_NAME:-organizations/8d2ce5e4-ca59-4571-830b-e1369d207c43/apiKeys/dae08a39-ebb0-4da9-b560-63f39429045a}
+        - CDP_API_KEY_PRIVATE_KEY=${CDP_API_KEY_PRIVATE_KEY:-"-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEIGcpJAAz6L4Oll+VDs5deiktVGC7U49fOXzVC1eKojFGoAoGCCqGSM49\nAwEHoUQDQgAEMh3IZHuKhWY4R5D8xCb9vdEjldiJ6zZMPrfvMYoTM5VkOUTwcTg5\nynMh30n7rUrpMj/MLmXA/s7FaJsvT2cjtQ==\n-----END EC PRIVATE KEY-----\n"}
+        - WALLET_DETAILS=${WALLET_DETAILS}
+        - NEXT_PUBLIC_PRIVY_APP_ID=${NEXT_PUBLIC_PRIVY_APP_ID:-cm695lsfl08p92tn6qpykk9d5}
+        - PRIVY_APP_SECRET=${PRIVY_APP_SECRET:-8iuBn3djU5PfP5da44BehunqW1iHuU9u5p8rt7ydKKx7uWEWRRDxwwhtGNSr1Vtbra52g6icn9YR7TV9qu145XX}
+        - NEXT_PUBLIC_POSTHOG_KEY=${NEXT_PUBLIC_POSTHOG_KEY:-phc_kFW2nS16r84yPxcdVEIei2xekjjRx6U8p7EdaQN6swh}
+        - NEXT_PUBLIC_POSTHOG_HOST=${NEXT_PUBLIC_POSTHOG_HOST:-https://us.i.posthog.com}
+        - NEXT_PUBLIC_AZURE_STORAGE_ACCOUNT_URL=${NEXT_PUBLIC_AZURE_STORAGE_ACCOUNT_URL}
+        - NEXT_PUBLIC_AZURE_STORAGE_SAS_STRING=${NEXT_PUBLIC_AZURE_STORAGE_SAS_STRING}
+        - BIRDEYE_API_KEY=${BIRDEYE_API_KEY:-b71ad97074f54ac89bc39d2bf3bf70aa}
+        - FIRECRAWL_API_KEY=${FIRECRAWL_API_KEY:-fc-f50e0f0ad7374cb096a2f710c76eef3a}
+        - CRAWL_AUTH_CODE=${CRAWL_AUTH_CODE}
+        - HELIUS_API_KEY=${HELIUS_API_KEY:-6879f2d4-0890-419d-b532-1a0e02f32521}
+        - STAKING_REWARDS_API_KEY=${STAKING_REWARDS_API_KEY:-51c4df1f-7e55-4045-a8af-69b510335e32}
+    env_file: .env
+    ports:
+      - "5678:3000"
+    restart: always

@@ -1,0 +1,16 @@
+version: "3.6"
+services:
+  thehive-db:
+    container_name: thehive-db
+    hostname: thehive-db
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-thehive}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
+      PGDATA: /data/postgres
+    volumes:
+      - data:/data/postgres
+    restart: always
+
+volumes:
+  data:

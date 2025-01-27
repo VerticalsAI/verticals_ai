@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     config.resolve.alias["@"] = path.join(__dirname);
     return config;
   },
+  output: 'standalone',
 };
 
 export default nextConfig;

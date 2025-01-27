@@ -28,8 +28,8 @@ const ChatInput: React.FC = () => {
     setInput,
     onSubmit,
     isLoading,
-    model,
-    setModel,
+    // model,
+    // setModel,
     inputDisabledMessage,
   } = useChat();
 
@@ -39,7 +39,7 @@ const ChatInput: React.FC = () => {
 
   return (
     <form
-      onSubmit={e => {
+      onSubmit={(e) => {
         e.preventDefault();
         onSubmit();
       }}
@@ -65,7 +65,7 @@ const ChatInput: React.FC = () => {
             "dark:placeholder:text-neutral-400"
           )}
           value={input}
-          onChange={e => {
+          onChange={(e) => {
             setInput(e.target.value);
           }}
           disabled={isLoading || !user || inputDisabledMessage !== ""}

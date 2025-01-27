@@ -7,7 +7,7 @@ export const convertRowToToken = (data: any): Token => {
   return {
     id: data.id,
     name: data.name,
-    symbol: data.symbols,
+    symbol: data.symbol,
     decimals: data.decimals,
     tags: data.tags,
     logoURI: data.logo_uri,
@@ -82,7 +82,7 @@ export const getToken = async (id: Token["id"]): Promise<Token | null> => {
 
 export const searchTokens = async (keywords: string): Promise<Token[]> => {
   const client = await getPgClient();
-  const text = `SELECT * FROM token WHERE id LIKE '%${keywords}%' OR name LIKE '%${keywords}%' OR symbol LIKE '%${keywords}%' OR tags LIKE '%${keywords}%' ORDER BY created_at DESC`;
+  const text = `SELECT * FROM token WHERE id LIKE '%${keywords}%' OR name LIKE '%${keywords}%' OR symbol LIKE '%${keywords}%' ORDER BY created_at DESC`;
   const res = await client.query(text);
   if (res.rowCount == 0) {
     return [];

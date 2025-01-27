@@ -17,8 +17,8 @@ const EmptyChat: React.FC = () => {
         "flex flex-col items-center justify-center w-full h-full px-4"
       )}
     >
-      <div className="flex flex-col items-center justify-center w-full max-w-2xl gap-4 md:gap-8">
-        <div className="flex flex-col gap-4 items-center justify-center">
+      <div className="flex flex-col h-full items-center justify-center w-full max-w-3xl gap-4 md:gap-6 pb-10">
+        <div className="flex flex-1 flex-col gap-4 items-center justify-center">
           {/* <Logo className="w-20 h-20" /> */}
           {/* <Image
             src="/images/image-chat.png"
@@ -31,7 +31,7 @@ const EmptyChat: React.FC = () => {
             animationData={animationData}
             loop={true}
             autoplay={true}
-            className="w-80 h-80"
+            className="w-[500px] h-[500px] max-w-full"
           />
           <div className="flex flex-col gap-1">
             {/* <h1 className="font-semibold text-center text-2xl">

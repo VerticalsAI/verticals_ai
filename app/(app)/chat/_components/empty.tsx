@@ -24,7 +24,7 @@ const EmptyChat: React.FC = () => {
             alt="Logo"
             width={500}
             height={500}
-            className={cn("hidden dark:block")}
+            className={cn("hidden dark:block img-rotate")}
           />
           <div className="flex flex-col gap-1">
             {/* <h1 className="font-semibold text-center text-2xl">

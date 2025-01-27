@@ -41,7 +41,9 @@ export const PortfolioBox = () => {
                   Starting amountz
                 </span>
               </div>
-              <span className="font-medium text-xs text-white">50.00 SOL</span>
+              <span className="font-medium text-xs text-white">
+                coming soon
+              </span>
             </div>
           </div>
           <div className="flex items-center gap-2.5 self-stretch px-3 py-2 border">
@@ -58,7 +60,8 @@ export const PortfolioBox = () => {
                 </span>
               </div>
               <span className="font-medium text-xs">
-                51.28 SOL <span className="text-green-500">(2.57%)</span>
+                coming soon
+                {/* <span className="text-green-500">(2.57%)</span> */}
               </span>
             </div>
           </div>
@@ -76,7 +79,8 @@ export const PortfolioBox = () => {
                 </span>
               </div>
               <span className="font-medium text-xs">
-                1.28 SOL <span className="text-green-500">(2.57%)</span>
+                coming soon
+                {/* <span className="text-green-500">(2.57%)</span> */}
               </span>
             </div>
           </div>

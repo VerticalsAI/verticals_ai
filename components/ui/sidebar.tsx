@@ -7,8 +7,6 @@ import { Slot } from "@radix-ui/react-slot";
 
 import { VariantProps, cva } from "class-variance-authority";
 
-import { PanelLeft } from "lucide-react";
-
 import {
   Button,
   Input,
@@ -25,6 +23,7 @@ import {
 import { useIsMobile } from "@/hooks";
 
 import { cn } from "@/lib/utils";
+import { ArrowLeftToLine, ArrowRightToLine } from "lucide-react";
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -98,9 +97,7 @@ const SidebarProvider = React.forwardRef<
 
     // Helper to toggle the sidebar.
     const toggleSidebar = React.useCallback(() => {
-      return isMobile
-        ? setOpenMobile((open) => !open)
-        : setOpen((open) => !open);
+      return isMobile ? setOpenMobile(open => !open) : setOpen(open => !open);
     }, [isMobile, setOpen, setOpenMobile]);
 
     // Adds a keyboard shortcut to toggle the sidebar.
@@ -273,7 +270,8 @@ const SidebarTrigger = React.forwardRef<
   React.ElementRef<typeof Button>,
   React.ComponentProps<typeof Button>
 >(({ className, onClick, ...props }, ref) => {
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, open } = useSidebar();
+  console.log("open", open);
 
   return (
     <Button
@@ -282,13 +280,17 @@ const SidebarTrigger = React.forwardRef<
       variant="ghost"
       size="icon"
       className={cn("h-7 w-7", className)}
-      onClick={(event) => {
+      onClick={event => {
         onClick?.(event);
         toggleSidebar();
       }}
       {...props}
     >
-      <PanelLeft className="w-4 h-4 text-neutral-700 dark:text-neutral-300" />
+      {!open ? (
+        <ArrowRightToLine className="w-4 h-4 text-neutral-700 dark:text-neutral-300" />
+      ) : (
+        <ArrowLeftToLine className="w-4 h-4 text-neutral-700 dark:text-neutral-300" />
+      )}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

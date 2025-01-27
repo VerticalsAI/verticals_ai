@@ -6,7 +6,8 @@ import ChatInput from "./input";
 import StarterButtons from "./starter-buttons";
 
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import Lottie from "lottie-react";
+import animationData from "./loading.json";
 
 const EmptyChat: React.FC = () => {
   return (
@@ -19,12 +20,18 @@ const EmptyChat: React.FC = () => {
       <div className="flex flex-col items-center justify-center w-full max-w-2xl gap-4 md:gap-8">
         <div className="flex flex-col gap-4 items-center justify-center">
           {/* <Logo className="w-20 h-20" /> */}
-          <Image
+          {/* <Image
             src="/images/image-chat.png"
             alt="Logo"
             width={500}
             height={500}
             className={cn("hidden dark:block img-rotate")}
+          /> */}
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            autoplay={true}
+            className="w-80 h-80"
           />
           <div className="flex flex-col gap-1">
             {/* <h1 className="font-semibold text-center text-2xl">

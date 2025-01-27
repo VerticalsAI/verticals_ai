@@ -12,7 +12,7 @@ exports.up = (pgm) => {
   pgm.createExtension("vector");
   pgm.createTable("chat", {
     id: {
-      type: "string",
+      type: "varchar(100)",
       primaryKey: true,
     },
     tagline: { type: "varchar(1000)" },
@@ -31,7 +31,7 @@ exports.up = (pgm) => {
   });
   pgm.createTable("chat_message", {
     id: {
-      type: "string",
+      type: "varchar(100)",
       primaryKey: true,
     },
     chat_id: { type: "varchar(1000)" },
@@ -56,15 +56,14 @@ exports.up = (pgm) => {
   });
   pgm.createTable("token", {
     id: {
-      type: "uuid",
-      default: pgm.func("gen_random_uuid()"),
+      type: "varchar(100)",
       primaryKey: true,
     },
     name: { type: "varchar(500)" },
     symbol: { type: "varchar(500)" },
     decimals: { type: "integer" },
     tags: { type: "varchar(100) ARRAY" },
-    logo_uri: { type: "varchar(500)" },
+    logo_uri: { type: "text" },
     freeze_authority: { type: "text" },
     mint_authority: { type: "text" },
     permanent_delegate: { type: "text" },

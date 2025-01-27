@@ -48,7 +48,7 @@ export const addToken = async (token: Token): Promise<Token | null> => {
   if (res.rowCount == 0) {
     return null;
   }
-  return res.rows[0];
+  return convertRowToToken(res.rows[0]);
 };
 
 // READ
@@ -69,7 +69,25 @@ export const getToken = async (id: Token["id"]): Promise<Token | null> => {
   if (res.rowCount == 0) {
     return null;
   }
-  return res.rows[0];
+  return convertRowToToken(res.rows[0]);
+};
+
+/**
+ * **DATABASE SERVICE**
+ *
+ * Search tokens.
+ * id, name, symbol, decimals, tags, logo_uri, freeze_authority, mint_authority, permanent_delegate, extensions
+ * @returns {Promise<Token[]>} An array of tokens.
+ */
+
+export const searchTokens = async (keywords: string): Promise<Token[]> => {
+  const client = await getPgClient();
+  const text = `SELECT * FROM token WHERE id LIKE '%${keywords}%' OR name LIKE '%${keywords}%' OR symbol LIKE '%${keywords}%' OR tags LIKE '%${keywords}%' ORDER BY created_at DESC`;
+  const res = await client.query(text);
+  if (res.rowCount == 0) {
+    return [];
+  }
+  return res.rows.map((r) => convertRowToToken(r));
 };
 
 /**
@@ -86,7 +104,7 @@ export const findTokens = async (): Promise<Token[]> => {
   if (res.rowCount == 0) {
     return [];
   }
-  return res.rows;
+  return res.rows.map((r) => convertRowToToken(r));
 };
 
 /**
@@ -105,7 +123,7 @@ export const findTokensBySymbol = async (symbol: string): Promise<Token[]> => {
   if (res.rowCount == 0) {
     return [];
   }
-  return res.rows;
+  return res.rows.map((r) => convertRowToToken(r));
 };
 
 export const getTokenBySymbol = async (
@@ -114,21 +132,21 @@ export const getTokenBySymbol = async (
   const tokens = await findTokensBySymbol(symbol);
   if (!tokens || tokens.length === 0) return null;
   if (tokens.length === 1) {
-    return tokens[0];
+    return convertRowToToken(tokens[0]);
   } else {
     const verifiedToken = tokens.find((token) =>
       token.tags.includes("verified")
     );
     if (verifiedToken) {
-      return verifiedToken;
+      return convertRowToToken(verifiedToken);
     } else {
       const communityToken = tokens.find((token) =>
         token.tags.includes("community")
       );
       if (communityToken) {
-        return communityToken;
+        return convertRowToToken(communityToken);
       } else {
-        return tokens[0];
+        return convertRowToToken(tokens[0]);
       }
     }
   }

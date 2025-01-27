@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "migrate": "DATABASE_URL=postgres://thehive:secret@192.168.5.100:5432/thehive node-pg-migrate up",
-    "migrate-down": "DATABASE_URL=postgres://thehive:secret@192.168.5.100:5432/thehive node-pg-migrate down"
+    "migrate": "DATABASE_URL=postgres://thehive:secret@178.128.102.129:5432/thehive node-pg-migrate up",
+    "migrate-down": "DATABASE_URL=postgres://thehive:secret@178.128.102.129:5432/thehive node-pg-migrate down"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^1.0.6",

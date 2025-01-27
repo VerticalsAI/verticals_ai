@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 
-
 import Providers from "./_contexts";
 import "./globals.css";
 
@@ -21,13 +20,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  width: 'device-width',
-  height: 'device-height',
+  width: "device-width",
+  height: "device-height",
   initialScale: 1,
   minimumScale: 1,
   maximumScale: 1,
   userScalable: false,
-}
+};
 
 export default function RootLayout({
   children,
@@ -36,12 +35,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body
-        className={`antialiased bg-white dark:bg-neutral-900`}
-      >
-        <Providers>
-          {children}
-        </Providers>
+      <body className={`antialiased bg-white dark:bg-neutral-900`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

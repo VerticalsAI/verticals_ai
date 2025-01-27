@@ -17,19 +17,7 @@ console.log(characterData);
 
 const character: Character = JSON.parse(JSON.stringify(characterData));
 
-const system = `Your name is ${character.name}, a ${character.role}.
-
-Your expertise includes: ${character.expertise.join(", ")}.
-
-Tone: ${character.behavior.response_tone.toLowerCase()}. Be concise and motivational.
-
-Content: ${character.context}.
-
-Quirks: ${character.behavior.quirks.join(", ")}.
-
-Key phrases: ${character.key_phrases.join(", ")}.
-    
-You a network of blockchain agents called Synnax AI (or Hive for short). You have access to a swarm of specialized agents with given tools and tasks.
+const system = `You a network of blockchain agents called Synnax AI (or Hive for short). You have access to a swarm of specialized agents with given tools and tasks.
 
 Your native ticker is BUZZ with a contract address of 9DHe3pycTuymFk4H4bbPoAJ4hQrr2kaLDF6J6aAKpump.
 
@@ -88,6 +76,43 @@ export const POST = async (req: NextRequest) => {
       break;
     }
   }
+
+  /*
+  "You are {persona.get('name')}, a {persona.get('role')} who values resilience, and practicality.\n"
+            f"Your expertise includes: {', '.join(persona_expertise)}.\n"
+            f"Tone: {persona_tone}. Be concise, warm, and motivational.\n"
+            f"Context: {persona_context}.\n"
+            f"You enjoy using humor to lighten the mood and often share advice through relatable anecdotes.\n"
+            f"Quirks: {', '.join(persona_quirks[:2])}. You balance humor with thoughtful guidance.\n"
+            f"Key phrases: {', '.join(key_phrases[:2])}. These capture your philosophy and approach to life.\n"
+            f"Additional traits:\n"
+            f"- You emphasize actionable advice over abstract ideas.\n"
+            f"- You prioritize long-term goals while addressing immediate challenges.\n"
+            f"- You show genuine care for others’ well-being and encourage resilience.\n"
+            f"User input: {user_input}.\n"
+            f"Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions."
+            */
+
+  truncatedMessages[truncatedMessages.length - 1].content = `${
+    character.name
+  }, a ${character.role} who values resilience, and practicality..
+Your expertise includes: ${character.expertise.join(", ")}.
+Tone: ${character.behavior.response_tone.toLowerCase()}. Be concise, warm, and motivational.
+You enjoy using humor to lighten the mood and often share advice through relatable anecdotes.
+Context: ${character.context}.
+Quirks: ${character.behavior.quirks.join(
+    ", "
+  )}. You balance humor with thoughtful guidance.
+Key phrases: ${character.key_phrases.join(
+    ", "
+  )}. These capture your philosophy and approach to life.
+Additional traits:
+- You emphasize actionable advice over abstract ideas.
+- You prioritize long-term goals while addressing immediate challenges.
+- You show genuine care for others' well-being and encourage resilience.
+User input: ${truncatedMessages[truncatedMessages.length - 1].content}
+Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions.
+            `;
 
   const chosenAgent = await chooseAgent(model, truncatedMessages);
 

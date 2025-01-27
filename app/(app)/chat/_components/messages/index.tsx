@@ -28,7 +28,7 @@ const Messages: React.FC<Props> = ({ messages, messageClassName }) => {
 
   return (
     <div
-      className="flex-1 h-0 flex flex-col w-full overflow-y-auto max-w-full no-scrollbar"
+      className="flex-1 h-0 flex flex-col w-full overflow-y-auto max-w-full no-scrollbar card"
       ref={scrollRef}
     >
       <div className="messages-container" ref={messagesRef}>

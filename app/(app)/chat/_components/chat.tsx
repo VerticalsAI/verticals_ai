@@ -6,6 +6,8 @@ import EmptyChat from "./empty";
 import ChatInput from "./input";
 import Messages from "./messages";
 
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { useChat } from "../_contexts/chat";
 
 const Chat: React.FC = () => {
@@ -24,6 +26,16 @@ const Chat: React.FC = () => {
               </div>
             ) : (
               <div className="flex flex-col h-full gap-3">
+                <div className="relative">
+                  <Image
+                    src="/images/image-chat.png"
+                    alt="Logo"
+                    width={90}
+                    height={90}
+                    className={cn(" absolute h-16 w-16 m-auto")}
+                  />
+                </div>
+
                 <Messages messages={cleanedMessages} />
                 <ChatInput />
               </div>

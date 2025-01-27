@@ -23,6 +23,7 @@ export default {
         "white-3": "rgba(255, 255, 255, 0.03)",
       },
       colors: {
+        primary: "#D7E0CE",
         background: "var(--background)",
         foreground: "var(--foreground)",
         brand: {

@@ -6,7 +6,6 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-  Icon,
   Logo,
   Markdown,
 } from "@/components/ui";
@@ -16,8 +15,10 @@ import ToolInvocation from "./tools";
 import { cn } from "@/lib/utils";
 
 import { pfpURL } from "@/lib/pfp";
+import { truncateAddress } from "@/lib/wallet";
 import { usePrivy } from "@privy-io/react-auth";
 import type { Message } from "ai";
+import Image from "next/image";
 import Link from "./link";
 import { getAgentName } from "./tools/tool-to-agent";
 
@@ -49,51 +50,59 @@ const Message: React.FC<Props> = ({
         // mobile styles
         "flex-col gap-2",
         // desktop styles
-        "md:flex-row md:gap-4 md:px-4",
+        " md:gap-4 md:px-4",
         nextMessageSameRole && "pb-0",
         previousMessageSameRole && "pt-0",
-        !nextMessageSameRole &&
-          "border-b border-gray-200 dark:border-neutral-700",
+        isUser && "items-end",
         className
       )}
     >
       <div
         className={cn(
-          "flex items-center md:items-start gap-2 md:gap-4",
-          previousMessageSameRole && "hidden md:block"
+          "flex items-center md:items-start gap-4",
+          previousMessageSameRole && "block"
         )}
       >
         <div
           className={cn(
-            "hidden md:flex items-center justify-center w-6 h-6 md:w-10 md:h-10 rounded-full",
-            isUser &&
-              "bg-neutral-100 dark:bg-white/5 backdrop-blur-md border border-neutral-200 dark:border-neutral-700",
+            "flex items-center justify-center h-10 rounded-full",
             previousMessageSameRole && "opacity-0"
           )}
         >
           {isUser ? (
-            <Avatar className="w-10 h-10">
-              <AvatarFallback>
-                <Icon name="User" className="w-4 h-4 md:w-6 md:h-6" />
-              </AvatarFallback>
-              {user && <AvatarImage src={pfpURL(user, false)} />}
-            </Avatar>
+            <div className="flex items-center gap-2">
+              {user?.wallet && truncateAddress(user.wallet.address)}{" "}
+              <span className="text-[#697C72]">(You)</span>
+              <Avatar className="w-9 h-9 bg-white">
+                <AvatarFallback>
+                  <Image
+                    src="/icons/user.svg"
+                    alt="Logo"
+                    width={20}
+                    height={20}
+                    className={cn("", className)}
+                  />
+                </AvatarFallback>
+                {user && <AvatarImage src={pfpURL(user, false)} />}
+              </Avatar>
+            </div>
           ) : (
-            <Logo className="h-10 w-10" />
+            <div className="text-sm flex items-center gap-2">
+              <div className="rounded-full bg-white/5">
+                <Logo className="w-5 h-5 m-2" />
+              </div>
+              SYNNAX AI
+            </div>
           )}
         </div>
-        <p
-          className={cn(
-            "text-sm font-semibold md:hidden",
-            isUser
-              ? "text-neutral-900 dark:text-neutral-100"
-              : "text-brand-600 dark:text-brand-600"
-          )}
-        >
-          {message.role === "user" ? "You" : "Synnax AI"}
-        </p>
       </div>
-      <div className="pt-2 w-full max-w-full md:flex-1 md:w-0 overflow-hidden flex flex-col gap-2">
+      <div
+        className={cn(
+          "pt-2 w-fit max-w-full md:flex-1 flex flex-col gap-2 card ",
+          "!py-[10px] !px-3 !rounded-md",
+          isUser ? "items-end" : "items-start"
+        )}
+      >
         {message.content && <MessageMarkdown content={message.content} />}
         {message.toolInvocations && message.toolInvocations.length > 0 && (
           <div className="flex flex-col gap-2">

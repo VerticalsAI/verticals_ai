@@ -119,7 +119,6 @@ export const findRelevantKnowledge = async (
   if (res.rowCount == 0) {
     return [];
   }
-  console.log("findRelevantKnowledge", res);
   return res.rows.map((r) => ({
     ...convertRowToKnowledge(r),
     distance: r.distance,

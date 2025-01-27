@@ -21,7 +21,7 @@ interface Props {
 }
 
 const AccountHeading: React.FC<Props> = ({ user }) => {
-  const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [isUploading] = useState<boolean>(false);
 
   return (
     <div className="flex flex-col gap-4">

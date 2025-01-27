@@ -74,7 +74,6 @@ export const POST = async (req: NextRequest) => {
         },
       ];
       for await (const knowledgeInput of knowledgeInputs) {
-        console.log(knowledgeInput);
         await addKnowledge(knowledgeInput);
       }
       return true;

@@ -93,7 +93,7 @@ const Sidebar: React.FC<Props> = ({ children }) => {
           </div>
         </SidebarHeader>
         <SidebarSeparator />
-        <SidebarContent className="relative">
+        <SidebarContent className={cn("relative", open && "pr-2")}>
           <SidebarMenu />
         </SidebarContent>
         <SidebarSeparator />

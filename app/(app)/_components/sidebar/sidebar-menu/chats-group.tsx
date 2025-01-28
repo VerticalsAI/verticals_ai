@@ -39,7 +39,7 @@ const ChatsGroup: React.FC = () => {
 
   const { setChat, chatId, resetChat } = useChat();
 
-  const [isOpen, _] = useState(true);
+  const [isOpen ] = useState(true);
 
   return (
     <Collapsible

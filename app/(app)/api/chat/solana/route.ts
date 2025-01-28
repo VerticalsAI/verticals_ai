@@ -8,12 +8,12 @@ import { openai } from "@ai-sdk/openai";
 import { xai } from "@ai-sdk/xai";
 
 import { agents } from "@/ai/agents";
-import characterData from "@/characters/jonas.json";
-import { Character } from "@/types/character";
+// import characterData from "@/characters/jonas.json";
+// import { Character } from "@/types/character";
 import { Models } from "@/types/models";
 import { chooseAgent } from "./utils";
 
-const character: Character = JSON.parse(JSON.stringify(characterData));
+// const character: Character = JSON.parse(JSON.stringify(characterData));
 
 const system = `You are a blockchain-focused AI assistant called Mark. You keep things concise and relevant. No unnecessary fluff, no long-winded responses.
 

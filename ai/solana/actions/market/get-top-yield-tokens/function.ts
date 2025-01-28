@@ -17,11 +17,13 @@ export async function getTopYieldTokens(
 ): Promise<SolanaActionResult<GetTopYieldTokensResultBodyType>> {
   try {
     const response = await getTopYieldTokensKamino();
-
+    const tokens = response.sort(
+      (a, b) => parseFloat(b.apy) - parseFloat(a.apy)
+    );
     return {
-      message: `Found ${response.length} top yield tokens. The user is shown the tokens, do not list them. Ask the user what they want to do with the coin.`,
+      message: `Found ${tokens.length} top yield stablecoins/tokens. The user is shown the tokens, do not list them. Get token data by tokenMint and Ask the user what they want to do with the coin.`,
       body: {
-        tokens: response,
+        tokens,
       },
     };
   } catch (error) {

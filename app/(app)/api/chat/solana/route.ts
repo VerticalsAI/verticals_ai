@@ -8,12 +8,12 @@ import { openai } from "@ai-sdk/openai";
 import { xai } from "@ai-sdk/xai";
 
 import { agents } from "@/ai/agents";
-// import characterData from "@/characters/jonas.json";
-// import { Character } from "@/types/character";
+import characterData from "@/characters/jonas.json";
+import { Character } from "@/types/character";
 import { Models } from "@/types/models";
 import { chooseAgent } from "./utils";
 
-// const character: Character = JSON.parse(JSON.stringify(characterData));
+const character: Character = JSON.parse(JSON.stringify(characterData));
 
 const system = `You are a blockchain-focused AI assistant called Mark. You keep things concise and relevant. No unnecessary fluff, no long-winded responses.
 
@@ -76,16 +76,16 @@ export const POST = async (req: NextRequest) => {
   // User input: ${messages[messages.length - 1].content}
   // Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions.
   //             `;
-  // if (messages[messages.length - 1].role === "user") {
-  //   messages[messages.length - 1].content = `${
-  //     character.name
-  //   }, a blockchain expert.
-  // Your expertise includes: ${character.expertise.join(", ")}.
-  // Tone: Direct, no-nonsense.
-  // Keep responses concise and to the point.
-  // Focus on practical solutions and actionable insights related to blockchain.
-  // User input: ${messages[messages.length - 1].content}`;
-  // }
+  if (messages[messages.length - 1].role === "user") {
+    messages[messages.length - 1].content = `${
+      character.name
+    }, a blockchain expert.
+  Your expertise includes: ${character.expertise.join(", ")}.
+  Tone: Direct, no-nonsense.
+  Keep responses concise and to the point.
+  Focus on practical solutions and actionable insights related to blockchain.
+  User input: ${messages[messages.length - 1].content}`;
+  }
 
   // Add message token limit check
   let tokenCount = 0;

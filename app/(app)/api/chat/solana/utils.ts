@@ -24,10 +24,10 @@ export const chooseAgent = async (
     system,
   });
 
-  console.log(
-    "chooseAgent",
-    JSON.stringify({ system, messages, result: object })
-  );
+  //   console.log(
+  //     "chooseAgent",
+  //     JSON.stringify({ system, messages, result: object })
+  //   );
 
   return agents.find((agent) => agent.name === object.agent) ?? null;
 };

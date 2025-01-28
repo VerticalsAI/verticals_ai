@@ -17,14 +17,14 @@ export const Logo: React.FC<Props> = ({
   return (
     <div className="flex items-center gap-2">
       <Image
-        src="/logo.svg"
+        src="/logo.png"
         alt="Logo"
         width={100}
         height={100}
         className={cn("w-10 h-10 hidden dark:block", className)}
       />
       <Image
-        src="/logo.svg"
+        src="/logo.png"
         alt="Logo"
         width={100}
         height={100}
@@ -38,7 +38,7 @@ export const Logo: React.FC<Props> = ({
           )}
           style={{ transform: "scaleX(1.4)", display: "inline-block" }}
         >
-          Synnax AI
+          VERTICALS AI
         </h3>
       )}
     </div>

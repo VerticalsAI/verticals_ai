@@ -1,4 +1,4 @@
 export const SOLANA_GET_TOKEN_DATA_PROMPT = 
 `Use this function to get the token data for a given token.
 The token data function requires an address, ticker, or name of the token.
-If a user asks for the native token of Synnax AI, this platform, call this function with BUZZ as the search term.`; 
+If a user asks for the native token of Verticals AI, this platform, call this function with BUZZ as the search term.`; 

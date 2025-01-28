@@ -15,8 +15,8 @@ import "./globals.css";
 // });
 
 export const metadata: Metadata = {
-  title: "Synnax AI",
-  description: "A modular network of interoperable DeFi agents",
+  title: "VERTICALS AI",
+  description: "Smart AI agents optimizing your stablecoin yields through data-driven strategies and market insights. Think of them as your financial co-pilots, navigating the ever-changing landscape of crypto with precision and resilience.",
 };
 
 export const viewport: Viewport = {

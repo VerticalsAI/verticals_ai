@@ -91,7 +91,7 @@ const Message: React.FC<Props> = ({
               <div className="rounded-full bg-white/5">
                 <Logo className="w-5 h-5 m-2" />
               </div>
-              SYNNAX AI
+              VERTICALS AI
             </div>
           )}
         </div>

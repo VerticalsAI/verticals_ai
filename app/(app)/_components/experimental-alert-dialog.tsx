@@ -27,7 +27,7 @@ const ExperimentalAlertDialog: React.FC = () => {
       </AlertDialogHeader>
       <AlertDialogContent className="flex flex-col items-center justify-center text-center z-[100]">
         <Logo className="w-16 h-16" />
-        <h1 className="text-2xl font-bold">Synnax AI is Experimental</h1>
+        <h1 className="text-2xl font-bold">Verticals AI is Experimental</h1>
         <p className="text-sm text-gray-500">
           We&apos;ve decided to build in public to gather as much feedback as
           possible.

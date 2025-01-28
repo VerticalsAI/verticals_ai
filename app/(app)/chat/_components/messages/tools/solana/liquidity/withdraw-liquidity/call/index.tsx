@@ -27,7 +27,7 @@ const WithdrawLiquidityCall: React.FC<Props> = ({ toolCallId, args }) => {
     useEffect(() => {
         if(pool && pool.type !== "Standard") {
             addToolResult(toolCallId, {
-                message: `Synnax AI does not support ${pool?.type} pools yet.`,
+                message: `Verticals AI does not support ${pool?.type} pools yet.`,
             });
         }
     }, [pool]);
@@ -46,7 +46,7 @@ const WithdrawLiquidityCall: React.FC<Props> = ({ toolCallId, args }) => {
                             />
                         ) : (
                             <div>
-                                <p>Synnax AI does not support {pool.type} pools yet.</p>
+                                <p>Verticals AI does not support {pool.type} pools yet.</p>
                             </div>
                         )
                     ) : (

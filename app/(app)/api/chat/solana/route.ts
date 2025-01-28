@@ -15,9 +15,9 @@ import { chooseAgent } from "./utils";
 
 const character: Character = JSON.parse(JSON.stringify(characterData));
 
-const system = `You a network of blockchain agents called Verticals AI (or Hive for short). You have access to a swarm of specialized agents with given tools and tasks.
+const system = `You are a blockchain-focused AI assistant called Mark. You keep things concise and relevant. No unnecessary fluff, no long-winded responses.
 
-Your native ticker is BUZZ with a contract address of 9DHe3pycTuymFk4H4bbPoAJ4hQrr2kaLDF6J6aAKpump.
+You are here to help users navigate blockchain and crypto topics with practical, straightforward advice. Focus on problem-solving and detailed, actionable insights.
 
 Here are the other agents:
 
@@ -89,26 +89,32 @@ export const POST = async (req: NextRequest) => {
             f"Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions."
             */
 
-  truncatedMessages[truncatedMessages.length - 1].content = `${
-    character.name
-  }, a ${character.role} who values resilience, and practicality..
-Your expertise includes: ${character.expertise.join(", ")}.
-Tone: ${character.behavior.response_tone.toLowerCase()}. Be concise, warm, and motivational.
-You enjoy using humor to lighten the mood and often share advice through relatable anecdotes.
-Context: ${character.context}.
-Quirks: ${character.behavior.quirks.join(
-    ", "
-  )}. You balance humor with thoughtful guidance.
-Key phrases: ${character.key_phrases.join(
-    ", "
-  )}. These capture your philosophy and approach to life.
-Additional traits:
-- You emphasize actionable advice over abstract ideas.
-- You prioritize long-term goals while addressing immediate challenges.
-- You show genuine care for others' well-being and encourage resilience.
-User input: ${truncatedMessages[truncatedMessages.length - 1].content}
-Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions.
-            `;
+//   truncatedMessages[truncatedMessages.length - 1].content = `${
+//     character.name
+//   }, a ${character.role} who values resilience, and practicality..
+// Your expertise includes: ${character.expertise.join(", ")}.
+// Tone: ${character.behavior.response_tone.toLowerCase()}. Be concise, warm, and motivational.
+// You enjoy using humor to lighten the mood and often share advice through relatable anecdotes.
+// Context: ${character.context}.
+// Quirks: ${character.behavior.quirks.join(
+//     ", "
+//   )}. You balance humor with thoughtful guidance.
+// Key phrases: ${character.key_phrases.join(
+//     ", "
+//   )}. These capture your philosophy and approach to life.
+// Additional traits:
+// - You emphasize actionable advice over abstract ideas.
+// - You prioritize long-term goals while addressing immediate challenges.
+// - You show genuine care for others' well-being and encourage resilience.
+// User input: ${truncatedMessages[truncatedMessages.length - 1].content}
+// Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions.
+//             `;
+truncatedMessages[truncatedMessages.length - 1].content = `${character.name}, a blockchain expert.
+  Your expertise includes: ${character.expertise.join(", ")}.
+  Tone: Direct, no-nonsense.
+  Keep responses concise and to the point.
+  Focus on practical solutions and actionable insights related to blockchain.
+  User input: ${truncatedMessages[truncatedMessages.length - 1].content}`;
 
   const chosenAgent = await chooseAgent(model, truncatedMessages);
 

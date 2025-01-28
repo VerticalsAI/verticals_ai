@@ -20,8 +20,9 @@ export async function getTopYieldTokens(
     const tokens = response.sort(
       (a, b) => parseFloat(b.apy) - parseFloat(a.apy)
     );
+    // TODO get token info
     return {
-      message: `Found ${tokens.length} top yield stablecoins/tokens. The user is shown the tokens, do not list them. Get token data by tokenMint and Ask the user what they want to do with the coin.`,
+      message: `Found ${tokens.length} top yield stablecoins/tokens. The user is shown the tokens, do not list them. Ask the user what they want to do with the coin.`,
       body: {
         tokens,
       },

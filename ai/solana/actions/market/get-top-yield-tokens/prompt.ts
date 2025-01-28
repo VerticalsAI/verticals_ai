@@ -1,4 +1,3 @@
 export const SOLANA_GET_TOP_YIELD_TOKENS_PROMPT =
-  `Use this function to get a list of trending tokens on Solana from Jupiter's API using Birdeye's trending data.
-You can optionally specify a limit to control the number of tokens returned.
-Example: "@get-top-yield-tokens" or "@get-top-yield-tokens limit=10"` as const;
+  `Use this function to get a list of top yield tokens on Kamino API using Kamino trending data.
+Example: "@get-top-yield-tokens"` as const;

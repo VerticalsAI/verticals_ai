@@ -26,7 +26,7 @@ export async function getTopYieldTokens(
     };
   } catch (error) {
     return {
-      message: `Error getting trending tokens: ${error}`,
+      message: `Error getting top yield tokens: ${error}`,
       body: {
         tokens: [],
       },

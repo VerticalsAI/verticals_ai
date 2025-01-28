@@ -18,8 +18,10 @@ export const queryKamino = async <T>(
   });
 
   if (!response.ok) {
-    throw new Error(`Birdeye API error: ${response.status}`);
+    throw new Error(`Kamino API error: ${response.status}`);
   }
+
+  console.log("queryKamino response", JSON.stringify(response));
 
   return await response.json();
 };

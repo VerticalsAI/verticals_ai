@@ -38,7 +38,8 @@ export const PortfolioBox = () => {
                   height={20}
                 />
                 <span className="font-normal text-xs text-[#697c72]">
-                  Starting amountz
+                  Starting amount
+                  
                 </span>
               </div>
               <span className="font-medium text-xs text-white">

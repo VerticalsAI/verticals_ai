@@ -1,1 +1,1 @@
-export const KNOWLEDGE_AGENT_NAME = "AI Marc";
+export const KNOWLEDGE_AGENT_NAME = "Knowledge";

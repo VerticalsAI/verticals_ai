@@ -1,1 +1,1 @@
-export const SOCIAL_AGENT_NAME = "AI Marc";
+export const SOCIAL_AGENT_NAME = "Social";

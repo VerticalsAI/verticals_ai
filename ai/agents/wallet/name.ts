@@ -1,1 +1,1 @@
-export const WALLET_AGENT_NAME = "AI Marc";
+export const WALLET_AGENT_NAME = "Wallet";

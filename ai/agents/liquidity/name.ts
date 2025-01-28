@@ -1,1 +1,1 @@
-export const LIQUIDITY_AGENT_NAME = "AI Marc";
+export const LIQUIDITY_AGENT_NAME = "Liquidity";

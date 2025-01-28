@@ -1,1 +1,1 @@
-export const TOKEN_ANALYSIS_AGENT_NAME = "AI Marc";
+export const TOKEN_ANALYSIS_AGENT_NAME = "TokenAnalysis";

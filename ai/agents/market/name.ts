@@ -1,1 +1,1 @@
-export const MARKET_AGENT_NAME = "AI Marc";
+export const MARKET_AGENT_NAME = "Market";

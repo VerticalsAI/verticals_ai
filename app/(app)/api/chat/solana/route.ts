@@ -118,6 +118,11 @@ truncatedMessages[truncatedMessages.length - 1].content = `${character.name}, a 
 
   const chosenAgent = await chooseAgent(model, truncatedMessages);
 
+  console.log("prompt", {
+    system: system,
+    messages: truncatedMessages,
+  });
+
   let streamTextResult: StreamTextResult<Record<string, CoreTool<any, any>>>;
 
   if (!chosenAgent) {
@@ -126,12 +131,22 @@ truncatedMessages[truncatedMessages.length - 1].content = `${character.name}, a 
       messages: truncatedMessages,
       system,
     });
+
+    console.log("prompt", {
+      system: system,
+      messages: truncatedMessages,
+    });
   } else {
     streamTextResult = streamText({
       model,
       tools: chosenAgent.tools,
       messages: truncatedMessages,
       system: `${chosenAgent.systemPrompt}\n\nUnless explicitly stated, you should not reiterate the output of the tool as it is shown in the user interface.`,
+    });
+
+    console.log("prompt", {
+      system: `${chosenAgent.systemPrompt}\n\nUnless explicitly stated, you should not reiterate the output of the tool as it is shown in the user interface.`,
+      messages: truncatedMessages,
     });
   }
 

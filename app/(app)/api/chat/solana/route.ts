@@ -113,10 +113,13 @@ export const POST = async (req: NextRequest) => {
       system,
     });
 
-    console.log("prompt", {
-      system: system,
-      messages: truncatedMessages,
-    });
+    console.log(
+      "prompt",
+      JSON.stringify({
+        system: system,
+        messages: truncatedMessages,
+      })
+    );
   } else {
     streamTextResult = streamText({
       model,
@@ -125,10 +128,13 @@ export const POST = async (req: NextRequest) => {
       system: `${chosenAgent.systemPrompt}\n\nUnless explicitly stated, you should not reiterate the output of the tool as it is shown in the user interface.`,
     });
 
-    console.log("prompt", {
-      system: `${chosenAgent.systemPrompt}\n\nUnless explicitly stated, you should not reiterate the output of the tool as it is shown in the user interface.`,
-      messages: truncatedMessages,
-    });
+    console.log(
+      "prompt",
+      JSON.stringify({
+        system: `${chosenAgent.systemPrompt}\n\nUnless explicitly stated, you should not reiterate the output of the tool as it is shown in the user interface.`,
+        messages: truncatedMessages,
+      })
+    );
   }
 
   return streamTextResult.toDataStreamResponse();

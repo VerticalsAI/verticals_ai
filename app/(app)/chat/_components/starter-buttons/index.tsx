@@ -1,45 +1,63 @@
-import React from 'react'
-
-import StarterButton from './starter-button';
+import { Button } from "@/components/ui";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import StarterButton from "./starter-button";
 
 const starterButtons = [
-    {
-        title: "Trending",
-        description: "Search the trending tokens",
-        icon: "Coins" as const,
-        prompt: "Show me the trending tokens"
-    }, 
-    {
-        title: "Stake",
-        description: "Stake Sol",
-        icon: "Coins" as const,
-        prompt: "Find me the best staking yields"
-    },
-    {
-        title: "Trade",
-        description: "Swap on Jupiter",
-        icon: "ChartCandlestick" as const,
-        prompt: "Let's trade some tokens"
-    },
-    {
-        title: "Knowledge",
-        description: "Get developer docs for protocols",
-        icon: "Brain" as const,
-        prompt: "Get me developer docs for Orca"
-    }
-] as const
+  //   {
+  //     title: "Best stablecoin yield",
+  //     description: "Search the trending tokens",
+  //     icon: "Coins" as const,
+  //     prompt: "Show me the trending tokens",
+  //   },
+  {
+    title: "Best stablecoin yield",
+    description: "Stake Sol",
+    icon: "/icons/settings.svg",
+    prompt: "Find me the best staking yields",
+  },
+  {
+    title: "Analyze my portfolio",
+    description: "Swap on Jupiter",
+    icon: "/icons/atom.svg",
+    prompt: "Analyze my portfolio ",
+  },
+  {
+    title: "Bridge funds",
+    description: "Get developer docs for protocols",
+    icon: "/icons/Cardholder.svg",
+    prompt: "Bridge funds",
+  },
+] as const;
 
 const StarterButtons = () => {
-    return (
-        <div className="grid grid-cols-2 gap-2">
-            {starterButtons.map((button) => (
-                <StarterButton 
-                    key={button.title} 
-                    {...button}
-                />
-            ))}
+  return (
+    <div className="flex flex-wrap gap-2">
+      {starterButtons.map(button => (
+        <StarterButton key={button.title} {...button} />
+      ))}
+      <Button
+        className={cn(
+          "flex items-center p-3 rounded-xl gap-2 text-sm !border-white/10 h-fit justify-start"
+        )}
+        variant="outline"
+      >
+        <div className="flex flex-col">
+          <div className="flex items-center gap-2">
+            <Image
+              src={"/icons/Refresh.svg"}
+              alt={"Refresh"}
+              width={20}
+              height={20}
+            />
+          </div>
+          {/* <p className="text-xs text-neutral-600 dark:text-neutral-400 hidden md:block">
+          {description}
+        </p> */}
         </div>
-    )
-}
+      </Button>
+    </div>
+  );
+};
 
-export default StarterButtons
+export default StarterButtons;

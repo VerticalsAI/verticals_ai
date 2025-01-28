@@ -10,6 +10,7 @@ export default {
   theme: {
     fontFamily: {
       DEFAULT: ["DM Mono", "sans-serif"],
+      "sf-pro": ["SF Pro", "sans-serif"],
       gilroy: ["Gilroy", "sans-serif"],
     },
     extend: {

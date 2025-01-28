@@ -75,14 +75,16 @@ export const POST = async (req: NextRequest) => {
   // User input: ${messages[messages.length - 1].content}
   // Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions.
   //             `;
-  messages[messages.length - 1].content = `${
-    character.name
-  }, a blockchain expert.
+  if (messages[messages.length - 1].role === "user") {
+    messages[messages.length - 1].content = `${
+      character.name
+    }, a blockchain expert.
   Your expertise includes: ${character.expertise.join(", ")}.
   Tone: Direct, no-nonsense.
   Keep responses concise and to the point.
   Focus on practical solutions and actionable insights related to blockchain.
   User input: ${messages[messages.length - 1].content}`;
+  }
 
   // Add message token limit check
   let tokenCount = 0;

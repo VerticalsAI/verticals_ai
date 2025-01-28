@@ -73,22 +73,6 @@ export const POST = async (req: NextRequest) => {
     }
   }
 
-  /*
-  "You are {persona.get('name')}, a {persona.get('role')} who values resilience, and practicality.\n"
-            f"Your expertise includes: {', '.join(persona_expertise)}.\n"
-            f"Tone: {persona_tone}. Be concise, warm, and motivational.\n"
-            f"Context: {persona_context}.\n"
-            f"You enjoy using humor to lighten the mood and often share advice through relatable anecdotes.\n"
-            f"Quirks: {', '.join(persona_quirks[:2])}. You balance humor with thoughtful guidance.\n"
-            f"Key phrases: {', '.join(key_phrases[:2])}. These capture your philosophy and approach to life.\n"
-            f"Additional traits:\n"
-            f"- You emphasize actionable advice over abstract ideas.\n"
-            f"- You prioritize long-term goals while addressing immediate challenges.\n"
-            f"- You show genuine care for others’ well-being and encourage resilience.\n"
-            f"User input: {user_input}.\n"
-            f"Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions."
-            */
-
   truncatedMessages[truncatedMessages.length - 1].content = `${
     character.name
   }, a ${character.role} who values resilience, and practicality..
@@ -111,6 +95,8 @@ Respond naturally, stay in character, and provide practical and relatable respon
             `;
 
   const chosenAgent = await chooseAgent(model, truncatedMessages);
+
+  console.log("prompt", truncatedMessages);
 
   let streamTextResult: StreamTextResult<Record<string, CoreTool<any, any>>>;
 

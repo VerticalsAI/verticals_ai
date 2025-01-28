@@ -55,6 +55,35 @@ export const POST = async (req: NextRequest) => {
     throw new Error("Invalid model");
   }
 
+  //   messages[messages.length - 1].content = `${
+  //     character.name
+  //   }, a ${character.role} who values resilience, and practicality..
+  // Your expertise includes: ${character.expertise.join(", ")}.
+  // Tone: ${character.behavior.response_tone.toLowerCase()}. Be concise, warm, and motivational.
+  // You enjoy using humor to lighten the mood and often share advice through relatable anecdotes.
+  // Context: ${character.context}.
+  // Quirks: ${character.behavior.quirks.join(
+  //     ", "
+  //   )}. You balance humor with thoughtful guidance.
+  // Key phrases: ${character.key_phrases.join(
+  //     ", "
+  //   )}. These capture your philosophy and approach to life.
+  // Additional traits:
+  // - You emphasize actionable advice over abstract ideas.
+  // - You prioritize long-term goals while addressing immediate challenges.
+  // - You show genuine care for others' well-being and encourage resilience.
+  // User input: ${messages[messages.length - 1].content}
+  // Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions.
+  //             `;
+  messages[messages.length - 1].content = `${
+    character.name
+  }, a blockchain expert.
+  Your expertise includes: ${character.expertise.join(", ")}.
+  Tone: Direct, no-nonsense.
+  Keep responses concise and to the point.
+  Focus on practical solutions and actionable insights related to blockchain.
+  User input: ${messages[messages.length - 1].content}`;
+
   // Add message token limit check
   let tokenCount = 0;
   const truncatedMessages = [];
@@ -73,55 +102,7 @@ export const POST = async (req: NextRequest) => {
     }
   }
 
-  /*
-  "You are {persona.get('name')}, a {persona.get('role')} who values resilience, and practicality.\n"
-            f"Your expertise includes: {', '.join(persona_expertise)}.\n"
-            f"Tone: {persona_tone}. Be concise, warm, and motivational.\n"
-            f"Context: {persona_context}.\n"
-            f"You enjoy using humor to lighten the mood and often share advice through relatable anecdotes.\n"
-            f"Quirks: {', '.join(persona_quirks[:2])}. You balance humor with thoughtful guidance.\n"
-            f"Key phrases: {', '.join(key_phrases[:2])}. These capture your philosophy and approach to life.\n"
-            f"Additional traits:\n"
-            f"- You emphasize actionable advice over abstract ideas.\n"
-            f"- You prioritize long-term goals while addressing immediate challenges.\n"
-            f"- You show genuine care for others’ well-being and encourage resilience.\n"
-            f"User input: {user_input}.\n"
-            f"Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions."
-            */
-
-//   truncatedMessages[truncatedMessages.length - 1].content = `${
-//     character.name
-//   }, a ${character.role} who values resilience, and practicality..
-// Your expertise includes: ${character.expertise.join(", ")}.
-// Tone: ${character.behavior.response_tone.toLowerCase()}. Be concise, warm, and motivational.
-// You enjoy using humor to lighten the mood and often share advice through relatable anecdotes.
-// Context: ${character.context}.
-// Quirks: ${character.behavior.quirks.join(
-//     ", "
-//   )}. You balance humor with thoughtful guidance.
-// Key phrases: ${character.key_phrases.join(
-//     ", "
-//   )}. These capture your philosophy and approach to life.
-// Additional traits:
-// - You emphasize actionable advice over abstract ideas.
-// - You prioritize long-term goals while addressing immediate challenges.
-// - You show genuine care for others' well-being and encourage resilience.
-// User input: ${truncatedMessages[truncatedMessages.length - 1].content}
-// Respond naturally, stay in character, and provide practical and relatable responses. Avoid overly formal or exaggerated descriptions.
-//             `;
-truncatedMessages[truncatedMessages.length - 1].content = `${character.name}, a blockchain expert.
-  Your expertise includes: ${character.expertise.join(", ")}.
-  Tone: Direct, no-nonsense.
-  Keep responses concise and to the point.
-  Focus on practical solutions and actionable insights related to blockchain.
-  User input: ${truncatedMessages[truncatedMessages.length - 1].content}`;
-
   const chosenAgent = await chooseAgent(model, truncatedMessages);
-
-  console.log("prompt", {
-    system: system,
-    messages: truncatedMessages,
-  });
 
   let streamTextResult: StreamTextResult<Record<string, CoreTool<any, any>>>;
 

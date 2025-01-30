@@ -28,15 +28,17 @@ interface Props<ActionResultBodyType, ActionArgsType> {
     },
     defaultOpen?: boolean,
     className?: string,
-    //prevToolAgent?: string,
+    prevToolAgent?: string,
 }
 
-const ToolCard = <ActionResultBodyType, ActionArgsType>({ tool, loadingText, result, call, defaultOpen = true, className }: Props<ActionResultBodyType, ActionArgsType>) => {
+const ToolCard = <ActionResultBodyType, ActionArgsType>({ tool, loadingText, result, call, defaultOpen = true, className, prevToolAgent }: Props<ActionResultBodyType, ActionArgsType>) => {
 
    // const agentName = getAgentName(tool);
 
    // const agentIcon = getAgentIcon(agentName);
     
+    console.log(prevToolAgent);
+
     return (
         <div className={cn(
             "flex flex-col gap-2 w-fit",

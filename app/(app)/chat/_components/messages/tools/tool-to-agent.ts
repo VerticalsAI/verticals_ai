@@ -26,8 +26,8 @@ export const toolToAgent = {
 export const getAgentName = (tool: ToolInvocation) => {
     const toolParts = tool.toolName.split("-");
     const agentName = toolParts[0];
-    //return toolToAgent[agentName as keyof typeof toolToAgent] || "Unknown";
-    return "";
+    return toolToAgent[agentName as keyof typeof toolToAgent] || "Unknown";
+    
 }
 
 export const getAgentIcon = (agentName: string): IconName => {

@@ -5,14 +5,14 @@ import {
     Collapsible, 
     CollapsibleTrigger, 
     CollapsibleContent, 
-    Icon 
+    //Icon 
 } from '@/components/ui'
 
 import { cn } from '@/lib/utils'
 
 import type { ToolInvocation } from 'ai'
 import type { BaseActionResult } from '@/ai'
-import { getAgentIcon, getAgentName } from './tool-to-agent'
+//import { getAgentIcon, getAgentName } from './tool-to-agent'
 import { ChevronDown } from 'lucide-react'
 
 interface Props<ActionResultBodyType, ActionArgsType> {
@@ -28,14 +28,14 @@ interface Props<ActionResultBodyType, ActionArgsType> {
     },
     defaultOpen?: boolean,
     className?: string,
-    prevToolAgent?: string,
+    //prevToolAgent?: string,
 }
 
-const ToolCard = <ActionResultBodyType, ActionArgsType>({ tool, loadingText, result, call, defaultOpen = true, className, prevToolAgent }: Props<ActionResultBodyType, ActionArgsType>) => {
+const ToolCard = <ActionResultBodyType, ActionArgsType>({ tool, loadingText, result, call, defaultOpen = true, className }: Props<ActionResultBodyType, ActionArgsType>) => {
 
-    const agentName = getAgentName(tool);
+   // const agentName = getAgentName(tool);
 
-    const agentIcon = getAgentIcon(agentName);
+   // const agentIcon = getAgentIcon(agentName);
     
     return (
         <div className={cn(

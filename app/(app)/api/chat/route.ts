@@ -18,7 +18,9 @@ export const POST = async (req: NextRequest) => {
     });
 
     const result = streamText({
-        model: openai("gpt-4o-mini"),
+        //model: openai("gpt-4o-mini"),
+        //gpt-4o-2024-11-20
+        model: openai("gpt-4o-2024-11-20"),
         tools: cdpTools(agentkit),
         messages,
     })

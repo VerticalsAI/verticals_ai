@@ -33,6 +33,8 @@ export const POST = async (req: NextRequest) => {
 
   if (modelName === Models.OpenAI) {
     model = openai("gpt-4o-mini");
+    //model = openai("gpt-4o-2024-11-20");
+    //modelName: "gpt-4o-2024-11-20",
     // model = openai("gpt-4o");
     MAX_TOKENS = 128000;
   }

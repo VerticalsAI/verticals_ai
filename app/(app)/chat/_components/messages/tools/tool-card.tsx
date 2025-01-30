@@ -42,7 +42,7 @@ const ToolCard = <ActionResultBodyType, ActionArgsType>({ tool, loadingText, res
             "flex flex-col gap-2 w-fit",
             className
         )}>
-            <div className={cn(
+            {/* <div className={cn(
                 "flex items-center gap-2",
                 prevToolAgent === agentName && "hidden"
             )}>
@@ -54,7 +54,7 @@ const ToolCard = <ActionResultBodyType, ActionArgsType>({ tool, loadingText, res
                         : <Icon name={agentIcon} className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
                 }
                 <p className="text-sm md:text-lg font-bold">{agentName}</p>
-            </div>
+            </div> */}
             <div>
                 {
                     tool.state === "partial-call" ? (

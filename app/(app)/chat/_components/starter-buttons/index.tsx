@@ -12,22 +12,28 @@ const starterButtons = [
   //   },
   {
     title: "Best stablecoin yield",
-    description: "Stake Sol",
+    description: "Stablecoin Yields",
     icon: "/icons/settings.svg",
-    prompt: "Find me the best staking yields",
+    prompt: "Find the best stablecoin yields",
   },
   {
     title: "Analyze my portfolio",
     description: "Swap on Jupiter",
     icon: "/icons/atom.svg",
-    prompt: "Analyze my portfolio ",
+    prompt: "show my portfolio ",
   },
   {
-    title: "Bridge funds",
-    description: "Get developer docs for protocols",
-    icon: "/icons/Cardholder.svg",
-    prompt: "Bridge funds",
+    title: "Swap",
+    description: "Swap on Jupiter",
+    icon: "/icons/atom.svg",
+    prompt: "Swap on Jupiter",
   },
+  // {
+  //   title: "Bridge funds",
+  //   description: "Get developer docs for protocols",
+  //   icon: "/icons/Cardholder.svg",
+  //   prompt: "Bridge funds",
+  // },
 ] as const;
 
 const StarterButtons = () => {

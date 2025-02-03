@@ -40,9 +40,9 @@ function ArrowDownIcon(props: ComponentPropsWithRef<"svg">) {
       <path
         d="M9.5 4.5L6 7.5L2.5 4.5"
         stroke="white"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

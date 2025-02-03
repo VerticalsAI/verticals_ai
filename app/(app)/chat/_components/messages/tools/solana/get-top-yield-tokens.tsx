@@ -120,7 +120,7 @@ const TopYieldTokens = ({
                   />
                 </TableCell>
                 <TableCell className="text-green-500">
-                  {Math.floor(Number(token.apy) * 100)}%
+                  {Math.floor(Number(token.apy) * 100) / 100}%
                 </TableCell>
               </TableRow>
             ))}

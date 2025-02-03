@@ -10,18 +10,18 @@ import { usePrivy, Wallet } from "@privy-io/react-auth";
 import { useChat } from "@/app/(app)/chat/_contexts/chat";
 
 import {
-    GetTopYieldTokensResultBodyType,
-    GetTopYieldTokensResultType,
+  GetTopYieldTokensResultBodyType,
+  GetTopYieldTokensResultType,
 } from "@/ai/solana/actions/market/get-top-yield-tokens/types";
 import {
-    Button,
-    Card,
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow
+  Button,
+  Card,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui";
 import type { ToolInvocation } from "ai";
 
@@ -120,10 +120,7 @@ const TopYieldTokens = ({
                   />
                 </TableCell>
                 <TableCell className="text-green-500">
-                  $
-                  {Number(token.apy).toLocaleString(undefined, {
-                    maximumFractionDigits: 5,
-                  })}
+                  {Math.floor(Number(token.apy) * 100)}%
                 </TableCell>
               </TableRow>
             ))}

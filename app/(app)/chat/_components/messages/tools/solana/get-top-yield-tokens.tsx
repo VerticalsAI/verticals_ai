@@ -10,20 +10,20 @@ import { usePrivy, Wallet } from "@privy-io/react-auth";
 import { useChat } from "@/app/(app)/chat/_contexts/chat";
 
 import {
-  GetTopYieldTokensResultType,
-  GetTopYieldTokensResultBodyType,
+    GetTopYieldTokensResultBodyType,
+    GetTopYieldTokensResultType,
 } from "@/ai/solana/actions/market/get-top-yield-tokens/types";
-import type { ToolInvocation } from "ai";
 import {
-  Button,
-  Card,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+    Button,
+    Card,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow
 } from "@/components/ui";
+import type { ToolInvocation } from "ai";
 
 interface Props {
   tool: ToolInvocation;
@@ -37,7 +37,9 @@ const GetTopYieldTokens: React.FC<Props> = ({ tool, prevToolAgent }) => {
       loadingText={`Getting Top Yield Tokens...`}
       result={{
         heading: (result: GetTopYieldTokensResultType) =>
-          result.body ? `Fetched Top Yield Tokens` : "Failed to fetch top yield tokens",
+          result.body
+            ? `Fetched Top Yield Tokens`
+            : "Failed to fetch top yield tokens",
         body: (result: GetTopYieldTokensResultType) =>
           result.body ? (
             <TopYieldTokens body={result.body} />
@@ -94,13 +96,13 @@ const TopYieldTokens = ({
   body: GetTopYieldTokensResultBodyType;
 }) => {
   const [showAll, setShowAll] = useState(false);
-
   return (
     <Card className="flex flex-col gap-2 p-2 w-full">
       <Table className="text-center">
         <TableHeader>
           <TableRow>
             <TableHead className="w-16 text-center">Rank</TableHead>
+            {/* <TableHead className="text-center">Symbol</TableHead> */}
             <TableHead className="text-center">Token</TableHead>
             <TableHead className="text-center">APY</TableHead>
           </TableRow>
@@ -133,5 +135,24 @@ const TopYieldTokens = ({
     </Card>
   );
 };
+
+// const Symbol = ({ address }: { address: string }) => {
+//   const { data: portfolio, isLoading: portfolioLoading, } =
+//     usePortfolio(address);
+
+//   return (
+//     <div>
+//       {portfolioLoading ? (
+//         <Skeleton className="h-4 w-24" />
+//       ) : (
+//         portfolio && (
+//           <p className="text-xs font-bold">
+//             {portfolio.items.find(item => item.address === address)?.symbol}
+//           </p>
+//         )
+//       )}
+//     </div>
+//   );
+// };
 
 export default GetTopYieldTokens;

@@ -24,6 +24,7 @@ import {
   TableRow,
 } from "@/components/ui";
 import type { ToolInvocation } from "ai";
+import Image from "next/image";
 
 interface Props {
   tool: ToolInvocation;
@@ -96,13 +97,15 @@ const TopYieldTokens = ({
   body: GetTopYieldTokensResultBodyType;
 }) => {
   const [showAll, setShowAll] = useState(false);
+
+  console.log(body);
+
   return (
     <Card className="flex flex-col gap-2 p-2 w-full">
       <Table className="text-center">
         <TableHeader>
           <TableRow>
-            <TableHead className="w-16 text-center">Rank</TableHead>
-            {/* <TableHead className="text-center">Symbol</TableHead> */}
+            <TableHead className="text-start">Asset</TableHead>
             <TableHead className="text-center">Token</TableHead>
             <TableHead className="text-center">APY</TableHead>
           </TableRow>
@@ -112,7 +115,19 @@ const TopYieldTokens = ({
             .slice(0, showAll ? body.tokens.length : 10)
             .map((token, index) => (
               <TableRow key={token.tokenMint}>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>
+                  <div className="flex gap-2 items-center">
+                    <Image
+                      src={token.logoURI}
+                      alt={token.symbol}
+                      width={24}
+                      height={24}
+                      unoptimized
+                      className="rounded-full"
+                    />
+                    {token.symbol}
+                  </div>
+                </TableCell>
                 <TableCell className="flex flex-col items-center">
                   <WalletAddress
                     address={token.tokenMint}

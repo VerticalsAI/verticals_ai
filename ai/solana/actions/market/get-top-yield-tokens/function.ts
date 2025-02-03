@@ -5,6 +5,8 @@ import type {
   GetTopYieldTokensResultBodyType,
 } from "./types";
 
+import ListToken from "@/services/kamino/tokens.json";
+
 /**
  * Gets the trending tokens from Birdeye API.
  *
@@ -20,11 +22,24 @@ export async function getTopYieldTokens(
     const tokens = response.sort(
       (a, b) => parseFloat(b.apy) - parseFloat(a.apy)
     );
+
+    const tokensData = await Promise.all(
+      tokens.map(token => {
+        const data = ListToken.find(t => t.address === token.tokenMint);
+        return {
+          ...token,
+          logoURI: data?.logoURI || "",
+          name: data?.name || "",
+          symbol: data?.symbol || "",
+          decimals: data?.decimals || 0,
+        };
+      })
+    );
     // TODO get token info
     return {
-      message: `Found ${tokens.length} top yield stablecoins/tokens. The user is shown the tokens, do not list them. Ask the user what they want to do with the coin.`,
+      message: `Found ${tokensData.length} top yield stablecoins/tokens. The user is shown the tokens, do not list them. Ask the user what they want to do with the coin.`,
       body: {
-        tokens,
+        tokens: tokensData,
       },
     };
   } catch (error) {

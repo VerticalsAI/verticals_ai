@@ -27,6 +27,7 @@
     "@orca-so/whirlpools": "^1.0.2",
     "@privy-io/react-auth": "^1.98.4",
     "@privy-io/server-auth": "^1.17.2",
+    "@privy-io/wagmi": "^1.0.2",
     "@project-serum/anchor": "^0.26.0",
     "@radix-ui/react-alert-dialog": "^1.1.4",
     "@radix-ui/react-avatar": "^1.1.2",
@@ -43,6 +44,7 @@
     "@solana/spl-token": "^0.4.9",
     "@solana/web3.js": "^1.98.0",
     "@streamflow/stream": "^7.2.0",
+    "@tanstack/react-query": "^5.66.0",
     "@types/jsdom": "^21.1.7",
     "@vercel/analytics": "^1.4.1",
     "@xyflow/react": "^12.3.6",
@@ -59,6 +61,7 @@
     "d3-force": "^3.0.0",
     "decimal.js": "^10.4.3",
     "dlx": "^0.2.1",
+    "ethers": "^5.7.2",
     "helius-sdk": "^1.4.1",
     "jsdom": "^25.0.1",
     "leva": "^0.9.35",
@@ -86,6 +89,7 @@
     "tailwindcss-animate": "^1.0.7",
     "twitter-api-v2": "^1.18.2",
     "viem": "^2.21.56",
+    "wagmi": "^2.14.9",
     "zod": "^3.24.1"
   },
   "devDependencies": {

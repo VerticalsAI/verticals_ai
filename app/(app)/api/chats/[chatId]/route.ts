@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { addChat, getChat, updateChatMessages } from "@/db/services";
+import {
+  addChat,
+  deleteChat,
+  getChat,
+  updateChatMessages,
+} from "@/db/services";
 
 import { privy } from "@/services/privy";
 import { openai } from "@ai-sdk/openai";
@@ -72,6 +77,36 @@ export const POST = async (
         await updateChatMessages(chatId, userId, messages)
       );
     }
+  } catch (error) {
+    console.error("Error in /api/chats/[chatId]:", error);
+    return NextResponse.json(false, { status: 500 });
+  }
+};
+
+export const DELETE = async (
+  req: NextRequest,
+  { params }: { params: Promise<{ chatId: string }> }
+) => {
+  const { chatId } = await params;
+
+  try {
+    // Get the authorization header
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return NextResponse.json(false, { status: 401 });
+    }
+
+    // Extract the token
+    const token = authHeader.split(" ")[1];
+
+    // Verify the token with Privy
+    const { userId } = await privy.verifyAuthToken(token);
+    if (!userId) {
+      return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    }
+
+    const result = await deleteChat(chatId, userId);
+    return NextResponse.json(result);
   } catch (error) {
     console.error("Error in /api/chats/[chatId]:", error);
     return NextResponse.json(false, { status: 500 });

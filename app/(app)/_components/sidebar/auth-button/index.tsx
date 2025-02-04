@@ -49,18 +49,18 @@ function ArrowDownIcon(props: ComponentPropsWithRef<"svg">) {
 }
 
 import {
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuGroup,
   DropdownMenuItem,
-  useSidebar,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   Skeleton,
+  useSidebar,
 } from "@/components/ui";
 
 import Balances from "./balances";

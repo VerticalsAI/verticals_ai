@@ -13,7 +13,7 @@ interface Props {
 const Balances: React.FC<Props> = ({ address }) => {
   const {
     data: tokenAccounts,
-    isLoading: isTokenAccountsLoading,
+    // isLoading: isTokenAccountsLoading,
     error: tokenAccountsError,
   } = useTokenAccounts(address);
   const {
@@ -22,8 +22,8 @@ const Balances: React.FC<Props> = ({ address }) => {
     error: nativeBalanceError,
   } = useNativeBalance(address);
   const { user } = usePrivy();
-  if (isTokenAccountsLoading || isNativeBalanceLoading)
-    return <Skeleton className="h-10 w-full" />;
+  if (isNativeBalanceLoading) return <Skeleton className="h-10 w-full" />;
+
   if (tokenAccountsError || nativeBalanceError)
     return <p>Error fetching balances</p>;
   const isEVM = user?.wallet?.chainType === "ethereum";

@@ -1,41 +1,44 @@
 "use client";
 
-import { PrivyProvider as PrivyProviderBase } from "@privy-io/react-auth";
+import {
+  PrivyProvider as PrivyProviderBase,
+  usePrivy,
+} from "@privy-io/react-auth";
 import { toSolanaWalletConnectors } from "@privy-io/react-auth/solana";
 import { createConfig, WagmiProvider } from "@privy-io/wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { base, bsc, mainnet, polygon, sei } from "viem/chains";
-import { http } from "wagmi";
+import { useEffect } from "react";
+import { arbitrum, base, bsc, mainnet, polygon, sei } from "viem/chains";
+import { http, useChainId, useSwitchChain } from "wagmi";
 
-// const SwitchNetworkEVM = () => {
-//   const chainId = useChainId();
-//   const { user } = usePrivy();
-//   console.log("🚀 ~ SwitchNetworkEVM ~ chainId:", chainId);
-//   const { switchChain } = useSwitchChain();
-//   useEffect(() => {
-//     console.log("user, ", user);
-//     if (
-//       user &&
-//       user.wallet?.chainType === "ethereum" &&
-//       user?.wallet?.chainId !== "eip155:1329"
-//     ) {
-//       // switchChain({
-//       //   chainId: sei.id,
-//       // });
-//     }
-//   }, [user]);
-//   return null;
-// };
+const SwitchNetworkEVM = () => {
+  const chainId = useChainId();
+  const { user } = usePrivy();
+  const { switchChain } = useSwitchChain();
+  useEffect(() => {
+    if (
+      user &&
+      user.wallet?.chainType === "ethereum" &&
+      ![1329, 42161].includes(chainId)
+    ) {
+      switchChain({
+        chainId: sei.id,
+      });
+    }
+  }, [user, chainId, switchChain]);
+  return null;
+};
 
 const queryClient = new QueryClient();
 export const config = createConfig({
-  chains: [sei, mainnet, bsc, polygon, base], // Pass your required chains as an array
+  chains: [sei, mainnet, bsc, polygon, base, arbitrum], // Pass your required chains as an array
   transports: {
     [sei.id]: http(),
     [mainnet.id]: http(),
     [bsc.id]: http(),
     [polygon.id]: http(),
     [base.id]: http(),
+    [arbitrum.id]: http(),
   },
 });
 interface Props {
@@ -73,7 +76,10 @@ export const PrivyProvider: React.FC<Props> = ({ children }) => {
       }}
     >
       <QueryClientProvider client={queryClient}>
-        <WagmiProvider config={config}>{children}</WagmiProvider>
+        <WagmiProvider config={config}>
+          <SwitchNetworkEVM />
+          {children}
+        </WagmiProvider>
       </QueryClientProvider>
     </PrivyProviderBase>
   );

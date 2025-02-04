@@ -39,7 +39,7 @@ const ChatInput: React.FC = () => {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={e => {
         e.preventDefault();
         onSubmit();
       }}
@@ -65,7 +65,7 @@ const ChatInput: React.FC = () => {
             "dark:placeholder:text-neutral-400"
           )}
           value={input}
-          onChange={(e) => {
+          onChange={e => {
             setInput(e.target.value);
           }}
           disabled={isLoading || !user || inputDisabledMessage !== ""}
@@ -73,7 +73,7 @@ const ChatInput: React.FC = () => {
         />
       </OptionalTooltip>
       <div className={cn("pr-2 cursor-pointer h-fit")}>
-        <button type="submit" className="p-2">
+        <button type="submit" className="p-2 w-full">
           <Image src="/icons/send.svg" alt="Logo" width={18} height={18} />
         </button>
       </div>
@@ -117,7 +117,9 @@ const OptionalTooltip = ({
   return (
     <TooltipProvider>
       <Tooltip delayDuration={0}>
-        <TooltipTrigger>{children}</TooltipTrigger>
+        <TooltipTrigger className="w-full flex items-center">
+          {children}
+        </TooltipTrigger>
         <TooltipContent side="top">{text}</TooltipContent>
       </Tooltip>
     </TooltipProvider>

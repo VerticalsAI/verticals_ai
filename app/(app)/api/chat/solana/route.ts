@@ -27,6 +27,7 @@ The query of the user did not result in any agent being invoked. You should resp
 
 export const POST = async (req: NextRequest) => {
   const { messages, modelName } = await req.json();
+  //modelName = Models.Anthropic;
 
   let MAX_TOKENS: number | undefined = undefined;
   let model: LanguageModelV1 | undefined = undefined;
@@ -57,6 +58,10 @@ export const POST = async (req: NextRequest) => {
   if (!model || !MAX_TOKENS) {
     throw new Error("Invalid model");
   }
+
+  //fixed hardcode test
+  model = anthropic("claude-3-5-sonnet-latest");
+  MAX_TOKENS = 190000;
 
   //   messages[messages.length - 1].content = `${
   //     character.name

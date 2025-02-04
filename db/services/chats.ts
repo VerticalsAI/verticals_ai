@@ -118,7 +118,7 @@ export const findChatsByUser = async (
   if (res.rowCount == 0) {
     return [];
   }
-  return res.rows.map((r) => convertRowToChat(r));
+  return res.rows.map(r => convertRowToChat(r));
 };
 
 // UPDATE
@@ -243,13 +243,27 @@ export const updateChatMessages = async (
  * @returns {Promise<boolean>} True if the deletion was successful, false otherwise.
  */
 export const deleteChat = async (
-  id: Chat["id"],
+  chatId: Chat["id"],
   userId: Chat["userId"]
 ): Promise<boolean> => {
   const client = await getPgClient();
-  const deleteQuery =
-    "DELETE FROM chat_message WHERE chat_id=$1 AND user_id=$2";
-  const deleteValues = [id, userId];
-  await client.query(deleteQuery, deleteValues);
-  return true;
+
+  try {
+    await client.query("BEGIN");
+
+    await client.query("DELETE FROM chat_message WHERE chat_id = $1", [chatId]);
+
+    const deleteChatQuery = "DELETE FROM chat WHERE id = $1 AND user_id = $2";
+    const deleteChatValues = [chatId, userId];
+
+    const result = await client.query(deleteChatQuery, deleteChatValues);
+
+    await client.query("COMMIT");
+
+    return (result.rowCount ?? 0) > 0;
+  } catch (error) {
+    await client.query("ROLLBACK");
+    console.error("Error deleting chat:", error);
+    return false;
+  }
 };

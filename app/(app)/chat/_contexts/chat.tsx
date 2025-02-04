@@ -50,6 +50,7 @@ interface ChatContextType {
   resetChat: () => void;
   chatId: string;
   inputDisabledMessage: string;
+  deleteChat: (chatId: string) => Promise<void>;
 }
 
 const ChatContext = createContext<ChatContextType>({
@@ -67,6 +68,7 @@ const ChatContext = createContext<ChatContextType>({
   resetChat: () => {},
   chatId: "",
   inputDisabledMessage: "",
+  deleteChat: async () => {},
 });
 
 interface ChatProviderProps {
@@ -93,6 +95,20 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     if (chatData) {
       setMessages(chatData.messages);
     }
+  };
+
+  const deleteChat = async (chatId: string) => {
+    await fetch(`/api/chats/${chatId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${await getAccessToken()}`,
+      },
+    });
+    mutate(
+      (currentChats: Chat[] | undefined) =>
+        currentChats ? currentChats.filter((chat) => chat.id !== chatId) : [],
+      false
+    );
   };
 
   const resetChat = () => {
@@ -220,6 +236,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
         resetChat,
         chatId,
         inputDisabledMessage,
+        deleteChat,
       }}
     >
       {children}

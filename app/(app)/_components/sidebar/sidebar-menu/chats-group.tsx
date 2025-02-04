@@ -37,15 +37,22 @@ const ChatsGroup: React.FC = () => {
 
   const { chats, isLoading } = useUserChats();
 
-  const { setChat, chatId, resetChat } = useChat();
+  const { setChat, chatId, resetChat, deleteChat } = useChat();
 
-  const [isOpen ] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const deleteChatHandler = async (currentChat: string) => {
+    if (currentChat === chatId) {
+      resetChat();
+    }
+    await deleteChat(currentChat);
+  };
 
   return (
     <Collapsible
       className="group/collapsible"
       open={isOpen}
-      //   onOpenChange={setIsOpen}
+      onOpenChange={setIsOpen}
     >
       <SidebarMenuItem>
         <CollapsibleTrigger asChild>
@@ -90,15 +97,27 @@ const ChatsGroup: React.FC = () => {
               <Skeleton className="h-10 w-full" />
             ) : chats.length > 0 ? (
               chats.map(chat => (
-                <SidebarMenuSubItem key={chat.id}>
+                <SidebarMenuSubItem key={chat.id} className="flex gap-2">
                   <SidebarMenuSubButton
                     asChild
                     isActive={chat.id === chatId}
                     onClick={() => setChat(chat.id)}
+                    className="flex-1"
                   >
                     <Link href={`/chat`}>
                       <span className="truncate">{chat.tagline}</span>
                     </Link>
+                  </SidebarMenuSubButton>
+                  <SidebarMenuSubButton
+                    className="cursor-pointer w-8"
+                    onClick={() => deleteChatHandler(chat.id)}
+                  >
+                    <Image
+                      src={"/icons/trash.svg"}
+                      alt="Logo"
+                      width={24}
+                      height={24}
+                    />
                   </SidebarMenuSubButton>
                 </SidebarMenuSubItem>
               ))

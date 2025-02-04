@@ -113,7 +113,7 @@ const TopYieldTokens = ({
         <TableBody>
           {body.tokens
             .slice(0, showAll ? body.tokens.length : 10)
-            .map(token => (
+            .map((token) => (
               <TableRow key={token.tokenMint}>
                 <TableCell>
                   <div className="flex gap-2 items-center">

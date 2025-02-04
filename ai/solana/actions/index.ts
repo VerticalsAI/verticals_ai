@@ -1,11 +1,7 @@
+import { SolanaGetTrendingTokensAction } from "./market";
 import {
-  SolanaGetTopYieldTokensAction,
-  SolanaGetTrendingTokensAction,
-} from "./market";
-import {
+  SolanaDepositAction,
   SolanaLiquidStakingYieldsAction,
-  SolanaStakeAction,
-  SolanaUnstakeAction,
 } from "./staking";
 import {
   SolanaGetTokenAddressAction,
@@ -33,10 +29,8 @@ export function getAllSolanaActions(): SolanaAction<
     new SolanaTradeAction(),
     new SolanaGetWalletAddressAction(),
     new SolanaGetTrendingTokensAction(),
-    new SolanaGetTopYieldTokensAction(),
     new SolanaGetTokenDataAction(),
-    new SolanaStakeAction(),
-    new SolanaUnstakeAction(),
+    new SolanaDepositAction(),
     new SolanaAllBalancesAction(),
     new SolanaLiquidStakingYieldsAction(),
     new SolanaGetTokenAddressAction(),

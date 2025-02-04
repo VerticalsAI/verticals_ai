@@ -1,5 +1,6 @@
 import "server-only";
 
+import { JupiterTokenData } from "@/services/jupiter";
 import { getPgClient } from "../pg-client";
 import { Token } from "../types";
 
@@ -35,7 +36,7 @@ export const addToken = async (token: Token): Promise<Token | null> => {
   const values = [
     token.id,
     token.name,
-    token.symbol.toLowerCase(),
+    (token.symbol || "").toLowerCase(),
     token.decimals,
     token.tags,
     token.logoURI,
@@ -67,7 +68,24 @@ export const getToken = async (id: Token["id"]): Promise<Token | null> => {
   const values = [id];
   const res = await client.query(text, values);
   if (res.rowCount == 0) {
-    return null;
+    const resp = await fetch(`https://tokens.jup.ag/token/${id}`);
+    const jupiterToken: JupiterTokenData = await resp.json();
+    if (!jupiterToken.address) {
+      return null;
+    }
+    const token = await addToken({
+      id: jupiterToken.address,
+      name: jupiterToken.name,
+      symbol: jupiterToken.symbol,
+      decimals: jupiterToken.decimals,
+      tags: jupiterToken.tags,
+      logoURI: jupiterToken.logoURI,
+      freezeAuthority: jupiterToken.freeze_authority,
+      mintAuthority: jupiterToken.mint_authority,
+      permanentDelegate: jupiterToken.permanent_delegate,
+      extensions: jupiterToken.extensions,
+    });
+    return token;
   }
   return convertRowToToken(res.rows[0]);
 };

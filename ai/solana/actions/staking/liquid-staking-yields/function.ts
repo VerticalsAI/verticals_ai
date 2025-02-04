@@ -12,6 +12,15 @@ const MainMarketAddress = new PublicKey(
   "7u3HeHxYDLhnCoErrtycNokbQYbWGzLs6JSDqGAv5PfF"
 );
 
+const StablecoinAddresses = [
+  "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+  "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
+  "9zNQRsGLjNKwCUU5Gq5LR8beUCPzQMVMqKAi3SSZh54u",
+  "USDSwr9ApdHk5bvJKMjzff41FfuX8bSxdKcR81vTwcA",
+  "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
+  "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
+];
+
 /**
  * Gets the best liquid staking yields from Kamino API.
  *
@@ -80,7 +89,18 @@ export async function getLiquidStakingYields(
     const resp = await fetch(
       "https://api.kamino.finance/kamino-market/7u3HeHxYDLhnCoErrtycNokbQYbWGzLs6JSDqGAv5PfF/reserves/metrics"
     );
-    const reserves: LiquidStakingYield[] = await resp.json();
+    let reserves: LiquidStakingYield[] = await resp.json();
+    if (args.stablecoin) {
+      reserves = reserves.filter((r) => {
+        console.log(
+          "filter stablecoin",
+          StablecoinAddresses.indexOf(r.liquidityTokenMint),
+          StablecoinAddresses,
+          r.liquidityTokenMint
+        );
+        return StablecoinAddresses.indexOf(r.liquidityTokenMint) !== -1;
+      });
+    }
     const data = await Promise.all(
       reserves
         .sort((a, b) => parseFloat(b.supplyApy) - parseFloat(a.supplyApy))
@@ -92,7 +112,6 @@ export async function getLiquidStakingYields(
           };
         })
     );
-    console.log("getLiquidStakingYields 6", data);
     return {
       message: `Found ${data.length} best liquid staking yields. The user has been shown the options in the UI, ask them which they want to use. DO NOT REITERATE THE OPTIONS IN TEXT.`,
       body: {

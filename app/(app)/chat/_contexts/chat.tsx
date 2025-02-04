@@ -23,6 +23,7 @@ import {
   SOLANA_TRANSFER_NAME,
   SOLANA_WITHDRAW_LIQUIDITY_NAME,
 } from "@/ai/action-names";
+import { Chat } from "@/db/types";
 
 export enum ColorMode {
   LIGHT = "light",

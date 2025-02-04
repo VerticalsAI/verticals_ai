@@ -110,35 +110,40 @@ const LiquidStakingYields = ({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {body.data.slice(0, showAll ? body.data.length : 10).map((yd) => (
-            <TableRow key={yd.tokenData.id}>
-              <TableCell>
-                <div className="flex gap-2 items-center">
-                  <Image
-                    src={yd.tokenData.logoURI}
-                    alt={yd.tokenData.symbol}
-                    width={24}
-                    height={24}
-                    unoptimized
-                    className="rounded-full"
+          {body.data.slice(0, showAll ? body.data.length : 10).map((yd) => {
+            if (!yd.tokenData) {
+              return null;
+            }
+            return (
+              <TableRow key={yd.tokenData.id}>
+                <TableCell>
+                  <div className="flex gap-2 items-center">
+                    <Image
+                      src={yd.tokenData.logoURI}
+                      alt={yd.tokenData.symbol}
+                      width={24}
+                      height={24}
+                      unoptimized
+                      className="rounded-full"
+                    />
+                    {yd.tokenData.symbol.toUpperCase()}
+                  </div>
+                </TableCell>
+                <TableCell className="flex flex-col items-center">
+                  <WalletAddress
+                    address={yd.tokenData.id}
+                    className="font-medium"
                   />
-                  {yd.tokenData.symbol.toUpperCase()}
-                </div>
-              </TableCell>
-              <TableCell className="flex flex-col items-center">
-                <WalletAddress
-                  address={yd.tokenData.id}
-                  className="font-medium"
-                />
-              </TableCell>
-              <TableCell className="text-green-500">
-                {(parseFloat(yd.supplyApy) * 100).toFixed(2)}%
-              </TableCell>
-              <TableCell className="text-green-500">
-                {(parseFloat(yd.borrowApy) * 100).toFixed(2)}%
-              </TableCell>
-            </TableRow>
-          ))}
+                </TableCell>
+                <TableCell className="text-green-500">
+                  {(parseFloat(yd.supplyApy) * 100).toFixed(2)}%
+                </TableCell>
+                <TableCell className="text-green-500">
+                  {(parseFloat(yd.borrowApy) * 100).toFixed(2)}%
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
       <Button variant="ghost" onClick={() => setShowAll(!showAll)}>

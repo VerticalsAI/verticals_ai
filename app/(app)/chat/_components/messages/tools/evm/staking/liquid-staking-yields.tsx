@@ -111,6 +111,7 @@ const LiquidStakingYields = ({
             <TableHead className="text-start">Asset</TableHead>
             <TableHead className="text-center">Token</TableHead>
             <TableHead className="text-center">Pool</TableHead>
+            <TableHead className="text-center">APY</TableHead>
             <TableHead className="text-center"></TableHead>
           </TableRow>
         </TableHeader>
@@ -146,9 +147,12 @@ const LiquidStakingYields = ({
                       {`${yd.address.slice(0, 4)}...${yd.address.slice(-4)}`}
                     </p>
                   </TableCell>
-                  <TableCell className="text-green-500">
+                  <TableCell className="">
                     {/* {(parseFloat(yd.supplyApy) * 100).toFixed(2)}% */}
                     {yd.poolSymbol}
+                  </TableCell>
+                  <TableCell className="text-green-500">
+                    {parseFloat(yd.apy).toFixed(2)}%
                   </TableCell>
                   <TableCell className="text-green-500">
                     <Button

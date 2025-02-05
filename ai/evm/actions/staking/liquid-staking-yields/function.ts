@@ -109,17 +109,23 @@ export async function getLiquidStakingYields(
       ...item.pool.tokens.map((t: any) => ({
         ...t,
         poolSymbol: item.pool.symbol,
-        tvlManual: item.pool.tvlManual,
+        apy: item.pool.apr.total,
       })),
     ]);
 
     const data = await Promise.all(
       allTokens
-        .sort((a, b) => parseFloat(b.tvlManual) - parseFloat(a.tvlManual))
+        .sort((a, b) => parseFloat(b.apy) - parseFloat(a.apy))
+        .filter(
+          reserve =>
+            String(reserve.token.symbol).toLocaleLowerCase() !=
+            String(reserve.poolSymbol).toLocaleLowerCase()
+        )
         .map(async (reserve: any) => {
           return {
             ...reserve.token,
             poolSymbol: reserve.poolSymbol,
+            apy: reserve.apy,
             tokenData: await getToken(reserve.liquidityTokenMint),
           };
         })

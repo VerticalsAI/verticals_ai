@@ -25,6 +25,7 @@ export type LiquidStakingYieldEVM = {
   address: string;
   symbol: string;
   poolSymbol: string;
+  apy: string;
   tokenData?: Token;
 };
 

@@ -63,7 +63,7 @@ const ChatContext = createContext<ChatContextType>({
   sendMessage: () => {},
   isResponseLoading: false,
   addToolResult: () => {},
-  model: Models.OpenAI,
+  model: Models.DeepSeek,
   setModel: () => {},
   setChat: () => {},
   resetChat: () => {},

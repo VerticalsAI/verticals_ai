@@ -60,8 +60,8 @@ export const POST = async (req: NextRequest) => {
   }
 
   //fixed hardcode test
-  model = anthropic("claude-3-5-sonnet-latest");
-  MAX_TOKENS = 190000;
+  // model = anthropic("claude-3-5-sonnet-latest");
+  // MAX_TOKENS = 190000;
 
   //   messages[messages.length - 1].content = `${
   //     character.name

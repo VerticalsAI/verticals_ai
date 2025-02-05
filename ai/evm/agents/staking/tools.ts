@@ -7,9 +7,9 @@ import {
 } from "@/ai/evm/actions";
 
 import {
+  EVM_LIQUID_STAKING_YIELDS_NAME,
   SOLANA_DEPOSIT_NAME,
   SOLANA_GET_TOKEN_ADDRESS_NAME,
-  SOLANA_LIQUID_STAKING_YIELDS_NAME,
 } from "@/ai/action-names";
 import { solanaTool } from "@/ai/evm";
 
@@ -18,7 +18,7 @@ export const STAKING_TOOLS = {
     new SolanaDepositAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
-  [`staking-${SOLANA_LIQUID_STAKING_YIELDS_NAME}`]: solanaTool(
+  [`staking-${EVM_LIQUID_STAKING_YIELDS_NAME}`]: solanaTool(
     new SolanaLiquidStakingYieldsAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),

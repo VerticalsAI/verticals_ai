@@ -3,9 +3,8 @@ import { getToken } from "@/db/services";
 import { PublicKey } from "@solana/web3.js";
 import type { SolanaActionResult } from "../../solana-action";
 import type {
-  LiquidStakingYield,
   LiquidStakingYieldsArgumentsType,
-  LiquidStakingYieldsResultBodyType,
+  LiquidStakingYieldsEVMResultBodyType,
 } from "./types";
 
 const MainMarketAddress = new PublicKey(
@@ -19,6 +18,13 @@ const StablecoinAddresses = [
   "USDSwr9ApdHk5bvJKMjzff41FfuX8bSxdKcR81vTwcA",
   "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
   "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
+];
+
+const poolAddress = [
+  "0x485bb7ae9875c6d2af1a6007466e0435bd736ea10000000000000000000000c9",
+  "0x0bb6579eaf9b20fb8425d3d0e0708462d69f2a0f0000000000000000000000fe",
+  "0xe42cc0395c68f73dd16febed82bcc701011864b6000000000000000000000102",
+  "0x8894b8381dca1d322453282e01ad6d29fc8450dd000200000000000000000007",
 ];
 
 /**
@@ -84,39 +90,42 @@ const StablecoinAddresses = [
  */
 export async function getLiquidStakingYields(
   args: LiquidStakingYieldsArgumentsType
-): Promise<SolanaActionResult<LiquidStakingYieldsResultBodyType>> {
+): Promise<SolanaActionResult<LiquidStakingYieldsEVMResultBodyType>> {
   try {
-    const resp = await fetch(
-      "https://api.kamino.finance/kamino-market/7u3HeHxYDLhnCoErrtycNokbQYbWGzLs6JSDqGAv5PfF/reserves/metrics"
-    );
-    let reserves: LiquidStakingYield[] = await resp.json();
-    if (args.stablecoin) {
-      reserves = reserves.filter(r => {
-        console.log(
-          "filter stablecoin",
-          StablecoinAddresses.indexOf(r.liquidityTokenMint),
-          StablecoinAddresses,
-          r.liquidityTokenMint
-        );
-        return StablecoinAddresses.indexOf(r.liquidityTokenMint) !== -1;
-      });
-    }
-    const data = await Promise.all(
-      reserves
-        .sort((a, b) => parseFloat(b.supplyApy) - parseFloat(a.supplyApy))
-        .map(async reserve => {
-          console.log(reserve);
-          return {
-            ...reserve,
-            tokenData: await getToken(reserve.liquidityTokenMint),
-          };
+    const responses = await Promise.all(
+      poolAddress.map(pool =>
+        fetch(
+          `https://api.jellyverse.org/api/get/apr?poolId=${pool}&networkId=1329`
+        ).then(resp => {
+          if (!resp.ok) {
+            throw new Error(`API Error: ${resp.status} ${resp.statusText}`);
+          }
+          return resp.json();
         })
+      )
+    );
+
+    const allTokens = responses.flatMap(item => [
+      ...item.pool.tokens.map((t: any) => ({
+        ...t,
+        poolSymbol: item.pool.symbol,
+      })),
+    ]);
+
+    const data = await Promise.all(
+      allTokens.map(async (reserve: any) => {
+        return {
+          ...reserve.token,
+          poolSymbol: reserve.poolSymbol,
+          tokenData: await getToken(reserve.liquidityTokenMint),
+        };
+      })
     );
     return {
       message: `Found ${data.length} best liquid staking yields. The user has been shown the options in the UI, ask them which they want to use. DO NOT REITERATE THE OPTIONS IN TEXT.`,
       body: {
         data: data,
-      } as LiquidStakingYieldsResultBodyType,
+      } as LiquidStakingYieldsEVMResultBodyType,
     };
   } catch (error) {
     return {

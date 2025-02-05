@@ -11,23 +11,26 @@ export type LiquidStakingYieldsSchemaType =
 export type LiquidStakingYieldsArgumentsType =
   z.infer<LiquidStakingYieldsSchemaType>;
 
-export type LiquidStakingYield = {
-  reserve: string;
-  liquidityToken: string;
-  liquidityTokenMint: string;
-  maxLtv: string;
-  borrowApy: string;
-  supplyApy: string;
-  totalSupply: string;
-  totalBorrow: string;
-  totalBorrowUsd: string;
-  totalSupplyUsd: string;
+export type LiquidStakingYieldEVM = {
+  // reserve: string;
+  // liquidityToken: string;
+  // liquidityTokenMint: string;
+  // maxLtv: string;
+  // borrowApy: string;
+  // supplyApy: string;
+  // totalSupply: string;
+  // totalBorrow: string;
+  // totalBorrowUsd: string;
+  // totalSupplyUsd: string;
+  address: string;
+  symbol: string;
+  poolSymbol: string;
   tokenData?: Token;
 };
 
-export type LiquidStakingYieldsResultBodyType = {
-  data: LiquidStakingYield[];
+export type LiquidStakingYieldsEVMResultBodyType = {
+  data: LiquidStakingYieldEVM[];
 };
 
-export type LiquidStakingYieldsResultType =
-  SolanaActionResult<LiquidStakingYieldsResultBodyType>;
+export type LiquidStakingYieldsEVMResultType =
+  SolanaActionResult<LiquidStakingYieldsEVMResultBodyType>;

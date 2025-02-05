@@ -91,7 +91,7 @@ export async function getLiquidStakingYields(
     );
     let reserves: LiquidStakingYield[] = await resp.json();
     if (args.stablecoin) {
-      reserves = reserves.filter((r) => {
+      reserves = reserves.filter(r => {
         console.log(
           "filter stablecoin",
           StablecoinAddresses.indexOf(r.liquidityTokenMint),
@@ -104,7 +104,7 @@ export async function getLiquidStakingYields(
     const data = await Promise.all(
       reserves
         .sort((a, b) => parseFloat(b.supplyApy) - parseFloat(a.supplyApy))
-        .map(async (reserve) => {
+        .map(async reserve => {
           console.log(reserve);
           return {
             ...reserve,

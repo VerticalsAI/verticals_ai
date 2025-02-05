@@ -4,14 +4,14 @@ import {
   SolanaDepositAction,
   SolanaGetTokenAddressAction,
   SolanaLiquidStakingYieldsAction,
-} from "@/ai/solana/actions";
+} from "@/ai/evm/actions";
 
 import {
   SOLANA_DEPOSIT_NAME,
   SOLANA_GET_TOKEN_ADDRESS_NAME,
   SOLANA_LIQUID_STAKING_YIELDS_NAME,
 } from "@/ai/action-names";
-import { solanaTool } from "@/ai/solana";
+import { solanaTool } from "@/ai/evm";
 
 export const STAKING_TOOLS = {
   [`staking-${SOLANA_DEPOSIT_NAME}`]: solanaTool(

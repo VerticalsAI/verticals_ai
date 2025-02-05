@@ -7,7 +7,7 @@ import { google } from "@ai-sdk/google";
 import { openai } from "@ai-sdk/openai";
 import { xai } from "@ai-sdk/xai";
 
-import { agents } from "@/ai/solana/agents";
+import { agents } from "@/ai/evm/agents";
 import characterData from "@/characters/jonas.json";
 import { Character } from "@/types/character";
 import { Models } from "@/types/models";

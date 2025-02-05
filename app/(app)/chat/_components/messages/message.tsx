@@ -116,8 +116,8 @@ const Message: React.FC<Props> = ({
                       ? getAgentName(previousMessage?.toolInvocations?.[0])
                       : undefined
                     : message.toolInvocations![index - 1]
-                      ? getAgentName(message.toolInvocations![index - 1])
-                      : undefined
+                    ? getAgentName(message.toolInvocations![index - 1])
+                    : undefined
                 }
               />
             ))}

@@ -24,7 +24,7 @@ const starterButtons = [
   },
   {
     title: "Swap",
-    description: "Swap on Jupiter",
+    description: "Swap on Symphony",
     icon: "/icons/atom.svg",
     prompt: "Swap on Jupiter",
   },
@@ -39,7 +39,7 @@ const starterButtons = [
 const StarterButtons = () => {
   return (
     <div className="flex flex-wrap gap-2">
-      {starterButtons.map(button => (
+      {starterButtons.map((button) => (
         <StarterButton key={button.title} {...button} />
       ))}
       <Button

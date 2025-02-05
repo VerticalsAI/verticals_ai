@@ -99,9 +99,7 @@ const LiquidStakingYields = ({
   const [showAll, setShowAll] = useState(false);
   const { sendMessage, isResponseLoading } = useChat();
 
-  console.log("body", body);
-
-  const handleCallBorrow = (symbol: string) => {
+  const handleCall = (symbol: string) => {
     sendMessage(`Supply ${symbol} to kamino`);
   };
 
@@ -156,10 +154,8 @@ const LiquidStakingYields = ({
                     <Button
                       variant="secondary"
                       onClick={() => {
-                        if (yd.tokenData) {
-                          handleCallBorrow(
-                            yd.tokenData.symbol.toLocaleUpperCase()
-                          );
+                        if (yd.symbol) {
+                          handleCall(yd.symbol.toLocaleUpperCase());
                         }
                       }}
                       disabled={isResponseLoading}

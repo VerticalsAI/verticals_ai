@@ -109,17 +109,20 @@ export async function getLiquidStakingYields(
       ...item.pool.tokens.map((t: any) => ({
         ...t,
         poolSymbol: item.pool.symbol,
+        tvlManual: item.pool.tvlManual,
       })),
     ]);
 
     const data = await Promise.all(
-      allTokens.map(async (reserve: any) => {
-        return {
-          ...reserve.token,
-          poolSymbol: reserve.poolSymbol,
-          tokenData: await getToken(reserve.liquidityTokenMint),
-        };
-      })
+      allTokens
+        .sort((a, b) => parseFloat(b.tvlManual) - parseFloat(a.tvlManual))
+        .map(async (reserve: any) => {
+          return {
+            ...reserve.token,
+            poolSymbol: reserve.poolSymbol,
+            tokenData: await getToken(reserve.liquidityTokenMint),
+          };
+        })
     );
     return {
       message: `Found ${data.length} best liquid staking yields. The user has been shown the options in the UI, ask them which they want to use. DO NOT REITERATE THE OPTIONS IN TEXT.`,

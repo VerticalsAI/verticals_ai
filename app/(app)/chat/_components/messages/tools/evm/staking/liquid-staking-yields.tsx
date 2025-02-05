@@ -38,7 +38,7 @@ const LiquidStakingYieldsEVMTool: React.FC<Props> = ({
       result={{
         heading: (result: LiquidStakingYieldsEVMResultType) =>
           result.body
-            ? `Fetched Best Liquid Staking Yields`
+            ? `Fetched best stablecoin yields`
             : "No staking yields found",
         body: (result: LiquidStakingYieldsEVMResultType) =>
           result.body ? (

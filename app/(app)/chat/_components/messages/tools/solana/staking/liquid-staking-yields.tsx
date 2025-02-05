@@ -11,7 +11,6 @@ import { Card } from "@/components/ui";
 import { usePrivy, Wallet } from "@privy-io/react-auth";
 import type { ToolInvocation } from "ai";
 
-import WalletAddress from "@/app/_components/wallet-address";
 import {
   Button,
   Table,
@@ -21,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 interface Props {
@@ -95,8 +95,11 @@ const LiquidStakingYields = ({
   body: LiquidStakingYieldsResultBodyType;
 }) => {
   const [showAll, setShowAll] = useState(false);
+  const { sendMessage, isResponseLoading } = useChat();
 
-  console.log(body);
+  const handleCallBorrow = (symbol: string) => {
+    sendMessage(`Supply ${symbol} to kamino`);
+  };
 
   return (
     <Card className="flex flex-col gap-2 p-2 w-full">
@@ -106,11 +109,11 @@ const LiquidStakingYields = ({
             <TableHead className="text-start">Asset</TableHead>
             <TableHead className="text-center">Token</TableHead>
             <TableHead className="text-center">Supply APY</TableHead>
-            <TableHead className="text-center">Borrow APY</TableHead>
+            <TableHead className="text-center"></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {body.data.slice(0, showAll ? body.data.length : 10).map((yd) => {
+          {body.data.slice(0, showAll ? body.data.length : 10).map(yd => {
             if (!yd.tokenData) {
               return null;
             }
@@ -129,17 +132,38 @@ const LiquidStakingYields = ({
                     {yd.tokenData.symbol.toUpperCase()}
                   </div>
                 </TableCell>
-                <TableCell className="flex flex-col items-center">
-                  <WalletAddress
+                <TableCell className="">
+                  {/* <WalletAddress
                     address={yd.tokenData.id}
                     className="font-medium"
-                  />
+                  /> */}
+                  <p
+                    className={cn(
+                      "text-sm text-muted-foreground cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md w-fit px-1"
+                    )}
+                  >
+                    {`${yd.tokenData.id.slice(0, 4)}...${yd.tokenData.id.slice(
+                      -4
+                    )}`}
+                  </p>
                 </TableCell>
                 <TableCell className="text-green-500">
                   {(parseFloat(yd.supplyApy) * 100).toFixed(2)}%
                 </TableCell>
                 <TableCell className="text-green-500">
-                  {(parseFloat(yd.borrowApy) * 100).toFixed(2)}%
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      if (yd.tokenData) {
+                        handleCallBorrow(
+                          yd.tokenData.symbol.toLocaleUpperCase()
+                        );
+                      }
+                    }}
+                    disabled={isResponseLoading}
+                  >
+                    Supply
+                  </Button>
                 </TableCell>
               </TableRow>
             );

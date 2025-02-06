@@ -8,8 +8,8 @@ import {
 } from "./token";
 import { SolanaTradeAction } from "./trade";
 import {
+  EVMAllBalancesAction,
   EVMBalanceAction,
-  SolanaAllBalancesAction,
   SolanaGetWalletAddressAction,
   SolanaTransferAction,
 } from "./wallet";
@@ -25,7 +25,7 @@ export function getAllEVMActions(): EVMAction<EVMActionSchemaAny, any>[] {
     new SolanaGetTrendingTokensAction(),
     new SolanaGetTokenDataAction(),
     new SolanaDepositAction(),
-    new SolanaAllBalancesAction(),
+    new EVMAllBalancesAction(),
     new EVMLiquidStakingYieldsAction(),
     new EVMGetTokenAddressAction(),
     new SolanaTopHoldersAction(),

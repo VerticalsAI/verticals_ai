@@ -5,14 +5,14 @@ import { getTokenAccountsByOwner } from "@/services/helius";
 import { getToken } from "@/db/services";
 import type { EVMActionResult } from "../../evm-action";
 import type {
-  AllBalancesArgumentsType,
-  AllBalancesResultBodyType,
+  AllBalancesEVMArgumentsType,
+  AllBalancesEVMResultBodyType,
 } from "./types";
 
 export async function getAllBalances(
   connection: Connection,
-  args: AllBalancesArgumentsType
-): Promise<EVMActionResult<AllBalancesResultBodyType>> {
+  args: AllBalancesEVMArgumentsType
+): Promise<EVMActionResult<AllBalancesEVMResultBodyType>> {
   try {
     let balances: {
       balance: number;

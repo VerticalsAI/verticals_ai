@@ -4,11 +4,11 @@ import { EVM_ALL_BALANCES_NAME } from "./name";
 import { SOLANA_ALL_BALANCES_PROMPT } from "./prompt";
 
 import type { EVMAction } from "../../evm-action";
-import type { AllBalancesResultBodyType } from "./types";
+import type { AllBalancesEVMResultBodyType } from "./types";
 
 export class SolanaAllBalancesAction
   implements
-    EVMAction<typeof AllBalancesInputSchema, AllBalancesResultBodyType>
+    EVMAction<typeof AllBalancesInputSchema, AllBalancesEVMResultBodyType>
 {
   public name = EVM_ALL_BALANCES_NAME;
   public description = SOLANA_ALL_BALANCES_PROMPT;

@@ -3,11 +3,11 @@ import { z } from "zod";
 import type { EVMActionResult } from "../../evm-action";
 import { AllBalancesInputSchema } from "./input-schema";
 
-export type AllBalancesSchemaType = typeof AllBalancesInputSchema;
+export type AllBalancesEVMSchemaType = typeof AllBalancesInputSchema;
 
-export type AllBalancesArgumentsType = z.infer<AllBalancesSchemaType>;
+export type AllBalancesEVMArgumentsType = z.infer<AllBalancesEVMSchemaType>;
 
-export type AllBalancesResultBodyType = {
+export type AllBalancesEVMResultBodyType = {
   balances: {
     balance: number;
     token: string;
@@ -16,4 +16,5 @@ export type AllBalancesResultBodyType = {
   }[];
 };
 
-export type AllBalancesResultType = EVMActionResult<AllBalancesResultBodyType>;
+export type AllBalancesEVMResultType =
+  EVMActionResult<AllBalancesEVMResultBodyType>;

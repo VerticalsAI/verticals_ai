@@ -6,7 +6,7 @@ import { BalanceResultBodyType } from "./types";
 
 import type { EVMAction } from "../../evm-action";
 
-export class SolanaBalanceAction
+export class EVMBalanceAction
   implements EVMAction<typeof BalanceInputSchema, BalanceResultBodyType>
 {
   public name = EVM_BALANCE_NAME;

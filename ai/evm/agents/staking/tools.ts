@@ -1,9 +1,9 @@
 import { Connection } from "@solana/web3.js";
 
 import {
+  EVMGetTokenAddressAction,
   EVMLiquidStakingYieldsAction,
   SolanaDepositAction,
-  SolanaGetTokenAddressAction,
 } from "@/ai/evm/actions";
 
 import {
@@ -11,19 +11,19 @@ import {
   SOLANA_DEPOSIT_NAME,
   SOLANA_GET_TOKEN_ADDRESS_NAME,
 } from "@/ai/action-names";
-import { solanaTool } from "@/ai/evm";
+import { evmTool } from "@/ai/evm";
 
 export const STAKING_TOOLS = {
-  [`staking-${SOLANA_DEPOSIT_NAME}`]: solanaTool(
+  [`staking-${SOLANA_DEPOSIT_NAME}`]: evmTool(
     new SolanaDepositAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
-  [`staking-${EVM_LIQUID_STAKING_YIELDS_NAME}`]: solanaTool(
+  [`staking-${EVM_LIQUID_STAKING_YIELDS_NAME}`]: evmTool(
     new EVMLiquidStakingYieldsAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
-  [`staking-${SOLANA_GET_TOKEN_ADDRESS_NAME}`]: solanaTool(
-    new SolanaGetTokenAddressAction(),
+  [`staking-${SOLANA_GET_TOKEN_ADDRESS_NAME}`]: evmTool(
+    new EVMGetTokenAddressAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
 };

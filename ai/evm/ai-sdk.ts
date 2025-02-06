@@ -4,15 +4,12 @@ import { Connection } from "@solana/web3.js";
 
 import { tool } from "ai";
 
-import { getAllSolanaActions } from "./actions";
+import { getAllEVMActions } from "./actions";
 
 import type { CoreTool } from "ai";
 import type { EVMAction, EVMActionResult, EVMActionSchemaAny } from "./actions";
 
-export const solanaTool = <
-  TActionSchema extends EVMActionSchemaAny,
-  TResultBody
->(
+export const evmTool = <TActionSchema extends EVMActionSchemaAny, TResultBody>(
   action: EVMAction<TActionSchema, TResultBody>,
   connection: Connection
 ) => {
@@ -41,7 +38,7 @@ export const solanaTool = <
 };
 
 export const solanaTools = (connection: Connection) =>
-  getAllSolanaActions().reduce((acc, action) => {
-    acc[action.name] = solanaTool(action, connection);
+  getAllEVMActions().reduce((acc, action) => {
+    acc[action.name] = evmTool(action, connection);
     return acc;
   }, {} as Record<string, CoreTool>);

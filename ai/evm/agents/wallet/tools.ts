@@ -1,12 +1,12 @@
 import { Connection } from "@solana/web3.js";
 
 import {
-  SolanaAllBalancesAction,
-  SolanaBalanceAction,
-  SolanaGetTokenAddressAction,
-  SolanaGetWalletAddressAction,
-  SolanaTransferAction,
-} from "@/ai/solana/actions";
+  EVMAllBalancesAction,
+  EVMBalanceAction,
+  EVMGetTokenAddressAction,
+  EVMGetWalletAddressAction,
+  EVMTransferAction,
+} from "@/ai/evm/actions";
 
 import {
   EVM_ALL_BALANCES_NAME,
@@ -19,23 +19,23 @@ import { EVM_TRANSFER_NAME } from "../../actions/wallet/transfer/name";
 
 export const WALLET_TOOLS = {
   [`wallet-${EVM_GET_WALLET_ADDRESS_NAME}`]: evmTool(
-    new SolanaGetWalletAddressAction(),
+    new EVMGetWalletAddressAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
   [`wallet-${EVM_BALANCE_NAME}`]: evmTool(
-    new SolanaBalanceAction(),
+    new EVMBalanceAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
   [`wallet-${EVM_ALL_BALANCES_NAME}`]: evmTool(
-    new SolanaAllBalancesAction(),
+    new EVMAllBalancesAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
   [`wallet-${SOLANA_GET_TOKEN_ADDRESS_NAME}`]: evmTool(
-    new SolanaGetTokenAddressAction(),
+    new EVMGetTokenAddressAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
   [`wallet-${EVM_TRANSFER_NAME}`]: evmTool(
-    new SolanaTransferAction(),
+    new EVMTransferAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
 };

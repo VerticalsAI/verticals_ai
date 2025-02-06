@@ -5,7 +5,7 @@ import { EVM_GET_WALLET_ADDRESS_PROMPT } from "./prompt";
 import type { EVMAction } from "../../evm-action";
 import type { GetWalletAddressResultBodyType } from "./types";
 
-export class SolanaGetWalletAddressAction
+export class EVMGetWalletAddressAction
   implements
     EVMAction<
       typeof GetWalletAddressInputSchema,

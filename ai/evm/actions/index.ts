@@ -10,8 +10,8 @@ import { SolanaTradeAction } from "./trade";
 import {
   EVMAllBalancesAction,
   EVMBalanceAction,
-  SolanaGetWalletAddressAction,
-  SolanaTransferAction,
+  EVMGetWalletAddressAction,
+  EVMTransferAction,
 } from "./wallet";
 
 import type { EVMAction, EVMActionSchemaAny } from "./evm-action";
@@ -19,9 +19,9 @@ import type { EVMAction, EVMActionSchemaAny } from "./evm-action";
 export function getAllEVMActions(): EVMAction<EVMActionSchemaAny, any>[] {
   return [
     new EVMBalanceAction(),
-    new SolanaTransferAction(),
+    new EVMTransferAction(),
     new SolanaTradeAction(),
-    new SolanaGetWalletAddressAction(),
+    new EVMGetWalletAddressAction(),
     new SolanaGetTrendingTokensAction(),
     new SolanaGetTokenDataAction(),
     new SolanaDepositAction(),

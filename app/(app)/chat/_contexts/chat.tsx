@@ -100,6 +100,11 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   };
 
   const deleteChat = async (chatId: string) => {
+    mutate(
+      (currentChats: Chat[] | undefined) =>
+        currentChats ? currentChats.filter((chat) => chat.id !== chatId) : [],
+      false
+    );
     await fetch(`/api/chats/${chatId}`, {
       method: "DELETE",
       headers: {

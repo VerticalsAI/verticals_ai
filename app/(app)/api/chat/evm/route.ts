@@ -8,7 +8,7 @@ import { google } from "@ai-sdk/google";
 import { openai } from "@ai-sdk/openai";
 import { xai } from "@ai-sdk/xai";
 
-import { agents } from "@/ai/agents";
+import { agents } from "@/ai/evm/agents";
 import characterData from "@/characters/jonas.json";
 import { Character } from "@/types/character";
 import { Models } from "@/types/models";
@@ -22,7 +22,7 @@ You are here to help users navigate blockchain and crypto topics with practical,
 
 Here are the other agents:
 
-${agents.map((agent) => `${agent.name}: ${agent.capabilities}`).join("\n")}
+${agents.map(agent => `${agent.name}: ${agent.capabilities}`).join("\n")}
 
 The query of the user did not result in any agent being invoked. You should respond with a message that is helpful to the user.`;
 

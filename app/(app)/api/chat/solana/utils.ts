@@ -3,13 +3,13 @@ import { z } from "zod";
 import { generateObject, LanguageModelV1, Message } from "ai";
 
 import { Agent } from "@/ai/agent";
-import { agents } from "@/ai/agents";
+import { agents } from "@/ai/solana/agents";
 
 export const system = `You are the orchestrator of a swarm of blockchain agents that each have specialized tasks.
 
 Given this list of agents and their capabilities, choose the one that is most appropriate for the user's request.
 
-${agents.map((agent) => `${agent.name}: ${agent.systemPrompt}`).join("\n")}`;
+${agents.map(agent => `${agent.name}: ${agent.systemPrompt}`).join("\n")}`;
 
 export const chooseAgent = async (
   model: LanguageModelV1,
@@ -18,7 +18,7 @@ export const chooseAgent = async (
   const { object } = await generateObject({
     model,
     schema: z.object({
-      agent: z.enum(agents.map((agent) => agent.name) as [string, ...string[]]),
+      agent: z.enum(agents.map(agent => agent.name) as [string, ...string[]]),
     }),
     messages,
     system,
@@ -29,5 +29,5 @@ export const chooseAgent = async (
   //     JSON.stringify({ system, messages, result: object })
   //   );
 
-  return agents.find((agent) => agent.name === object.agent) ?? null;
+  return agents.find(agent => agent.name === object.agent) ?? null;
 };

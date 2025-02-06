@@ -29,6 +29,7 @@ import {
 import { SearchRecentTweets } from "./twitter";
 
 import {
+  EVM_LIQUID_STAKING_YIELDS_NAME,
   INVOKE_AGENT_NAME,
   SEARCH_KNOWLEDGE_NAME,
   SOLANA_ALL_BALANCES_NAME,
@@ -55,6 +56,7 @@ import {
 } from "@/ai/action-names";
 
 import type { ToolInvocation as ToolInvocationType } from "ai";
+import { LiquidStakingYieldsEVM } from "./evm/staking";
 
 interface Props {
   tool: ToolInvocationType;
@@ -64,6 +66,8 @@ interface Props {
 const ToolInvocation: React.FC<Props> = ({ tool, prevToolAgent }) => {
   const toolParts = tool.toolName.split("-");
   const toolName = toolParts.slice(1).join("-");
+
+  console.log("toolName", toolName);
 
   switch (toolName) {
     case SOLANA_BALANCE_NAME:
@@ -78,6 +82,10 @@ const ToolInvocation: React.FC<Props> = ({ tool, prevToolAgent }) => {
       return <Trade tool={tool} prevToolAgent={prevToolAgent} />;
     case SOLANA_LIQUID_STAKING_YIELDS_NAME:
       return <LiquidStakingYields tool={tool} prevToolAgent={prevToolAgent} />;
+    case EVM_LIQUID_STAKING_YIELDS_NAME:
+      return (
+        <LiquidStakingYieldsEVM tool={tool} prevToolAgent={prevToolAgent} />
+      );
     case SOLANA_TRANSFER_NAME:
       return <Transfer tool={tool} prevToolAgent={prevToolAgent} />;
     case TWITTER_SEARCH_RECENT_NAME:

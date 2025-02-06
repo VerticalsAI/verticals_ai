@@ -13,7 +13,9 @@ import animationData from "./loading.json";
 const Chat: React.FC = () => {
   const { messages } = useChat();
 
-  const cleanedMessages = messages.filter(message => message.role !== "system");
+  const cleanedMessages = messages.filter(
+    (message) => message.role !== "system"
+  );
 
   return (
     <>

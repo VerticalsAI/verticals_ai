@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SolanaActionResult } from "../../solana-action";
+import { EVMActionResult } from "../../evm-action";
 import { DepositInputSchema } from "./input-schema";
 
 export type DepositSchemaType = typeof DepositInputSchema;
@@ -11,4 +11,4 @@ export type DepositResultBodyType = {
   symbol: string;
 };
 
-export type DepositResultType = SolanaActionResult<DepositResultBodyType>;
+export type DepositResultType = EVMActionResult<DepositResultBodyType>;

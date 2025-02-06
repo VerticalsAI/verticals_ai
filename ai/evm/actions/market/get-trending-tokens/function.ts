@@ -1,7 +1,10 @@
 import { getTrendingTokens as getTrendingTokensBirdeye } from "@/services/birdeye";
 
-import type { GetTrendingTokensArgumentsType, GetTrendingTokensResultBodyType } from "./types";
-import type { SolanaActionResult } from "../../solana-action";
+import type { EVMActionResult } from "../../evm-action";
+import type {
+  GetTrendingTokensArgumentsType,
+  GetTrendingTokensResultBodyType,
+} from "./types";
 
 /**
  * Gets the trending tokens from Birdeye API.
@@ -12,7 +15,7 @@ import type { SolanaActionResult } from "../../solana-action";
  */
 export async function getTrendingTokens(
   args: GetTrendingTokensArgumentsType
-): Promise<SolanaActionResult<GetTrendingTokensResultBodyType>> {
+): Promise<EVMActionResult<GetTrendingTokensResultBodyType>> {
   try {
     const response = await getTrendingTokensBirdeye(0, args.limit);
 
@@ -20,14 +23,14 @@ export async function getTrendingTokens(
       message: `Found ${response.tokens.length} trending tokens. The user is shown the tokens, do not list them. Ask the user what they want to do with the coin.`,
       body: {
         tokens: response.tokens,
-      }
+      },
     };
   } catch (error) {
     return {
       message: `Error getting trending tokens: ${error}`,
       body: {
         tokens: [],
-      }
+      },
     };
   }
 }

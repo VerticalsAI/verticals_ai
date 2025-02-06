@@ -1,12 +1,21 @@
+import { DepositLiquidityInputSchema } from "./input-schema";
 import { SOLANA_DEPOSIT_LIQUIDITY_NAME } from "./name";
 import { SOLANA_DEPOSIT_LIQUIDITY_PROMPT } from "./prompt";
-import { DepositLiquidityInputSchema } from "./input-schema";
 
-import type { SolanaDepositLiquiditySchemaType, SolanaDepositLiquidityResultBodyType } from "./types";
-import type { SolanaAction } from "../../solana-action";
+import type { EVMAction } from "../../evm-action";
+import type {
+  SolanaDepositLiquidityResultBodyType,
+  SolanaDepositLiquiditySchemaType,
+} from "./types";
 
-export class SolanaDepositLiquidityAction implements SolanaAction<SolanaDepositLiquiditySchemaType, SolanaDepositLiquidityResultBodyType> {
+export class SolanaDepositLiquidityAction
+  implements
+    EVMAction<
+      SolanaDepositLiquiditySchemaType,
+      SolanaDepositLiquidityResultBodyType
+    >
+{
   public name = SOLANA_DEPOSIT_LIQUIDITY_NAME;
   public description = SOLANA_DEPOSIT_LIQUIDITY_PROMPT;
   public argsSchema = DepositLiquidityInputSchema;
-} 
+}

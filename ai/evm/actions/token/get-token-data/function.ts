@@ -1,6 +1,6 @@
 import { searchTokens } from "@/services/birdeye";
 import { getTokenOverview } from "@/services/birdeye/get-token-overview";
-import type { SolanaActionResult } from "../../solana-action";
+import type { EVMActionResult } from "../../evm-action";
 import type {
   GetTokenDataArgumentsType,
   GetTokenDataResultBodyType,
@@ -15,7 +15,7 @@ import type {
  */
 export async function getTokenData(
   args: GetTokenDataArgumentsType
-): Promise<SolanaActionResult<GetTokenDataResultBodyType>> {
+): Promise<EVMActionResult<GetTokenDataResultBodyType>> {
   try {
     const { items } = await searchTokens({ keyword: args.search });
 

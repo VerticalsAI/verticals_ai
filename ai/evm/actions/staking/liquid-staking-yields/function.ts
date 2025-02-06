@@ -1,7 +1,7 @@
 import { getToken } from "@/db/services";
 
 import { PublicKey } from "@solana/web3.js";
-import type { SolanaActionResult } from "../../solana-action";
+import type { EVMActionResult } from "../../evm-action";
 import type {
   LiquidStakingYieldsArgumentsType,
   LiquidStakingYieldsEVMResultBodyType,
@@ -90,7 +90,7 @@ const poolAddress = [
  */
 export async function getLiquidStakingYields(
   args: LiquidStakingYieldsArgumentsType
-): Promise<SolanaActionResult<LiquidStakingYieldsEVMResultBodyType>> {
+): Promise<EVMActionResult<LiquidStakingYieldsEVMResultBodyType>> {
   try {
     const responses = await Promise.all(
       poolAddress.map(pool =>

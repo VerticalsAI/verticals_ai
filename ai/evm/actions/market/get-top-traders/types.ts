@@ -1,15 +1,16 @@
 import { z } from "zod";
 
-import type { GetTopTradersInputSchema } from "./input-schema";
-import type { SolanaActionResult } from "../../solana-action";
 import type { TopTrader } from "@/services/birdeye";
+import type { EVMActionResult } from "../../evm-action";
+import type { GetTopTradersInputSchema } from "./input-schema";
 
 export type GetTopTradersSchemaType = typeof GetTopTradersInputSchema;
 
 export type GetTopTradersArgumentsType = z.infer<GetTopTradersSchemaType>;
 
 export type GetTopTradersResultBodyType = {
-    traders: TopTrader[];
-}; 
+  traders: TopTrader[];
+};
 
-export type GetTopTradersResultType = SolanaActionResult<GetTopTradersResultBodyType>;
+export type GetTopTradersResultType =
+  EVMActionResult<GetTopTradersResultBodyType>;

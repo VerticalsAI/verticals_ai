@@ -1,7 +1,10 @@
 import { getTopTraders as getTopTradersBirdeye } from "@/services/birdeye";
 
-import type { GetTopTradersArgumentsType, GetTopTradersResultBodyType } from "./types";
-import type { SolanaActionResult } from "../../solana-action";
+import type { EVMActionResult } from "../../evm-action";
+import type {
+  GetTopTradersArgumentsType,
+  GetTopTradersResultBodyType,
+} from "./types";
 
 /**
  * Gets the trending tokens from Birdeye API.
@@ -12,7 +15,7 @@ import type { SolanaActionResult } from "../../solana-action";
  */
 export async function getTopTraders(
   args: GetTopTradersArgumentsType
-): Promise<SolanaActionResult<GetTopTradersResultBodyType>> {
+): Promise<EVMActionResult<GetTopTradersResultBodyType>> {
   try {
     const response = await getTopTradersBirdeye(args.timeFrame);
 
@@ -20,14 +23,14 @@ export async function getTopTraders(
       message: `Found ${response.items.length} top traders. The user is shown the traders, do not list them. Ask the user what they want to do with the traders.`,
       body: {
         traders: response.items,
-      }
+      },
     };
   } catch (error) {
     return {
       message: `Error getting top traders: ${error}`,
       body: {
         traders: [],
-      }
+      },
     };
   }
 }

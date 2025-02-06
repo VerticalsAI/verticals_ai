@@ -1,8 +1,5 @@
 import { SolanaGetTrendingTokensAction } from "./market";
-import {
-  SolanaDepositAction,
-  SolanaLiquidStakingYieldsAction,
-} from "./staking";
+import { EVMLiquidStakingYieldsAction, SolanaDepositAction } from "./staking";
 import {
   SolanaGetTokenAddressAction,
   SolanaGetTokenDataAction,
@@ -17,12 +14,9 @@ import {
   SolanaTransferAction,
 } from "./wallet";
 
-import type { SolanaAction, SolanaActionSchemaAny } from "./solana-action";
+import type { EVMAction, EVMActionSchemaAny } from "./evm-action";
 
-export function getAllSolanaActions(): SolanaAction<
-  SolanaActionSchemaAny,
-  any
->[] {
+export function getAllSolanaActions(): EVMAction<EVMActionSchemaAny, any>[] {
   return [
     new SolanaBalanceAction(),
     new SolanaTransferAction(),
@@ -32,7 +26,7 @@ export function getAllSolanaActions(): SolanaAction<
     new SolanaGetTokenDataAction(),
     new SolanaDepositAction(),
     new SolanaAllBalancesAction(),
-    new SolanaLiquidStakingYieldsAction(),
+    new EVMLiquidStakingYieldsAction(),
     new SolanaGetTokenAddressAction(),
     new SolanaTopHoldersAction(),
     new SolanaTokenHoldersAction(),
@@ -41,7 +35,7 @@ export function getAllSolanaActions(): SolanaAction<
 
 export const SOLANA_ACTIONS = getAllSolanaActions();
 
-export * from "./solana-action";
+export * from "./evm-action";
 export * from "./types";
 
 export * from "./market";

@@ -1,15 +1,17 @@
 import { z } from "zod";
 
-import type { GetTrendingTokensInputSchema } from "./input-schema";
-import type { SolanaActionResult } from "../../solana-action";
 import type { TrendingToken } from "@/services/birdeye";
+import type { EVMActionResult } from "../../evm-action";
+import type { GetTrendingTokensInputSchema } from "./input-schema";
 
 export type GetTrendingTokensSchemaType = typeof GetTrendingTokensInputSchema;
 
-export type GetTrendingTokensArgumentsType = z.infer<GetTrendingTokensSchemaType>;
+export type GetTrendingTokensArgumentsType =
+  z.infer<GetTrendingTokensSchemaType>;
 
 export type GetTrendingTokensResultBodyType = {
-    tokens: TrendingToken[];
-}; 
+  tokens: TrendingToken[];
+};
 
-export type GetTrendingTokensResultType = SolanaActionResult<GetTrendingTokensResultBodyType>;
+export type GetTrendingTokensResultType =
+  EVMActionResult<GetTrendingTokensResultBodyType>;

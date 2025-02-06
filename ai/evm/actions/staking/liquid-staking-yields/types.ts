@@ -3,7 +3,7 @@ import { z } from "zod";
 import { LiquidStakingYieldsInputSchema } from "./input-schema";
 
 import type { Token } from "@/db/types";
-import type { SolanaActionResult } from "../../solana-action";
+import type { EVMActionResult } from "../../evm-action";
 
 export type LiquidStakingYieldsSchemaType =
   typeof LiquidStakingYieldsInputSchema;
@@ -34,4 +34,4 @@ export type LiquidStakingYieldsEVMResultBodyType = {
 };
 
 export type LiquidStakingYieldsEVMResultType =
-  SolanaActionResult<LiquidStakingYieldsEVMResultBodyType>;
+  EVMActionResult<LiquidStakingYieldsEVMResultBodyType>;

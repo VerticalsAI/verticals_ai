@@ -1,42 +1,44 @@
 import { Button } from "@/components/ui";
+import { useLogin } from "@/hooks";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import StarterButton from "./starter-button";
 
-const starterButtons = [
-  //   {
-  //     title: "Best stablecoin yield",
-  //     description: "Search the trending tokens",
-  //     icon: "Coins" as const,
-  //     prompt: "Show me the trending tokens",
-  //   },
-  {
-    title: "Best stablecoin yield",
-    description: "Stablecoin Yields",
-    icon: "/icons/settings.svg",
-    prompt: "Find the best stablecoin yields",
-  },
-  {
-    title: "Analyze my portfolio",
-    description: "Swap on Jupiter",
-    icon: "/icons/atom.svg",
-    prompt: "show my portfolio ",
-  },
-  {
-    title: "Swap",
-    description: "Swap on Symphony",
-    icon: "/icons/atom.svg",
-    prompt: "Swap on Jupiter",
-  },
-  // {
-  //   title: "Bridge funds",
-  //   description: "Get developer docs for protocols",
-  //   icon: "/icons/Cardholder.svg",
-  //   prompt: "Bridge funds",
-  // },
-] as const;
-
 const StarterButtons = () => {
+  const { user } = useLogin();
+  const isEvm = user?.wallet?.chainType === "ethereum";
+  const starterButtons = [
+    //   {
+    //     title: "Best stablecoin yield",
+    //     description: "Search the trending tokens",
+    //     icon: "Coins" as const,
+    //     prompt: "Show me the trending tokens",
+    //   },
+    {
+      title: "Best stablecoin yield",
+      description: "Stablecoin Yields",
+      icon: "/icons/settings.svg",
+      prompt: "Find the best stablecoin yields",
+    },
+    {
+      title: "Analyze my portfolio",
+      description: "Swap on Jupiter",
+      icon: "/icons/atom.svg",
+      prompt: "show my portfolio ",
+    },
+    {
+      title: "Swap",
+      description: `Swap on ${isEvm ? "Symphony" : "Jupiter"}`,
+      icon: "/icons/atom.svg",
+      prompt: `Swap on ${isEvm ? "Symphony" : "Jupiter"}`,
+    },
+    // {
+    //   title: "Bridge funds",
+    //   description: "Get developer docs for protocols",
+    //   icon: "/icons/Cardholder.svg",
+    //   prompt: "Bridge funds",
+    // },
+  ] as const;
   return (
     <div className="flex flex-wrap gap-2">
       {starterButtons.map((button) => (

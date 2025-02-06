@@ -72,9 +72,14 @@ const SwapEVM: React.FC<Props> = ({
   };
 
   const onSwap = async () => {
-    if (!address || !route) return;
+    if (!address || !route || !inputToken) return;
     setIsSwapping(true);
     try {
+      const isApproved = await route.checkApproval();
+      if (!isApproved) {
+        const approvalTx = await route.giveApproval();
+        console.log(`Approval transaction: ${approvalTx}`);
+      }
       const transaction = await route.swap({
         slippage: {
           slippageAmount: "1",
@@ -129,8 +134,8 @@ const SwapEVM: React.FC<Props> = ({
   }, [inputToken, outputToken, inputAmount]);
 
   useEffect(() => {
-    setInputAmount("0");
-    setOutputAmount("0");
+    // setInputAmount("0");
+    // setOutputAmount("0");
     setRoute(undefined);
   }, [inputToken?.id, outputToken?.id]);
 

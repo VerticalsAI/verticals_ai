@@ -14,6 +14,9 @@ interface SwapProps {
 }
 
 const Swap: React.FC<SwapProps> = ({ tool, prevToolAgent }) => {
+  // const { user } = useLogin();
+  // const isEVM = user?.wallet?.chainType === "ethereum";
+  // const SwapCall = isEVM ? SwapCallBodyEVM : SwapCallBody;
   return (
     <ToolCard
       tool={tool}

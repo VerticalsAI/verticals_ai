@@ -59,7 +59,7 @@ import {
 } from "@/ai/action-names";
 
 import type { ToolInvocation as ToolInvocationType } from "ai";
-import { LiquidStakingYieldsEVM } from "./evm/staking";
+import { AllEVMBalances, LiquidStakingYieldsEVM } from "./evm";
 
 interface Props {
   tool: ToolInvocationType;
@@ -127,7 +127,7 @@ const ToolInvocation: React.FC<Props> = ({ tool, prevToolAgent }) => {
         <LiquidStakingYieldsEVM tool={tool} prevToolAgent={prevToolAgent} />
       );
     case EVM_ALL_BALANCES_NAME:
-      return <AllBalances tool={tool} prevToolAgent={prevToolAgent} />;
+      return <AllEVMBalances tool={tool} prevToolAgent={prevToolAgent} />;
     case EVM_BALANCE_NAME:
       return <Balance tool={tool} prevToolAgent={prevToolAgent} />;
     default:

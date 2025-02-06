@@ -1,61 +1,73 @@
-import { Connection } from "@solana/web3.js";
-
 import type { EVMActionResult } from "../../evm-action";
 import type {
   AllBalancesEVMArgumentsType,
   AllBalancesEVMResultBodyType,
 } from "./types";
 
+const tokenInfo = [
+  {
+    id: "0x0",
+    name: "SEI",
+    symbol: "SEI",
+    decimals: 18,
+    tags: [],
+    logoURI:
+      "https://raw.githubusercontent.com/Sei-Public-Goods/sei-assetlist/main/images/Sei.png",
+    freezeAuthority: null,
+    mintAuthority: null,
+    permanentDelegate: null,
+    extensions: {},
+  },
+  {
+    id: "0x3894085ef7ff0f0aedf52e2a2704928d1ec074f1",
+    name: "USD Coin",
+    symbol: "USDC",
+    decimals: 6,
+    tags: [],
+    logoURI:
+      "https://raw.githubusercontent.com/Sei-Public-Goods/sei-assetlist/main/images/USDCoin.svg",
+    freezeAuthority: null,
+    mintAuthority: null,
+    permanentDelegate: null,
+    extensions: {},
+  },
+];
 export async function getAllBalances(
-  connection: Connection,
   args: AllBalancesEVMArgumentsType
 ): Promise<EVMActionResult<AllBalancesEVMResultBodyType>> {
   try {
-    let balances: {
-      balance: number;
-      token: string;
-      name: string;
-      logoURI: string;
-    }[] = [
-      {
-        balance: 0,
-        token: "SOL",
-        name: "Solana",
-        logoURI:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX6PYmAiDpUliZWnmCHKPc3VI7QESDKhLndQ&s",
+    const walletAddress = args.walletAddress;
+    const API_KEY = process.env.CROSSMINT_API_KEY!;
+    const CROSSMINT_URL = `https://www.crossmint.com/api/v1-alpha2/wallets/${walletAddress}/balances?currencies=usdc%2Csei&chains=sei-pacific-1`;
+
+    const response = await fetch(CROSSMINT_URL, {
+      method: "GET",
+      headers: {
+        "X-API-KEY": API_KEY,
+        "Content-Type": "application/json",
       },
-    ];
+    });
 
-    // Get SOL balance
-    // const solBalance =
-    //   (await connection.getBalance(new PublicKey(args.walletAddress))) /
-    //   LAMPORTS_PER_SOL;
-    // balances.push({
-    //   balance: solBalance,
-    //   token: "SOL",
-    //   name: "Solana",
-    //   logoURI:
-    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX6PYmAiDpUliZWnmCHKPc3VI7QESDKhLndQ&s",
-    // });
+    if (!response.ok) {
+      throw new Error(`Crossmint API Error: ${response.statusText}`);
+    }
 
-    // // Get all token accounts
-    // const tokenAccounts = await getTokenAccountsByOwner(args.walletAddress);
+    const data = await response.json();
 
-    // // Get balance for each token account
-    // for await (const account of tokenAccounts) {
-    //   const token = await getToken(account.mint!);
-    //   if (token) {
-    //     balances.push({
-    //       balance: account.amount! / 10 ** token.decimals,
-    //       token: token.symbol,
-    //       name: token.name,
-    //       logoURI: token.logoURI,
-    //     });
-    //   }
-    // }
+    const balances = data.map((item: any) => {
+      return {
+        balance: parseFloat(item.balances["total"]) / 10 ** item.decimals,
+        token: item.currency.toUpperCase(),
+        name: item.currency,
+        logoURI:
+          tokenInfo.find(
+            token => token.symbol.toLocaleLowerCase() === item.currency
+          )?.logoURI || "",
+      };
+    });
 
     return {
-      message: `The user has been shown all of their balances in the UI. You do not need to list the balances again, instead ask what they want to do next.`,
+      message: `The user has been shown all of their balances in the UI.`,
       body: {
         balances: balances,
       },

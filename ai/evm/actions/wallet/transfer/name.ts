@@ -1,1 +1,1 @@
-export const SOLANA_TRANSFER_NAME = "solana_transfer"; 
+export const EVM_TRANSFER_NAME = "evm_transfer";

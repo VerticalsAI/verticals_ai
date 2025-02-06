@@ -29,6 +29,9 @@ import {
 import { SearchRecentTweets } from "./twitter";
 
 import {
+  EVM_ALL_BALANCES_NAME,
+  EVM_BALANCE_NAME,
+  EVM_GET_WALLET_ADDRESS_NAME,
   EVM_LIQUID_STAKING_YIELDS_NAME,
   INVOKE_AGENT_NAME,
   SEARCH_KNOWLEDGE_NAME,
@@ -82,10 +85,6 @@ const ToolInvocation: React.FC<Props> = ({ tool, prevToolAgent }) => {
       return <Trade tool={tool} prevToolAgent={prevToolAgent} />;
     case SOLANA_LIQUID_STAKING_YIELDS_NAME:
       return <LiquidStakingYields tool={tool} prevToolAgent={prevToolAgent} />;
-    case EVM_LIQUID_STAKING_YIELDS_NAME:
-      return (
-        <LiquidStakingYieldsEVM tool={tool} prevToolAgent={prevToolAgent} />
-      );
     case SOLANA_TRANSFER_NAME:
       return <Transfer tool={tool} prevToolAgent={prevToolAgent} />;
     case TWITTER_SEARCH_RECENT_NAME:
@@ -120,6 +119,17 @@ const ToolInvocation: React.FC<Props> = ({ tool, prevToolAgent }) => {
       return <GetTopTokenTraders tool={tool} prevToolAgent={prevToolAgent} />;
     case SOLANA_TOKEN_PRICE_CHART_NAME:
       return <PriceChart tool={tool} prevToolAgent={prevToolAgent} />;
+    //EVM
+    case EVM_GET_WALLET_ADDRESS_NAME:
+      return <GetWalletAddress tool={tool} prevToolAgent={prevToolAgent} />;
+    case EVM_LIQUID_STAKING_YIELDS_NAME:
+      return (
+        <LiquidStakingYieldsEVM tool={tool} prevToolAgent={prevToolAgent} />
+      );
+    case EVM_ALL_BALANCES_NAME:
+      return <AllBalances tool={tool} prevToolAgent={prevToolAgent} />;
+    case EVM_BALANCE_NAME:
+      return <Balance tool={tool} prevToolAgent={prevToolAgent} />;
     default:
       return (
         <pre className="whitespace-pre-wrap">

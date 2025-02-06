@@ -3,6 +3,7 @@ import { NextRequest } from "next/server";
 import { CoreTool, LanguageModelV1, streamText, StreamTextResult } from "ai";
 
 import { anthropic } from "@ai-sdk/anthropic";
+import { deepseek } from "@ai-sdk/deepseek";
 import { google } from "@ai-sdk/google";
 import { openai } from "@ai-sdk/openai";
 import { xai } from "@ai-sdk/xai";
@@ -27,7 +28,6 @@ The query of the user did not result in any agent being invoked. You should resp
 
 export const POST = async (req: NextRequest) => {
   const { messages, modelName } = await req.json();
-  //modelName = Models.Anthropic;
 
   let MAX_TOKENS: number | undefined = undefined;
   let model: LanguageModelV1 | undefined = undefined;
@@ -53,6 +53,11 @@ export const POST = async (req: NextRequest) => {
   if (modelName === Models.Gemini) {
     model = google("gemini-2.0-flash-exp");
     MAX_TOKENS = 1048576;
+  }
+
+  if (modelName === Models.DeepSeek) {
+    model = deepseek("deepseek-chat");
+    MAX_TOKENS = 65536;
   }
 
   if (!model || !MAX_TOKENS) {

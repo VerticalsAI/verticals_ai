@@ -63,7 +63,7 @@ const ChatContext = createContext<ChatContextType>({
   sendMessage: () => {},
   isResponseLoading: false,
   addToolResult: () => {},
-  model: Models.DeepSeek,
+  model: Models.OpenAI,
   setModel: () => {},
   setChat: () => {},
   resetChat: () => {},
@@ -108,7 +108,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     });
     mutate(
       (currentChats: Chat[] | undefined) =>
-        currentChats ? currentChats.filter(chat => chat.id !== chatId) : [],
+        currentChats ? currentChats.filter((chat) => chat.id !== chatId) : [],
       false
     );
   };
@@ -191,7 +191,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     if (messages.length === 0) return "";
     const lastMessage = messages[messages.length - 1];
     let message = lastMessage.toolInvocations
-      ?.map(toolInvocation => {
+      ?.map((toolInvocation) => {
         if (toolInvocation.state === "result") return "";
         const toolName = toolInvocation.toolName.slice(
           toolInvocation.toolName.indexOf("-") + 1
@@ -213,7 +213,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
             return "";
         }
       })
-      .filter(message => message !== "")
+      .filter((message) => message !== "")
       .join(" and ");
     if (message) {
       message = message?.concat(" to continue");

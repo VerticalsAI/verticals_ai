@@ -102,7 +102,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   const deleteChat = async (chatId: string) => {
     mutate(
       (currentChats: Chat[] | undefined) =>
-        currentChats ? currentChats.filter((chat) => chat.id !== chatId) : [],
+        currentChats ? currentChats.filter(chat => chat.id !== chatId) : [],
       false
     );
     await fetch(`/api/chats/${chatId}`, {
@@ -113,7 +113,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     });
     mutate(
       (currentChats: Chat[] | undefined) =>
-        currentChats ? currentChats.filter((chat) => chat.id !== chatId) : [],
+        currentChats ? currentChats.filter(chat => chat.id !== chatId) : [],
       false
     );
   };
@@ -136,7 +136,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     onResponse: () => {
       setIsResponseLoading(false);
     },
-    api: isEVM ? "/api/chat/evm" : "/api/chat/solana",
+    api: isEVM ? "/api/chat/sei" : "/api/chat/solana",
     body: {
       model,
       modelName: model,
@@ -196,7 +196,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     if (messages.length === 0) return "";
     const lastMessage = messages[messages.length - 1];
     let message = lastMessage.toolInvocations
-      ?.map((toolInvocation) => {
+      ?.map(toolInvocation => {
         if (toolInvocation.state === "result") return "";
         const toolName = toolInvocation.toolName.slice(
           toolInvocation.toolName.indexOf("-") + 1
@@ -218,7 +218,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
             return "";
         }
       })
-      .filter((message) => message !== "")
+      .filter(message => message !== "")
       .join(" and ");
     if (message) {
       message = message?.concat(" to continue");

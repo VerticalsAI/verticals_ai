@@ -2,7 +2,7 @@ import React from "react";
 
 import ToolCard from "../tool-card";
 
-import { AllBalancesEVMResultType } from "@/ai/evm";
+import { AllBalancesEVMResultType } from "@/ai/sei";
 import type { ToolInvocation } from "ai";
 import { TokenBalance } from "../utils";
 

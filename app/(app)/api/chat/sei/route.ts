@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-import { LanguageModelV1, streamText } from "ai";
+import { CoreTool, LanguageModelV1, streamText, StreamTextResult } from "ai";
 
 import { anthropic } from "@ai-sdk/anthropic";
 import { deepseek } from "@ai-sdk/deepseek";
@@ -119,7 +119,7 @@ export const POST = async (req: NextRequest) => {
 
   const chosenAgent = await chooseAgent(model, truncatedMessages);
 
-  let streamTextResult: any;
+  let streamTextResult: StreamTextResult<Record<string, CoreTool<any, any>>>;
 
   if (!chosenAgent) {
     streamTextResult = streamText({

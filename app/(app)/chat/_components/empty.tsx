@@ -31,7 +31,7 @@ const EmptyChat: React.FC = () => {
             animationData={animationData}
             loop={true}
             autoplay={true}
-            className="w-[500px] h-[500px] max-w-full"
+            className="w-[300px] h-[300px] max-w-full"
           />
           <div className="flex flex-col gap-1">
             {/* <h1 className="font-semibold text-center text-2xl">

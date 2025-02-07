@@ -1,5 +1,4 @@
-import { searchTokens } from "@/services/birdeye";
-
+import { searchTokens } from "@/services/coingecko";
 import type { SeiActionResult } from "../../sei-action";
 import type {
   GetTokenAddressArgumentsType,
@@ -17,12 +16,12 @@ export async function getTokenAddress(
   args: GetTokenAddressArgumentsType
 ): Promise<SeiActionResult<GetTokenAddressResultBodyType>> {
   try {
-    const token = await searchTokens({ keyword: args.keyword });
+    const token = await searchTokens();
     if (!token) {
       throw new Error("Failed to fetch token data");
     }
 
-    const tokenAddress = token?.items[0]?.result[0]?.address;
+    const tokenAddress = token.platforms["sei-v2"];
 
     if (!tokenAddress) {
       throw new Error("Failed to fetch token address");

@@ -18,13 +18,13 @@ const StarterButtons = () => {
       title: "Best stablecoin yield",
       description: "Stablecoin Yields",
       icon: "/icons/settings.svg",
-      prompt: "Find the best stablecoin yields",
+      prompt: "Find the best stablecoin yields" + (isEvm ? " on sei" : ""),
     },
     {
       title: "Analyze my portfolio",
       description: "Swap on Jupiter",
       icon: "/icons/atom.svg",
-      prompt: "show my portfolio ",
+      prompt: "show my portfolio" + (isEvm ? " on sei" : ""),
     },
     {
       title: "Swap",
@@ -41,7 +41,7 @@ const StarterButtons = () => {
   ] as const;
   return (
     <div className="flex flex-wrap gap-2">
-      {starterButtons.map((button) => (
+      {starterButtons.map(button => (
         <StarterButton key={button.title} {...button} />
       ))}
       <Button

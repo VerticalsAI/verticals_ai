@@ -3,13 +3,13 @@ import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { getAssociatedTokenAddressSync } from "@solana/spl-token";
 
 import { getToken } from "@/db/services";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type { BalanceArgumentsType, BalanceResultBodyType } from "./types";
 
 export async function getBalance(
   connection: Connection,
   args: BalanceArgumentsType
-): Promise<EVMActionResult<BalanceResultBodyType>> {
+): Promise<SeiActionResult<BalanceResultBodyType>> {
   try {
     let balance: number;
 

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { TokenLargestAccount } from "@/services/helius";
-import { EVMActionResult } from "../../sei-action";
+import { SeiActionResult } from "../../sei-action";
 import { TopHoldersInputSchema } from "./input-schema";
 
 export type TopHoldersSchemaType = typeof TopHoldersInputSchema;
@@ -16,4 +16,4 @@ export type TopHoldersResultBodyType = {
   percentageOwned: number;
 };
 
-export type TopHoldersResultType = EVMActionResult<TopHoldersResultBodyType>;
+export type TopHoldersResultType = SeiActionResult<TopHoldersResultBodyType>;

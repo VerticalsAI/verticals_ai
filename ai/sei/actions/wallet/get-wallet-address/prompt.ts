@@ -1,4 +1,4 @@
-export const EVM_GET_WALLET_ADDRESS_PROMPT = `Ask the user to connect their Solana wallet to the agent to get their wallet address.
+export const SEI_GET_WALLET_ADDRESS_PROMPT = `Ask the user to connect their Sei wallet to the agent to get their wallet address.
 
 This action does not require any parameters. The user will supply their wallet address to the agent.
 

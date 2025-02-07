@@ -2,7 +2,7 @@ import { seekTradesByTime } from "@/services/birdeye";
 
 import { getToken } from "@/db/services";
 import { Token } from "@/db/types";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
   GetTraderTradesArgumentsType,
   GetTraderTradesResultBodyType,
@@ -18,7 +18,7 @@ import type {
  */
 export async function getTraderTrades(
   args: GetTraderTradesArgumentsType
-): Promise<EVMActionResult<GetTraderTradesResultBodyType>> {
+): Promise<SeiActionResult<GetTraderTradesResultBodyType>> {
   try {
     const responses = await Promise.all(
       Array.from({ length: 10 }, (_, i) =>

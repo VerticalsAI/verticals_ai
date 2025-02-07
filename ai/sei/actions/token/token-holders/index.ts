@@ -4,11 +4,11 @@ import { SOLANA_TOKEN_HOLDERS_NAME } from "./name";
 import { SOLANA_TOKEN_HOLDERS_PROMPT } from "./prompt";
 import { TokenHoldersResultBodyType } from "./types";
 
-import type { EVMAction } from "../../sei-action";
+import type { SeiAction } from "../../sei-action";
 
 export class SolanaTokenHoldersAction
   implements
-    EVMAction<typeof TokenHoldersInputSchema, TokenHoldersResultBodyType>
+    SeiAction<typeof TokenHoldersInputSchema, TokenHoldersResultBodyType>
 {
   public name = SOLANA_TOKEN_HOLDERS_NAME;
   public description = SOLANA_TOKEN_HOLDERS_PROMPT;

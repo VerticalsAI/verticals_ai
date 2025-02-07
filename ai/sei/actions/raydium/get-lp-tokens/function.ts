@@ -1,6 +1,6 @@
 import { getLpTokensByAddress } from "@/services/raydium";
 
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
   GetLpTokensArgumentsType,
   GetLpTokensResultBodyType,
@@ -15,7 +15,7 @@ import type {
  */
 export async function getLpTokens(
   args: GetLpTokensArgumentsType
-): Promise<EVMActionResult<GetLpTokensResultBodyType>> {
+): Promise<SeiActionResult<GetLpTokensResultBodyType>> {
   try {
     const lpTokens = await getLpTokensByAddress(args.address);
 

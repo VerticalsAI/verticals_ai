@@ -3,7 +3,7 @@ import { z } from "zod";
 import { GetTokenDataInputSchema } from "./input-schema";
 
 import type { TokenOverview } from "@/services/birdeye/types";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 
 export type GetTokenDataSchemaType = typeof GetTokenDataInputSchema;
 
@@ -14,4 +14,4 @@ export type GetTokenDataResultBodyType = {
 };
 
 export type GetTokenDataResultType =
-  EVMActionResult<GetTokenDataResultBodyType>;
+  SeiActionResult<GetTokenDataResultBodyType>;

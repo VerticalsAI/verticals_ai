@@ -4,10 +4,10 @@ import { SOLANA_TOP_HOLDERS_NAME } from "./name";
 import { SOLANA_TOP_HOLDERS_PROMPT } from "./prompt";
 import { TopHoldersResultBodyType } from "./types";
 
-import type { EVMAction } from "../../sei-action";
+import type { SeiAction } from "../../sei-action";
 
 export class SolanaTopHoldersAction
-  implements EVMAction<typeof TopHoldersInputSchema, TopHoldersResultBodyType>
+  implements SeiAction<typeof TopHoldersInputSchema, TopHoldersResultBodyType>
 {
   public name = SOLANA_TOP_HOLDERS_NAME;
   public description = SOLANA_TOP_HOLDERS_PROMPT;

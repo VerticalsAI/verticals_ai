@@ -4,7 +4,7 @@ import { GetPoolsInputSchema } from "./input-schema";
 
 import type { DexScreenerPair } from "@/services/dexscreener/types";
 import type { ApiV3PoolInfoItem } from "@raydium-io/raydium-sdk-v2";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 
 export type GetPoolsSchemaType = typeof GetPoolsInputSchema;
 
@@ -17,4 +17,4 @@ export type GetPoolsResultBodyType = {
   }[];
 };
 
-export type GetPoolsResultType = EVMActionResult<GetPoolsResultBodyType>;
+export type GetPoolsResultType = SeiActionResult<GetPoolsResultBodyType>;

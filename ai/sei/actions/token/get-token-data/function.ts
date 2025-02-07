@@ -1,6 +1,6 @@
 import { searchTokens } from "@/services/birdeye";
 import { getTokenOverview } from "@/services/birdeye/get-token-overview";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
   GetTokenDataArgumentsType,
   GetTokenDataResultBodyType,
@@ -15,7 +15,7 @@ import type {
  */
 export async function getTokenData(
   args: GetTokenDataArgumentsType
-): Promise<EVMActionResult<GetTokenDataResultBodyType>> {
+): Promise<SeiActionResult<GetTokenDataResultBodyType>> {
   try {
     const { items } = await searchTokens({ keyword: args.search });
 

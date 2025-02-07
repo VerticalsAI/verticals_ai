@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { EVMActionResult } from "../../sei-action";
+import { SeiActionResult } from "../../sei-action";
 import { TokenHoldersInputSchema } from "./input-schema";
 
 export type TokenHoldersSchemaType = typeof TokenHoldersInputSchema;
@@ -12,4 +12,4 @@ export type TokenHoldersResultBodyType = {
 };
 
 export type TokenHoldersResultType =
-  EVMActionResult<TokenHoldersResultBodyType>;
+  SeiActionResult<TokenHoldersResultBodyType>;

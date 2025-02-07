@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import type { TopTrader } from "@/services/birdeye";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type { GetTopTradersInputSchema } from "./input-schema";
 
 export type GetTopTradersSchemaType = typeof GetTopTradersInputSchema;
@@ -13,4 +13,4 @@ export type GetTopTradersResultBodyType = {
 };
 
 export type GetTopTradersResultType =
-  EVMActionResult<GetTopTradersResultBodyType>;
+  SeiActionResult<GetTopTradersResultBodyType>;

@@ -1,5 +1,5 @@
 import { getTokenAccountsByMint } from "@/services/helius";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
   TokenHoldersArgumentsType,
   TokenHoldersResultBodyType,
@@ -7,7 +7,7 @@ import type {
 
 export async function getNumHolders(
   args: TokenHoldersArgumentsType
-): Promise<EVMActionResult<TokenHoldersResultBodyType>> {
+): Promise<SeiActionResult<TokenHoldersResultBodyType>> {
   try {
     let tokenAccounts = await getTokenAccountsByMint(args.tokenAddress);
 

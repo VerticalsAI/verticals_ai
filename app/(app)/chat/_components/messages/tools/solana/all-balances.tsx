@@ -2,7 +2,7 @@ import React from "react";
 
 import ToolCard from "../tool-card";
 
-import { AllBalancesEVMResultType } from "@/ai/sei";
+import { AllBalancesResultType } from "@/ai";
 import type { ToolInvocation } from "ai";
 import { TokenBalance } from "../utils";
 
@@ -17,9 +17,9 @@ const AllBalances: React.FC<Props> = ({ tool, prevToolAgent }) => {
       tool={tool}
       loadingText={`Getting All Balances...`}
       result={{
-        heading: (result: AllBalancesEVMResultType) =>
+        heading: (result: AllBalancesResultType) =>
           result.body ? `Fetched All Balances` : `Failed to fetch balances`,
-        body: (result: AllBalancesEVMResultType) =>
+        body: (result: AllBalancesResultType) =>
           result.body ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
               {result.body.balances.map(balance => (

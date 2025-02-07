@@ -1,3 +1,3 @@
-export { default as AllEVMBalances } from "./all-balances";
+export { default as SeiAllBalances } from "./all-balances";
 
 export * from "./staking";

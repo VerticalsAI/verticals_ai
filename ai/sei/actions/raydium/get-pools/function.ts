@@ -2,7 +2,7 @@ import { getToken, getTokenBySymbol } from "@/db/services";
 import { getTokenPairsFromAddress } from "@/services/dexscreener";
 import { getRaydiumPoolById } from "@/services/raydium";
 
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type { GetPoolsArgumentsType, GetPoolsResultBodyType } from "./types";
 
 /**
@@ -14,7 +14,7 @@ import type { GetPoolsArgumentsType, GetPoolsResultBodyType } from "./types";
  */
 export async function getPools(
   args: GetPoolsArgumentsType
-): Promise<EVMActionResult<GetPoolsResultBodyType>> {
+): Promise<SeiActionResult<GetPoolsResultBodyType>> {
   try {
     if (args.address) {
       const token = await getToken(args.address);

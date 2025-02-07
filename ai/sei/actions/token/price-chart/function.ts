@@ -1,8 +1,8 @@
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type { TokenPriceChartResultBodyType } from "./types";
 
 export async function getPriceChart(): Promise<
-  EVMActionResult<TokenPriceChartResultBodyType>
+  SeiActionResult<TokenPriceChartResultBodyType>
 > {
   try {
     return {

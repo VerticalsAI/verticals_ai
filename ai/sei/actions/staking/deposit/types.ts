@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EVMActionResult } from "../../sei-action";
+import { SeiActionResult } from "../../sei-action";
 import { DepositInputSchema } from "./input-schema";
 
 export type DepositSchemaType = typeof DepositInputSchema;
@@ -11,4 +11,4 @@ export type DepositResultBodyType = {
   symbol: string;
 };
 
-export type DepositResultType = EVMActionResult<DepositResultBodyType>;
+export type DepositResultType = SeiActionResult<DepositResultBodyType>;

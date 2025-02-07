@@ -3,7 +3,7 @@ import { z } from "zod";
 import { GetLpTokensInputSchema } from "./input-schema";
 
 import type { LpToken } from "@/services/raydium/types";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 
 export type GetLpTokensSchemaType = typeof GetLpTokensInputSchema;
 
@@ -13,4 +13,4 @@ export type GetLpTokensResultBodyType = {
   lpTokens: LpToken[];
 };
 
-export type GetLpTokensResultType = EVMActionResult<GetLpTokensResultBodyType>;
+export type GetLpTokensResultType = SeiActionResult<GetLpTokensResultBodyType>;

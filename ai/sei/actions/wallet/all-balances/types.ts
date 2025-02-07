@@ -1,13 +1,13 @@
 import { z } from "zod";
 
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import { AllBalancesInputSchema } from "./input-schema";
 
-export type AllBalancesEVMSchemaType = typeof AllBalancesInputSchema;
+export type SeiAllBalancesSchemaType = typeof AllBalancesInputSchema;
 
-export type AllBalancesEVMArgumentsType = z.infer<AllBalancesEVMSchemaType>;
+export type SeiAllBalancesArgumentsType = z.infer<SeiAllBalancesSchemaType>;
 
-export type AllBalancesEVMResultBodyType = {
+export type SeiAllBalancesResultBodyType = {
   balances: {
     balance: number;
     token: string;
@@ -16,5 +16,5 @@ export type AllBalancesEVMResultBodyType = {
   }[];
 };
 
-export type AllBalancesEVMResultType =
-  EVMActionResult<AllBalancesEVMResultBodyType>;
+export type SeiAllBalancesResultType =
+  SeiActionResult<SeiAllBalancesResultBodyType>;

@@ -3,7 +3,7 @@ import { z } from "zod";
 import { LiquidStakingYieldsInputSchema } from "./input-schema";
 
 import type { Token } from "@/db/types";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 
 export type LiquidStakingYieldsSchemaType =
   typeof LiquidStakingYieldsInputSchema;
@@ -11,7 +11,7 @@ export type LiquidStakingYieldsSchemaType =
 export type LiquidStakingYieldsArgumentsType =
   z.infer<LiquidStakingYieldsSchemaType>;
 
-export type LiquidStakingYieldEVM = {
+export type SeiLiquidStakingYield = {
   // reserve: string;
   // liquidityToken: string;
   // liquidityTokenMint: string;
@@ -29,9 +29,9 @@ export type LiquidStakingYieldEVM = {
   tokenData?: Token;
 };
 
-export type LiquidStakingYieldsEVMResultBodyType = {
-  data: LiquidStakingYieldEVM[];
+export type SeiLiquidStakingYieldsResultBodyType = {
+  data: SeiLiquidStakingYield[];
 };
 
-export type LiquidStakingYieldsEVMResultType =
-  EVMActionResult<LiquidStakingYieldsEVMResultBodyType>;
+export type SeiLiquidStakingYieldsResultType =
+  SeiActionResult<SeiLiquidStakingYieldsResultBodyType>;

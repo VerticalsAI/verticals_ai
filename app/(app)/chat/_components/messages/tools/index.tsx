@@ -29,12 +29,12 @@ import {
 import { SearchRecentTweets } from "./twitter";
 
 import {
-  EVM_ALL_BALANCES_NAME,
-  EVM_BALANCE_NAME,
-  EVM_GET_WALLET_ADDRESS_NAME,
-  EVM_LIQUID_STAKING_YIELDS_NAME,
   INVOKE_AGENT_NAME,
   SEARCH_KNOWLEDGE_NAME,
+  SEI_ALL_BALANCES_NAME,
+  SEI_BALANCE_NAME,
+  SEI_GET_WALLET_ADDRESS_NAME,
+  SEI_LIQUID_STAKING_YIELDS_NAME,
   SOLANA_ALL_BALANCES_NAME,
   SOLANA_BALANCE_NAME,
   SOLANA_BUBBLE_MAPS_NAME,
@@ -59,7 +59,7 @@ import {
 } from "@/ai/action-names";
 
 import type { ToolInvocation as ToolInvocationType } from "ai";
-import { AllEVMBalances, LiquidStakingYieldsEVM } from "./evm";
+import { LiquidStakingYieldsEVM, SeiAllBalances } from "./evm";
 
 interface Props {
   tool: ToolInvocationType;
@@ -120,15 +120,15 @@ const ToolInvocation: React.FC<Props> = ({ tool, prevToolAgent }) => {
     case SOLANA_TOKEN_PRICE_CHART_NAME:
       return <PriceChart tool={tool} prevToolAgent={prevToolAgent} />;
     //EVM
-    case EVM_GET_WALLET_ADDRESS_NAME:
+    case SEI_GET_WALLET_ADDRESS_NAME:
       return <GetWalletAddress tool={tool} prevToolAgent={prevToolAgent} />;
-    case EVM_LIQUID_STAKING_YIELDS_NAME:
+    case SEI_LIQUID_STAKING_YIELDS_NAME:
       return (
         <LiquidStakingYieldsEVM tool={tool} prevToolAgent={prevToolAgent} />
       );
-    case EVM_ALL_BALANCES_NAME:
-      return <AllEVMBalances tool={tool} prevToolAgent={prevToolAgent} />;
-    case EVM_BALANCE_NAME:
+    case SEI_ALL_BALANCES_NAME:
+      return <SeiAllBalances tool={tool} prevToolAgent={prevToolAgent} />;
+    case SEI_BALANCE_NAME:
       return <Balance tool={tool} prevToolAgent={prevToolAgent} />;
     default:
       return (

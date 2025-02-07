@@ -1,39 +1,39 @@
 import { SolanaGetTrendingTokensAction } from "./market";
-import { EVMLiquidStakingYieldsAction, SolanaDepositAction } from "./staking";
+import { SeiLiquidStakingYieldsAction, SolanaDepositAction } from "./staking";
 import {
-  EVMGetTokenAddressAction,
+  SeiGetTokenAddressAction,
   SolanaGetTokenDataAction,
   SolanaTokenHoldersAction,
   SolanaTopHoldersAction,
 } from "./token";
 import { SolanaTradeAction } from "./trade";
 import {
-  EVMAllBalancesAction,
-  EVMBalanceAction,
-  EVMGetWalletAddressAction,
-  EVMTransferAction,
+  SeiAllBalancesAction,
+  SeiBalanceAction,
+  SeiGetWalletAddressAction,
+  SeiTransferAction,
 } from "./wallet";
 
-import type { EVMAction, EVMActionSchemaAny } from "./sei-action";
+import type { SeiAction, SeiActionSchemaAny } from "./sei-action";
 
-export function getAllEVMActions(): EVMAction<EVMActionSchemaAny, any>[] {
+export function getAllSeiActions(): SeiAction<SeiActionSchemaAny, any>[] {
   return [
-    new EVMBalanceAction(),
-    new EVMTransferAction(),
+    new SeiBalanceAction(),
+    new SeiTransferAction(),
     new SolanaTradeAction(),
-    new EVMGetWalletAddressAction(),
+    new SeiGetWalletAddressAction(),
     new SolanaGetTrendingTokensAction(),
     new SolanaGetTokenDataAction(),
     new SolanaDepositAction(),
-    new EVMAllBalancesAction(),
-    new EVMLiquidStakingYieldsAction(),
-    new EVMGetTokenAddressAction(),
+    new SeiAllBalancesAction(),
+    new SeiLiquidStakingYieldsAction(),
+    new SeiGetTokenAddressAction(),
     new SolanaTopHoldersAction(),
     new SolanaTokenHoldersAction(),
   ];
 }
 
-export const SOLANA_ACTIONS = getAllEVMActions();
+export const SOLANA_ACTIONS = getAllSeiActions();
 
 export * from "./sei-action";
 export * from "./types";

@@ -1,7 +1,7 @@
 import { getTokenLargestAccounts } from "@/services/helius";
 import { getAccount } from "@solana/spl-token";
 import { Connection, PublicKey } from "@solana/web3.js";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
   TopHoldersArgumentsType,
   TopHoldersResultBodyType,
@@ -9,7 +9,7 @@ import type {
 
 export async function getTopHolders(
   args: TopHoldersArgumentsType
-): Promise<EVMActionResult<TopHoldersResultBodyType>> {
+): Promise<SeiActionResult<TopHoldersResultBodyType>> {
   try {
     let topHolders = await getTokenLargestAccounts(args.tokenAddress);
 

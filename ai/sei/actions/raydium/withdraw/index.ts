@@ -2,7 +2,7 @@ import { WithdrawLiquidityInputSchema } from "./input-schema";
 import { SOLANA_WITHDRAW_LIQUIDITY_NAME } from "./name";
 import { SOLANA_WITHDRAW_LIQUIDITY_PROMPT } from "./prompt";
 
-import type { EVMAction } from "../../sei-action";
+import type { SeiAction } from "../../sei-action";
 import type {
   SolanaWithdrawLiquidityResultBodyType,
   SolanaWithdrawLiquiditySchemaType,
@@ -10,7 +10,7 @@ import type {
 
 export class SolanaWithdrawLiquidityAction
   implements
-    EVMAction<
+    SeiAction<
       SolanaWithdrawLiquiditySchemaType,
       SolanaWithdrawLiquidityResultBodyType
     >

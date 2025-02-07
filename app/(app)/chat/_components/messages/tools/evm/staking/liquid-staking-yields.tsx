@@ -8,9 +8,9 @@ import { usePrivy, Wallet } from "@privy-io/react-auth";
 import type { ToolInvocation } from "ai";
 
 import {
-  LiquidStakingYieldsEVMResultBodyType,
-  LiquidStakingYieldsEVMResultType,
-} from "@/ai/evm";
+  SeiLiquidStakingYieldsResultBodyType,
+  SeiLiquidStakingYieldsResultType,
+} from "@/ai/sei";
 import {
   Button,
   Table,
@@ -36,11 +36,11 @@ const LiquidStakingYieldsEVMTool: React.FC<Props> = ({
       tool={tool}
       loadingText={`Getting Best Liquid Staking Yields...`}
       result={{
-        heading: (result: LiquidStakingYieldsEVMResultType) =>
+        heading: (result: SeiLiquidStakingYieldsResultType) =>
           result.body
             ? `Fetched best stablecoin yields`
             : "No staking yields found",
-        body: (result: LiquidStakingYieldsEVMResultType) =>
+        body: (result: SeiLiquidStakingYieldsResultType) =>
           result.body ? (
             <LiquidStakingYields body={result.body} />
           ) : (
@@ -94,7 +94,7 @@ const GetTopYieldTokensAction = ({ toolCallId }: { toolCallId: string }) => {
 const LiquidStakingYields = ({
   body,
 }: {
-  body: LiquidStakingYieldsEVMResultBodyType;
+  body: SeiLiquidStakingYieldsResultBodyType;
 }) => {
   const [showAll, setShowAll] = useState(false);
   const { sendMessage, isResponseLoading } = useChat();

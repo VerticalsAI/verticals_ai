@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { EVMActionResult } from "../../sei-action";
+import { SeiActionResult } from "../../sei-action";
 import { TokenPriceChartInputSchema } from "./input-schema";
 
 export type TokenPriceChartSchemaType = typeof TokenPriceChartInputSchema;
@@ -10,4 +10,4 @@ export type TokenPriceChartArgumentsType = z.infer<TokenPriceChartSchemaType>;
 export type TokenPriceChartResultBodyType = {};
 
 export type TokenPriceChartResultType =
-  EVMActionResult<TokenPriceChartResultBodyType>;
+  SeiActionResult<TokenPriceChartResultBodyType>;

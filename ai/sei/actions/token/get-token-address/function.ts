@@ -1,6 +1,6 @@
 import { searchTokens } from "@/services/birdeye";
 
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
   GetTokenAddressArgumentsType,
   GetTokenAddressResultBodyType,
@@ -15,7 +15,7 @@ import type {
  */
 export async function getTokenAddress(
   args: GetTokenAddressArgumentsType
-): Promise<EVMActionResult<GetTokenAddressResultBodyType>> {
+): Promise<SeiActionResult<GetTokenAddressResultBodyType>> {
   try {
     const token = await searchTokens({ keyword: args.keyword });
     if (!token) {

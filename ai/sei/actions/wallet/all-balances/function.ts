@@ -1,7 +1,7 @@
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
-  AllBalancesEVMArgumentsType,
-  AllBalancesEVMResultBodyType,
+  SeiAllBalancesArgumentsType,
+  SeiAllBalancesResultBodyType,
 } from "./types";
 
 const tokenInfo = [
@@ -33,8 +33,8 @@ const tokenInfo = [
   },
 ];
 export async function getAllBalances(
-  args: AllBalancesEVMArgumentsType
-): Promise<EVMActionResult<AllBalancesEVMResultBodyType>> {
+  args: SeiAllBalancesArgumentsType
+): Promise<SeiActionResult<SeiAllBalancesResultBodyType>> {
   try {
     const walletAddress = args.walletAddress;
     const API_KEY = process.env.CROSSMINT_API_KEY!;

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { EVMActionResult } from "../../sei-action";
+import { SeiActionResult } from "../../sei-action";
 import { TopTokenTradersInputSchema } from "./input-schema";
 
 import { TopTraderByToken } from "@/services/birdeye";
@@ -14,4 +14,4 @@ export type TopTokenTradersResultBodyType = {
 };
 
 export type TopTokenTradersResultType =
-  EVMActionResult<TopTokenTradersResultBodyType>;
+  SeiActionResult<TopTokenTradersResultBodyType>;

@@ -1,6 +1,6 @@
 import { getTopTradersByToken } from "@/services/birdeye";
 
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
   TopTokenTradersArgumentsType,
   TopTokenTradersResultBodyType,
@@ -8,7 +8,7 @@ import type {
 
 export async function getTopTokenTraders(
   args: TopTokenTradersArgumentsType
-): Promise<EVMActionResult<TopTokenTradersResultBodyType>> {
+): Promise<SeiActionResult<TopTokenTradersResultBodyType>> {
   try {
     let topTraders = await getTopTradersByToken({
       address: args.tokenAddress,

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EVMActionResult } from "../sei-action";
+import { SeiActionResult } from "../sei-action";
 import { TradeInputSchema } from "./input-schema";
 
 export type SolanaTradeSchemaType = typeof TradeInputSchema;
@@ -13,4 +13,4 @@ export type SolanaTradeResultBodyType = {
   outputToken: string;
 };
 
-export type SolanaTradeResultType = EVMActionResult<SolanaTradeResultBodyType>;
+export type SolanaTradeResultType = SeiActionResult<SolanaTradeResultBodyType>;

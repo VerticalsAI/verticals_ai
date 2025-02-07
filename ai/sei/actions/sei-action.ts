@@ -5,11 +5,11 @@ import {
   BaseActionSchemaAny,
 } from "../../base-action";
 
-export type EVMActionSchemaAny = BaseActionSchemaAny;
-export type EVMActionResult<TBody> = BaseActionResult<TBody>;
+export type SeiActionSchemaAny = BaseActionSchemaAny;
+export type SeiActionResult<TBody> = BaseActionResult<TBody>;
 
 /**
  * Represents the structure for Solana Actions.
  */
-export interface EVMAction<TActionSchema extends EVMActionSchemaAny, TBody>
+export interface SeiAction<TActionSchema extends SeiActionSchemaAny, TBody>
   extends BaseAction<TActionSchema, TBody, Connection> {}

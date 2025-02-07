@@ -5,11 +5,11 @@ import { TopTokenTradersResultBodyType } from "./types";
 
 import { getTopTokenTraders } from "./function";
 
-import type { EVMAction } from "../../sei-action";
+import type { SeiAction } from "../../sei-action";
 
 export class SolanaTopTokenTradersAction
   implements
-    EVMAction<typeof TopTokenTradersInputSchema, TopTokenTradersResultBodyType>
+    SeiAction<typeof TopTokenTradersInputSchema, TopTokenTradersResultBodyType>
 {
   public name = SOLANA_TOKEN_TOP_TRADERS_NAME;
   public description = SOLANA_TOKEN_TOP_TRADERS_PROMPT;

@@ -4,13 +4,13 @@ import { Connection } from "@solana/web3.js";
 
 import { tool } from "ai";
 
-import { getAllEVMActions } from "./actions";
+import { getAllSeiActions } from "./actions";
 
 import type { CoreTool } from "ai";
-import type { EVMAction, EVMActionResult, EVMActionSchemaAny } from "./actions";
+import type { SeiAction, SeiActionResult, SeiActionSchemaAny } from "./actions";
 
-export const evmTool = <TActionSchema extends EVMActionSchemaAny, TResultBody>(
-  action: EVMAction<TActionSchema, TResultBody>,
+export const seiTool = <TActionSchema extends SeiActionSchemaAny, TResultBody>(
+  action: SeiAction<TActionSchema, TResultBody>,
   connection: Connection
 ) => {
   if (!action.func) {
@@ -30,7 +30,7 @@ export const evmTool = <TActionSchema extends EVMActionSchemaAny, TResultBody>(
           : await (
               func as (
                 args: z.infer<TActionSchema>
-              ) => Promise<EVMActionResult<TResultBody>>
+              ) => Promise<SeiActionResult<TResultBody>>
             )(args);
       return result;
     },
@@ -38,7 +38,7 @@ export const evmTool = <TActionSchema extends EVMActionSchemaAny, TResultBody>(
 };
 
 export const solanaTools = (connection: Connection) =>
-  getAllEVMActions().reduce((acc, action) => {
-    acc[action.name] = evmTool(action, connection);
+  getAllSeiActions().reduce((acc, action) => {
+    acc[action.name] = seiTool(action, connection);
     return acc;
   }, {} as Record<string, CoreTool>);

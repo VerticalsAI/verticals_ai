@@ -1,6 +1,6 @@
 import { getTrendingTokens as getTrendingTokensBirdeye } from "@/services/birdeye";
 
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
   GetTrendingTokensArgumentsType,
   GetTrendingTokensResultBodyType,
@@ -15,7 +15,7 @@ import type {
  */
 export async function getTrendingTokens(
   args: GetTrendingTokensArgumentsType
-): Promise<EVMActionResult<GetTrendingTokensResultBodyType>> {
+): Promise<SeiActionResult<GetTrendingTokensResultBodyType>> {
   try {
     const response = await getTrendingTokensBirdeye(0, args.limit);
 

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { Token } from "@/db/types";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type { GetTraderTradesInputSchema } from "./input-schema";
 
 export type TokenTraded = {
@@ -23,4 +23,4 @@ export type GetTraderTradesResultBodyType = {
 };
 
 export type GetTraderTradesResultType =
-  EVMActionResult<GetTraderTradesResultBodyType>;
+  SeiActionResult<GetTraderTradesResultBodyType>;

@@ -1,29 +1,29 @@
 import { Connection } from "@solana/web3.js";
 
 import {
-  EVMGetTokenAddressAction,
-  EVMLiquidStakingYieldsAction,
+  SeiGetTokenAddressAction,
+  SeiLiquidStakingYieldsAction,
   SolanaDepositAction,
 } from "@/ai/sei/actions";
 
 import {
-  EVM_LIQUID_STAKING_YIELDS_NAME,
+  SEI_LIQUID_STAKING_YIELDS_NAME,
   SOLANA_DEPOSIT_NAME,
   SOLANA_GET_TOKEN_ADDRESS_NAME,
 } from "@/ai/action-names";
-import { evmTool } from "@/ai/sei";
+import { seiTool } from "@/ai/sei";
 
 export const STAKING_TOOLS = {
-  [`staking-${SOLANA_DEPOSIT_NAME}`]: evmTool(
+  [`staking-${SOLANA_DEPOSIT_NAME}`]: seiTool(
     new SolanaDepositAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
-  [`staking-${EVM_LIQUID_STAKING_YIELDS_NAME}`]: evmTool(
-    new EVMLiquidStakingYieldsAction(),
+  [`staking-${SEI_LIQUID_STAKING_YIELDS_NAME}`]: seiTool(
+    new SeiLiquidStakingYieldsAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
-  [`staking-${SOLANA_GET_TOKEN_ADDRESS_NAME}`]: evmTool(
-    new EVMGetTokenAddressAction(),
+  [`staking-${SOLANA_GET_TOKEN_ADDRESS_NAME}`]: seiTool(
+    new SeiGetTokenAddressAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
 };

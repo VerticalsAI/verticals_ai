@@ -1,10 +1,10 @@
 import { getToken } from "@/db/services";
 
 import { PublicKey } from "@solana/web3.js";
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
   LiquidStakingYieldsArgumentsType,
-  LiquidStakingYieldsEVMResultBodyType,
+  SeiLiquidStakingYieldsResultBodyType,
 } from "./types";
 
 const MainMarketAddress = new PublicKey(
@@ -90,7 +90,7 @@ const poolAddress = [
  */
 export async function getLiquidStakingYields(
   args: LiquidStakingYieldsArgumentsType
-): Promise<EVMActionResult<LiquidStakingYieldsEVMResultBodyType>> {
+): Promise<SeiActionResult<SeiLiquidStakingYieldsResultBodyType>> {
   try {
     const responses = await Promise.all(
       poolAddress.map(pool =>
@@ -134,7 +134,7 @@ export async function getLiquidStakingYields(
       message: `Found ${data.length} best liquid staking yields. The user has been shown the options in the UI, ask them which they want to use. DO NOT REITERATE THE OPTIONS IN TEXT.`,
       body: {
         data: data,
-      } as LiquidStakingYieldsEVMResultBodyType,
+      } as SeiLiquidStakingYieldsResultBodyType,
     };
   } catch (error) {
     return {

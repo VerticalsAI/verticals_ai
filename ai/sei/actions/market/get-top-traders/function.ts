@@ -1,6 +1,6 @@
 import { getTopTraders as getTopTradersBirdeye } from "@/services/birdeye";
 
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type {
   GetTopTradersArgumentsType,
   GetTopTradersResultBodyType,
@@ -15,7 +15,7 @@ import type {
  */
 export async function getTopTraders(
   args: GetTopTradersArgumentsType
-): Promise<EVMActionResult<GetTopTradersResultBodyType>> {
+): Promise<SeiActionResult<GetTopTradersResultBodyType>> {
   try {
     const response = await getTopTradersBirdeye(args.timeFrame);
 

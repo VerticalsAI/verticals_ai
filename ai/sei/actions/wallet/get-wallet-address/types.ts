@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import type { EVMActionResult } from "../../sei-action";
+import type { SeiActionResult } from "../../sei-action";
 import type { GetWalletAddressInputSchema } from "./input-schema";
 
 export type GetWalletAddressSchemaType = typeof GetWalletAddressInputSchema;
@@ -12,4 +12,4 @@ export type GetWalletAddressResultBodyType = {
 };
 
 export type GetWalletAddressResultType =
-  EVMActionResult<GetWalletAddressResultBodyType>;
+  SeiActionResult<GetWalletAddressResultBodyType>;

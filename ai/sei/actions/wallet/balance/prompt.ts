@@ -1,4 +1,4 @@
-export const EVM_BALANCE_PROMPT = `Get the balance of a Solana wallet for a given token.
+export const SEI_BALANCE_PROMPT = `Get the balance of a Sei wallet for a given token.
 
 If no tokenAddress is provided, the balance will be in SOL.
 

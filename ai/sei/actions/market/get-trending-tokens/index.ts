@@ -3,12 +3,12 @@ import { GetTrendingTokensInputSchema } from "./input-schema";
 import { SOLANA_GET_TRENDING_TOKENS_NAME } from "./name";
 import { SOLANA_GET_TRENDING_TOKENS_PROMPT } from "./prompt";
 
-import type { EVMAction } from "../../sei-action";
+import type { SeiAction } from "../../sei-action";
 import type { GetTrendingTokensResultBodyType } from "./types";
 
 export class SolanaGetTrendingTokensAction
   implements
-    EVMAction<
+    SeiAction<
       typeof GetTrendingTokensInputSchema,
       GetTrendingTokensResultBodyType
     >

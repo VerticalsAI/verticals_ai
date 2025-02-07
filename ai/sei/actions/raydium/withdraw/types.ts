@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EVMActionResult } from "../../sei-action";
+import { SeiActionResult } from "../../sei-action";
 import { WithdrawLiquidityInputSchema } from "./input-schema";
 
 export type SolanaWithdrawLiquiditySchemaType =
@@ -13,4 +13,4 @@ export type SolanaWithdrawLiquidityResultBodyType = {
 };
 
 export type SolanaWithdrawLiquidityResultType =
-  EVMActionResult<SolanaWithdrawLiquidityResultBodyType>;
+  SeiActionResult<SolanaWithdrawLiquidityResultBodyType>;

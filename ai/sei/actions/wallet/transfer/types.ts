@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EVMActionResult } from "../../sei-action";
+import { SeiActionResult } from "../../sei-action";
 import { TransferInputSchema } from "./input-schema";
 
 export type SolanaTransferSchemaType = typeof TransferInputSchema;
@@ -14,4 +14,4 @@ export type SolanaTransferResultBodyType = {
 };
 
 export type SolanaTransferResultType =
-  EVMActionResult<SolanaTransferResultBodyType>;
+  SeiActionResult<SolanaTransferResultBodyType>;

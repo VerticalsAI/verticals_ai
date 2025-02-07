@@ -1,1 +1,1 @@
-export const EVM_BALANCE_NAME = "evm_balance";
+export const SEI_BALANCE_NAME = "sei_balance";

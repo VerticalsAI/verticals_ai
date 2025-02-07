@@ -1,1 +1,1 @@
-export const EVM_GET_WALLET_ADDRESS_NAME = "evm_get_wallet_address";
+export const SEI_GET_WALLET_ADDRESS_NAME = "sei_get_wallet_address";

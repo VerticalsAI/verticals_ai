@@ -2,7 +2,7 @@ import { DepositLiquidityInputSchema } from "./input-schema";
 import { SOLANA_DEPOSIT_LIQUIDITY_NAME } from "./name";
 import { SOLANA_DEPOSIT_LIQUIDITY_PROMPT } from "./prompt";
 
-import type { EVMAction } from "../../sei-action";
+import type { SeiAction } from "../../sei-action";
 import type {
   SolanaDepositLiquidityResultBodyType,
   SolanaDepositLiquiditySchemaType,
@@ -10,7 +10,7 @@ import type {
 
 export class SolanaDepositLiquidityAction
   implements
-    EVMAction<
+    SeiAction<
       SolanaDepositLiquiditySchemaType,
       SolanaDepositLiquidityResultBodyType
     >

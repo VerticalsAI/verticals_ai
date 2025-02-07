@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { EVMActionResult } from "../../sei-action";
+import { SeiActionResult } from "../../sei-action";
 import { GetTokenAddressArgumentsSchema } from "./input-schema";
 
 export type GetTokenAddressSchemaType = typeof GetTokenAddressArgumentsSchema;
@@ -12,4 +12,4 @@ export type GetTokenAddressResultBodyType = {
 };
 
 export type GetTokenAddressResultType =
-  EVMActionResult<GetTokenAddressResultBodyType>;
+  SeiActionResult<GetTokenAddressResultBodyType>;

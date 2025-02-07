@@ -1,1 +1,1 @@
-export const EVM_TRANSFER_NAME = "evm_transfer";
+export const SEI_TRANSFER_NAME = "sei_transfer";

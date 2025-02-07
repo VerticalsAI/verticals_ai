@@ -8,7 +8,7 @@ import { google } from "@ai-sdk/google";
 import { openai } from "@ai-sdk/openai";
 import { xai } from "@ai-sdk/xai";
 
-import { agents } from "@/ai/solana/agents";
+import { agents } from "@/ai/evm/agents";
 import characterData from "@/characters/jonas.json";
 import { Character } from "@/types/character";
 import { Models } from "@/types/models";
@@ -28,7 +28,6 @@ The query of the user did not result in any agent being invoked. You should resp
 
 export const POST = async (req: NextRequest) => {
   const { messages, modelName } = await req.json();
-  // const modelName = Models.DeepSeek;
 
   let MAX_TOKENS: number | undefined = undefined;
   let model: LanguageModelV1 | undefined = undefined;
@@ -58,7 +57,6 @@ export const POST = async (req: NextRequest) => {
 
   if (modelName === Models.DeepSeek) {
     model = deepseek("deepseek-chat");
-    console.log("deepseek model");
     MAX_TOKENS = 65536;
   }
 

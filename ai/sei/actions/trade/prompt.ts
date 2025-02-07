@@ -1,4 +1,4 @@
-export const SEI_TRADE_PROMPT = `Swap tokens using Jupiter Exchange.
+export const SEI_TRADE_PROMPT = `Swap tokens using Jellyverse Exchange.
 
 There are four parameters to swap tokens, all of which are optional:
 

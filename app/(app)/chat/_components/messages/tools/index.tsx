@@ -35,6 +35,7 @@ import {
   SEI_BALANCE_NAME,
   SEI_GET_WALLET_ADDRESS_NAME,
   SEI_LIQUID_STAKING_YIELDS_NAME,
+  SEI_TRADE_NAME,
   SOLANA_ALL_BALANCES_NAME,
   SOLANA_BALANCE_NAME,
   SOLANA_BUBBLE_MAPS_NAME,
@@ -120,6 +121,8 @@ const ToolInvocation: React.FC<Props> = ({ tool, prevToolAgent }) => {
     case SOLANA_TOKEN_PRICE_CHART_NAME:
       return <PriceChart tool={tool} prevToolAgent={prevToolAgent} />;
     //EVM
+    case SEI_TRADE_NAME:
+      return <Trade tool={tool} prevToolAgent={prevToolAgent} />;
     case SEI_GET_WALLET_ADDRESS_NAME:
       return <GetWalletAddress tool={tool} prevToolAgent={prevToolAgent} />;
     case SEI_LIQUID_STAKING_YIELDS_NAME:

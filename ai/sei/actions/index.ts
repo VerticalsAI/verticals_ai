@@ -8,6 +8,7 @@ import {
 } from "./wallet";
 
 import type { SeiAction, SeiActionSchemaAny } from "./sei-action";
+import { SeiTradeAction } from "./trade";
 
 export function getAllSeiActions(): SeiAction<SeiActionSchemaAny, any>[] {
   return [
@@ -16,6 +17,7 @@ export function getAllSeiActions(): SeiAction<SeiActionSchemaAny, any>[] {
     new SeiGetWalletAddressAction(),
     new SeiAllBalancesAction(),
     new SeiLiquidStakingYieldsAction(),
+    new SeiTradeAction(),
     new SeiGetTokenAddressAction(),
   ];
 }
@@ -27,4 +29,5 @@ export * from "./types";
 
 export * from "./staking";
 export * from "./token";
+export * from "./trade";
 export * from "./wallet";

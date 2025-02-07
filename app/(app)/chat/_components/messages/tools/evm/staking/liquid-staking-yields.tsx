@@ -100,7 +100,7 @@ const LiquidStakingYields = ({
   const { sendMessage, isResponseLoading } = useChat();
 
   const handleCall = (symbol: string) => {
-    sendMessage(`Supply ${symbol} to kamino`);
+    sendMessage(`Supply ${symbol} to jellyverse`);
   };
 
   return (

@@ -1,7 +1,7 @@
 import { SEI_LIQUID_STAKING_YIELDS_NAME } from "../../names";
 import { SEI_GET_TOKEN_ADDRESS_NAME } from "../../token/names";
 
-export const SOLANA_DEPOSIT_PROMPT = `Deposit token for yield using a liquid staking provider. 
+export const SEI_DEPOSIT_PROMPT = `Deposit token for yield using a liquid staking provider. 
 
 There are two parameters, one required and one optional: 
 

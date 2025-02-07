@@ -33,6 +33,7 @@ import {
   SEARCH_KNOWLEDGE_NAME,
   SEI_ALL_BALANCES_NAME,
   SEI_BALANCE_NAME,
+  SEI_GET_TOKEN_ADDRESS_NAME,
   SEI_GET_WALLET_ADDRESS_NAME,
   SEI_LIQUID_STAKING_YIELDS_NAME,
   SEI_TRADE_NAME,
@@ -42,7 +43,6 @@ import {
   SOLANA_DEPOSIT_LIQUIDITY_NAME,
   SOLANA_GET_LP_TOKENS_NAME,
   SOLANA_GET_POOLS_NAME,
-  SOLANA_GET_TOKEN_ADDRESS_NAME,
   SOLANA_GET_TOKEN_DATA_NAME,
   SOLANA_GET_TOP_TRADERS_NAME,
   SOLANA_GET_TRADER_TRADES_NAME,
@@ -96,7 +96,7 @@ const ToolInvocation: React.FC<Props> = ({ tool, prevToolAgent }) => {
       return <SearchKnowledge tool={tool} prevToolAgent={prevToolAgent} />;
     case INVOKE_AGENT_NAME:
       return <InvokeAgent tool={tool} prevToolAgent={prevToolAgent} />;
-    case SOLANA_GET_TOKEN_ADDRESS_NAME:
+    case SEI_GET_TOKEN_ADDRESS_NAME:
       return <GetTokenAddress tool={tool} prevToolAgent={prevToolAgent} />;
     case SOLANA_TOP_HOLDERS_NAME:
       return <GetTopHolders tool={tool} prevToolAgent={prevToolAgent} />;

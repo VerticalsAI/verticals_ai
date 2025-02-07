@@ -4,7 +4,6 @@ import {
   SeiAllBalancesAction,
   SeiBalanceAction,
   SeiGetWalletAddressAction,
-  SeiTransferAction,
 } from "./wallet";
 
 import type { SeiAction, SeiActionSchemaAny } from "./sei-action";
@@ -13,7 +12,7 @@ import { SeiTradeAction } from "./trade";
 export function getAllSeiActions(): SeiAction<SeiActionSchemaAny, any>[] {
   return [
     new SeiBalanceAction(),
-    new SeiTransferAction(),
+    // new SeiTransferAction(),
     new SeiGetWalletAddressAction(),
     new SeiAllBalancesAction(),
     new SeiLiquidStakingYieldsAction(),
@@ -22,7 +21,7 @@ export function getAllSeiActions(): SeiAction<SeiActionSchemaAny, any>[] {
   ];
 }
 
-export const SOLANA_ACTIONS = getAllSeiActions();
+export const SEI_ACTIONS = getAllSeiActions();
 
 export * from "./sei-action";
 export * from "./types";

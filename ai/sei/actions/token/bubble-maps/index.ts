@@ -1,15 +1,15 @@
 import { BubbleMapsArgumentsSchema } from "./input-schema";
-import { SOLANA_BUBBLE_MAPS_NAME } from "./name";
-import { SOLANA_BUBBLE_MAPS_PROMPT } from "./prompt";
+import { SEI_BUBBLE_MAPS_NAME } from "./name";
+import { SEI_BUBBLE_MAPS_PROMPT } from "./prompt";
 
 import type { SeiAction } from "../../sei-action";
 import type { BubbleMapsResultBodyType } from "./types";
 
-export class SolanaGetBubbleMapsAction
+export class SeiGetBubbleMapsAction
   implements
     SeiAction<typeof BubbleMapsArgumentsSchema, BubbleMapsResultBodyType>
 {
-  public name = SOLANA_BUBBLE_MAPS_NAME;
-  public description = SOLANA_BUBBLE_MAPS_PROMPT;
+  public name = SEI_BUBBLE_MAPS_NAME;
+  public description = SEI_BUBBLE_MAPS_PROMPT;
   public argsSchema = BubbleMapsArgumentsSchema;
 }

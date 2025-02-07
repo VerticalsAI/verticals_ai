@@ -37,7 +37,7 @@ export const seiTool = <TActionSchema extends SeiActionSchemaAny, TResultBody>(
   });
 };
 
-export const solanaTools = (connection: Connection) =>
+export const seiTools = (connection: Connection) =>
   getAllSeiActions().reduce((acc, action) => {
     acc[action.name] = seiTool(action, connection);
     return acc;

@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+An open-source framework for connecting AI agents to SEI-EVM blockchain. DEFI actions:
 
-## Getting Started
+- Portfolio tracking
+- Trade tokens
+- Lend assets
+- Launch new tokens (comming soon)
+- Launch tokens on AMMs (comming soon)
+- And more...
 
-First, run the development server:
+🔧 Core Blockchain Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Token Operations :
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Tranfers (comming soon)
+- Launching tokens (comming soon)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+DeFi Integration :
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Swap token via symphony
+- Find best Yields assets on Jellyverse
+- Stake Pool on Jellyverse
 
-## Learn More
+Non-Financial Actions:
 
-To learn more about Next.js, take a look at the following resources:
+- twitter
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+AI Tools
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Natural language processing for blockchain commands
+Price feed integration for market analysis
+Automated decision-making capabilities
 
-## Deploy on Vercel
+support AI API :
+OPEN_AI, DEEPSEEK
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Dependencies
+@ai-sdk/anthropic
+@ai-sdk/deepseek
+@ai-sdk/google
+@ai-sdk/openai
+@ai-sdk/xai

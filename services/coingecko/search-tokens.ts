@@ -8,16 +8,16 @@ interface SearchTokensParams {
   limit?: number;
 }
 
-export const searchTokens = async (): Promise<TokenSearchResult> => {
+export const searchTokens = async ({
+  keyword,
+}: SearchTokensParams): Promise<TokenSearchResult> => {
   const result = await queryCoingecko<TokenSearchResult[]>(
     "api/v3/coins/list?include_platform=true"
   );
 
-  console.log("🚀 ~ tokenSei:", result);
-
   const tokenSei = result.filter(
     token =>
-      token.symbol.toLowerCase() === "usdt" &&
+      token.symbol.toLowerCase() === keyword.toLocaleLowerCase() &&
       token.platforms.hasOwnProperty("sei-v2")
   );
 

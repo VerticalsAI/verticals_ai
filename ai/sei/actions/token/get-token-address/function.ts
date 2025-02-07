@@ -16,7 +16,7 @@ export async function getTokenAddress(
   args: GetTokenAddressArgumentsType
 ): Promise<SeiActionResult<GetTokenAddressResultBodyType>> {
   try {
-    const token = await searchTokens();
+    const token = await searchTokens({ keyword: args.keyword });
     if (!token) {
       throw new Error("Failed to fetch token data");
     }

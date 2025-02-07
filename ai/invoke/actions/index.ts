@@ -1,6 +1,6 @@
 import { InvokeAgentAction } from "./invoke-agent";
 
-import { agents } from "@/ai/evm/agents";
+import { agents } from "@/ai/ethereum/agents";
 import type { InvokeAction, InvokeActionSchemaAny } from "./invoke-action";
 
 export function getAllInvokeActions(): InvokeAction<

@@ -11,7 +11,7 @@ interface Props {
   prevToolAgent?: string;
 }
 
-const AllBalances: React.FC<Props> = ({ tool, prevToolAgent }) => {
+const AllEVMBalances: React.FC<Props> = ({ tool, prevToolAgent }) => {
   return (
     <ToolCard
       tool={tool}
@@ -41,4 +41,4 @@ const AllBalances: React.FC<Props> = ({ tool, prevToolAgent }) => {
   );
 };
 
-export default AllBalances;
+export default AllEVMBalances;

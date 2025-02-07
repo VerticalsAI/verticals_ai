@@ -1,9 +1,9 @@
 import { Connection } from "@solana/web3.js";
 
 import {
+  SeiDepositAction,
   SeiGetTokenAddressAction,
   SeiLiquidStakingYieldsAction,
-  SolanaDepositAction,
 } from "@/ai/sei/actions";
 
 import {
@@ -15,7 +15,7 @@ import { seiTool } from "@/ai/sei";
 
 export const STAKING_TOOLS = {
   [`staking-${SEI_DEPOSIT_NAME}`]: seiTool(
-    new SolanaDepositAction(),
+    new SeiDepositAction(),
     new Connection(process.env.NEXT_PUBLIC_SOLANA_RPC_URL!)
   ),
   [`staking-${SEI_LIQUID_STAKING_YIELDS_NAME}`]: seiTool(

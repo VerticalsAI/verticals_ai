@@ -9,7 +9,7 @@ import type { ToolInvocation } from "ai";
 
 import {
   EthereumLiquidStakingYieldsResultBodyType,
-  EthereumLiquidStakingYieldsResultType,
+  LiquidStakingYieldsEVMResultType,
 } from "@/ai/ethereum";
 import {
   Button,
@@ -36,11 +36,11 @@ const LiquidStakingYieldsEVMTool: React.FC<Props> = ({
       tool={tool}
       loadingText={`Getting Best Liquid Staking Yields...`}
       result={{
-        heading: (result: EthereumLiquidStakingYieldsResultType) =>
+        heading: (result: LiquidStakingYieldsEVMResultType) =>
           result.body
             ? `Fetched best stablecoin yields`
             : "No staking yields found",
-        body: (result: EthereumLiquidStakingYieldsResultType) =>
+        body: (result: LiquidStakingYieldsEVMResultType) =>
           result.body ? (
             <LiquidStakingYields body={result.body} />
           ) : (

@@ -11,7 +11,7 @@ export type LiquidStakingYieldsSchemaType =
 export type LiquidStakingYieldsArgumentsType =
   z.infer<LiquidStakingYieldsSchemaType>;
 
-export type EthereumLiquidStakingYield = {
+export type LiquidStakingYieldEVM = {
   // reserve: string;
   // liquidityToken: string;
   // liquidityTokenMint: string;
@@ -30,8 +30,8 @@ export type EthereumLiquidStakingYield = {
 };
 
 export type EthereumLiquidStakingYieldsResultBodyType = {
-  data: EthereumLiquidStakingYield[];
+  data: LiquidStakingYieldEVM[];
 };
 
-export type EthereumLiquidStakingYieldsResultType =
+export type LiquidStakingYieldsEVMResultType =
   EthereumActionResult<EthereumLiquidStakingYieldsResultBodyType>;

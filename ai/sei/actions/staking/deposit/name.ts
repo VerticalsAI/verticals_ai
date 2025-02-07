@@ -1,1 +1,1 @@
-export const SOLANA_DEPOSIT_NAME = "solana_kamino_deposit";
+export const SEI_DEPOSIT_NAME = "sei_deposit";

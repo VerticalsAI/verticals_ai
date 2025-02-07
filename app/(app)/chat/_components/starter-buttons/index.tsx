@@ -22,15 +22,15 @@ const StarterButtons = () => {
     },
     {
       title: "Analyze my portfolio",
-      description: "Swap on Jupiter",
+      description: "Swap on Kamino",
       icon: "/icons/atom.svg",
       prompt: "show my portfolio" + (isEvm ? " on sei" : ""),
     },
     {
       title: "Swap",
-      description: `Swap on ${isEvm ? "Symphony" : "Jupiter"}`,
+      description: `Swap on ${isEvm ? "Symphony" : "Kamino"}`,
       icon: "/icons/atom.svg",
-      prompt: `Swap on ${isEvm ? "Symphony" : "Jupiter"}`,
+      prompt: `Swap on ${isEvm ? "Symphony" : "Kamino"}`,
     },
     // {
     //   title: "Bridge funds",

@@ -19,6 +19,6 @@ If the user provides a symbol of the token they want to stake into our out of, u
 
 If the user provides a liquid staking token name and no symbol, you should tell them that they need to provide the symbol or token address of the token.
 
-The ${SEI_LIQUID_STAKING_YIELDS_NAME} tool will return the highest-yielding liquid staking tokens, which will include the token address.
+The ${SEI_LIQUID_STAKING_YIELDS_NAME} tool will return the highest-yielding liquid staking tokens, which will include the token address and ask user which ones would you like to invest in.
 
 You can ONLY STAKE SOL. If the user asks to stake something else, tell them that you can only stake SOL.`;

@@ -110,6 +110,7 @@ export async function getLiquidStakingYields(
         ...t,
         poolSymbol: item.pool.symbol,
         apy: item.pool.apr.total,
+        tvl: item.pool.tvlManual || 0,
       })),
     ]);
 
@@ -126,6 +127,7 @@ export async function getLiquidStakingYields(
             ...reserve.token,
             poolSymbol: reserve.poolSymbol,
             apy: reserve.apy,
+            tvl: reserve.tvl,
             tokenData: await getToken(reserve.liquidityTokenMint),
           };
         })

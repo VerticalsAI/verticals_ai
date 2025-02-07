@@ -112,6 +112,7 @@ const LiquidStakingYields = ({
             <TableHead className="text-center">Token</TableHead>
             <TableHead className="text-center">Pool</TableHead>
             <TableHead className="text-center">APY</TableHead>
+            <TableHead className="text-center">TVL</TableHead>
             <TableHead className="text-center"></TableHead>
           </TableRow>
         </TableHeader>
@@ -153,6 +154,12 @@ const LiquidStakingYields = ({
                   </TableCell>
                   <TableCell className="text-green-500">
                     {parseFloat(yd.apy).toFixed(2)}%
+                  </TableCell>
+                  <TableCell className="">
+                    {parseFloat(yd.tvl).toLocaleString(undefined, {
+                      maximumFractionDigits: 1,
+                    })}
+                    $
                   </TableCell>
                   <TableCell className="text-green-500">
                     <Button

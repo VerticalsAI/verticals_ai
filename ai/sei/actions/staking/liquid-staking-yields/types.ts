@@ -26,6 +26,7 @@ export type SeiLiquidStakingYield = {
   symbol: string;
   poolSymbol: string;
   apy: string;
+  tvl: string;
   tokenData?: Token;
 };
 
